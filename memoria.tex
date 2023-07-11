@@ -232,6 +232,8 @@
 	
 	Este trabajo consiste en el análisis y comprensión de un plano de control In-Band SDN/Openflow en varios escenarios con diferente número de controladores.
 	
+
+	
 	\subsection{Estilo}
 	\label{subsec:estilo}
 	
@@ -250,43 +252,44 @@
 	\section{Objetivo general} % título de sección (se muestra)
 	\label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 	
-	La realización de este trabajo fin de grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow, para ver su comportamiento en dichos escenarios. Se buscará principalmente, cuanto tarda cada switch en estar manejado por un controlador, comparando como de rentable en cuanto a tiempo se trata es añadir mas controladores.
+	La realización de este trabajo fin de grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow, para ver su comportamiento en dichos escenarios. Se buscará principalmente, cuanto tarda cada switch en estar manejado por un controlador, comparando como de rentable es en cuanto a tiempo que se añadan mas controladores.
 	
 	\section{Objetivos específicos}
 	\label{sec:objetivos-especificos}
 	
  	Se va a analizar primero el escenario ~\ref{figura:bucle4} y el mismo escenario con 2 controladores ~\ref{figura:2controllers}
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/bucle4}
-		\caption{Primer escenario con un controlador}
-		\label{figura:bucle4}
-	\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=16cm, keepaspectratio]{img/bucle4}
+			\caption{Primer escenario con un controlador}
+			\label{figura:bucle4}
+		\end{figure}
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/2controllers}
-		\caption{Primer escenario con 2 controladores}
-		\label{figura:2controllers}
-	\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=16cm, keepaspectratio]{img/2controllers}
+			\caption{Primer escenario con 2 controladores}
+			\label{figura:2controllers}
+		\end{figure}
 	
-	Posteriormente, se analizará un escenario mas complejo ~\ref{figura:mesh} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:mesh4c}.
+		Posteriormente, se analizará un escenario mas complejo ~\ref{figura:mesh} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:mesh4c}.
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/mesh}
-		\caption{Segundo escenario con 1 controlador}
-		\label{figura:mesh}
-	\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=16cm, keepaspectratio]{img/mesh}
+			\caption{Segundo escenario con 1 controlador}
+			\label{figura:mesh}
+		\end{figure}
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/mesh4c}
-		\caption{Segundo escenario con 4 controladores}
-		\label{figura:mesh4c}
-	\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=16cm, keepaspectratio]{img/mesh4c}
+			\caption{Segundo escenario con 4 controladores}
+			\label{figura:mesh4c}
+		\end{figure}
 	
+	\cleardoublepage
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
@@ -306,23 +309,69 @@
 	En este capítulo se detallan las tecnologías utilizadas en el desarrollo del proyecto.	
 	
 	\section{Mininet} 
-	\label{sec:seccion1}
+	\label{sec:mininet}
 	
-	Mininet es......
+	Mininet es una plataforma de emulación de redes de código abierto que permite crear una red virtual utilizando equipos de red virtuales (Switches y hosts) dentro de un entorno Linux. Proporciona un entorno de pruebas realista y escalable para experimentar, desarrollar y probar protocolos de red, aplicaciones y sistemas distribuidos.
 	
-	Se ha utilizado para ...
+	Algunas características importantes de Mininet incluyen:
+	
+	Emulación de red: Mininet permite crear una topología de red virtual con switches Open vSwitch (OVS) y hosts emulados. Puedes definir la topología de red y las características de los dispositivos de red utilizando scripts en Python.
+	
+	Entorno aislado: Cada instancia de Mininet se ejecuta en su propio espacio de nombres (namespace) y utiliza recursos de red virtuales, lo que proporciona un entorno aislado y seguro para realizar experimentos.
+	
+	Integración con controladores SDN: Mininet se integra fácilmente con controladores SDN como OpenDaylight, ONOS o Ryu. Esto permite probar y desarrollar aplicaciones y protocolos de red definidos por software utilizando un entorno emulado.
+	
+	Simulación de tráfico: Mininet permite generar y simular tráfico de red en la topología emulada. Esto es útil para evaluar el rendimiento de la red, analizar el comportamiento de los protocolos y probar la tolerancia a fallos.
+	
+	Extensibilidad: Mininet es altamente extensible y se puede personalizar según las necesidades del usuario. Es posible agregar nuevos tipos de nodos de red, desarrollar controladores personalizados y utilizar módulos de extensión para ampliar su funcionalidad.
+	
+	En resumen, Mininet es una herramienta muy útil para la experimentación y desarrollo de redes. Proporciona un entorno de red virtualizado y aislado, lo que permite probar y evaluar diversas configuraciones de red y escenarios de manera eficiente y segura.
+	
+	Mininet es la herramienta con la cual se han realizado los experimentos y simulado los escenarios.
+	
+	\section{OpenFlow}
+	\label{sec:openflow}
+	
+	
+	OpenFlow es un protocolo de comunicación y una arquitectura de red que permite la separación del plano de control y el plano de datos en redes de computadoras. Fue desarrollado por la Open Networking Foundation (ONF) y se ha convertido en un estándar abierto utilizado en redes definidas por software (SDN).
+	
+	En una red SDN con OpenFlow, el plano de control se encuentra centralizado en un controlador, mientras que el plano de datos está distribuido en los dispositivos de red. Los dispositivos de red compatibles con OpenFlow, como los conmutadores, actúan como ejecutores de las instrucciones proporcionadas por el controlador central.
+	
+	El protocolo OpenFlow establece una comunicación entre el controlador y los dispositivos de red mediante mensajes definidos. El controlador puede enviar instrucciones a los dispositivos de red, como reglas de enrutamiento o de flujo, y recibir información sobre el estado de la red, como estadísticas de tráfico. Esto permite una gestión centralizada y programable de la red, lo que facilita la implementación de políticas de red, la optimización del tráfico y la resolución de problemas.
+	
+	Algunas de las ventajas de OpenFlow y SDN incluyen la flexibilidad y la capacidad de adaptación de la red a las necesidades cambiantes, la simplificación de la administración y la configuración de la red, y la posibilidad de implementar nuevas funcionalidades y servicios de manera más rápida y eficiente.
+	
+	OpenFlow es el protocolo utilizado para la realización de las pruebas, y en definitiva, es su comportamiento lo que se buscaba entender.
 	
 	\section{Wireshark} 
-	\label{sec:seccion2}
+	\label{sec:wireshark}
 	
-	Wireshark es......	
-	Se ha utilizado para ...	
+	Wireshark es una herramienta de análisis de redes de código abierto y gratuita. Permite capturar y examinar el tráfico de red en tiempo real, así como analizar y visualizar datos de capturas previas. Wireshark es ampliamente utilizado por administradores de redes, profesionales de seguridad y desarrolladores de protocolos para resolver problemas de red, realizar análisis de tráfico y depurar aplicaciones.
+	
+	Algunas características clave de Wireshark incluyen:
+	
+	Captura de paquetes: Wireshark puede capturar y analizar paquetes en tiempo real de diversas interfaces de red, como Ethernet, Wi-Fi y Bluetooth. Permite seleccionar las interfaces de red específicas de las que se desea capturar el tráfico.
+	
+	Análisis detallado: Wireshark proporciona una vista detallada de cada paquete capturado, mostrando información como direcciones IP de origen y destino, puertos, protocolos, datos de encabezado y carga útil. Permite filtrar y buscar paquetes por varios criterios, lo que facilita el análisis de tráfico específico.
+	
+	Decodificación de protocolos: Wireshark es capaz de decodificar y analizar una amplia gama de protocolos de red, incluyendo TCP/IP, HTTP, DNS, SSH, FTP, entre otros. Puede reconstruir sesiones y mostrar la secuencia de intercambio de paquetes entre los dispositivos de la red.
+	
+	Estadísticas y gráficos: Wireshark proporciona estadísticas y gráficos sobre el tráfico de red capturado, como la cantidad de paquetes, la distribución de protocolos y el ancho de banda utilizado. Esto puede ayudar a identificar patrones de tráfico, detectar anomalías y optimizar el rendimiento de la red.
+	
+	Soporte multiplataforma: Wireshark es compatible con varios sistemas operativos, incluyendo Windows, macOS y Linux. Además, está disponible en varios idiomas, lo que facilita su uso en diferentes entornos.
+	
+	Wireshark es una herramienta poderosa para el análisis de redes y resolución de problemas. Su interfaz intuitiva y sus capacidades de filtrado y análisis detallado lo convierten en una opción popular tanto para usuarios principiantes como para expertos en redes.
+	
+	Se ha utilizado sobretodo en las fases iniciales del trabajo de fin de grado, ya que con esta herramienta podía entender perfectamente lo que pasaba al mas bajo nivel entre los switches y los controladores, viendo todo tipo de tráfico y comunicación.	
 	
 	\section{Python} 
-	\label{sec:seccion3}
+	\label{sec:python}
 	
-	\section{Otros} 
-	\label{sec:seccion4}
+	Python es un lenguaje de programación de alto nivel, interpretado y de propósito general. 
+	
+	Python es ampliamente utilizado en una variedad de campos, como desarrollo de software, ciencia de datos, aprendizaje automático, automatización de tareas, desarrollo web y más. Su popularidad se debe a su facilidad de uso, flexibilidad y su enfoque en la legibilidad del código, lo que lo convierte en un lenguaje ideal tanto para principiantes como para desarrolladores experimentados.
+	
+	Se ha utilizado en la realización de scripts. Por lo que también ha sido clave a la hora de entender el funcionamiento de dichos scripts y poder realizar modificaciones.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -346,115 +395,9 @@
 	\chapter{Experimentos y validación}
 	\label{chap:experimentos}
 	
-	Como se ha comentado previamente, se va a realizar el experimento con dos esquemas muy diferentes, para ver la diferencia de tener un controlador o varios.
+ 	Se va a realizar una tanda de 10 pruebas por cada escenario, comparando los resultados en cuanto a tiempo de conexión de los switches con el o los controladores, comparando así como afecta a un escenario el añadir nuevos controladores.
 	
-	Para el primer caso, el visto en ~\ref{figura:bucle4} y ~\ref{figura:2controllers}. Hemos obtenido los siguientes resultados:
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativabucle4}
-		\caption{Comparativa de tiempos en el primer escenario}
-		\label{figura:comparativabucle4}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediasbucle}
-		\caption{Comparativa de media de tiempos en el primer escenario}
-		\label{figura:mediabucle4}
-	\end{figure}
-	
-	Para el caso de 1 controlador, los esquemas se han ido conectando de las siguientes formas:
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_1}
-		\caption{Orden de conexión de los experimentos 1, 3, 4, 5, 6 ,7, 8, 10}
-		\label{figura:escenario1_1c_1}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_2}
-		\caption{Orden de conexión de los experimentos 2, 9}
-		\label{figura:escenario1_1c_2}
-	\end{figure}
-	
-	Para el caso de 2 controladores, como era de esperar es bastante diferente, quedando así:
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_1}
-		\caption{Orden de conexión de los experimentos 1, 4}
-		\label{figura:escenario1_2c_1}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_2}
-		\caption{Orden de conexión de los experimentos 2, 9}
-		\label{figura:escenario1_2c_2}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_3}
-		\caption{Orden de conexión del experimento 3}
-		\label{figura:escenario_2c_3}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_4}
-		\caption{Orden de conexión del experimento 5}
-		\label{figura:escenario1_2c_4}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_5}
-		\caption{Orden de conexión del experimento 6}
-		\label{figura:escenario1_2c_5}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_6}
-		\caption{Orden de conexión del experimento 7}
-		\label{figura:escenario1_2c_6}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_7}
-		\caption{Orden de conexión del experimento 8}
-		\label{figura:escenario1_2c_7}
-	\end{figure}
-	
-		\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_8}
-		\caption{Orden de conexión del experimento 10}
-		\label{figura:escenario1_2c_8}
-	\end{figure}
 
-	
-	Para el segundo caso, se trabaja con un escenario mucho mas grande, el visto en ~\ref{figura:mesh} y ~\ref{figura:mesh4c}. Hemos obtenido los siguientes resultados:
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativamesh}
-		\caption{Comparativa de tiempos en el segundo escenario}
-		\label{figura:comparativamesh}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediamesh}
-		\caption{Comparativa de media de tiempos en el segundo escenario}
-		\label{figura:mediamesh}
-	\end{figure}
-	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% RESULTADOS %
@@ -463,10 +406,122 @@
 	\cleardoublepage
 	\chapter{Resultados}
 	\label{chap:resultados}
-	
+	\section{Resultados escenario 1} 
+	\label{sec:resultEsc1}
  
- 	Aqui explicar todos los escenarios, con datos, seguramente sea lo que esta en el apartado anterior.
-	
+ 		Para el primer caso, el visto en ~\ref{figura:bucle4} y ~\ref{figura:2controllers}. Hemos obtenido los siguientes resultados:
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/comparativabucle4}
+ 		\caption{Comparativa de tiempos en el primer escenario}
+ 		\label{figura:comparativabucle4}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediasbucle}
+ 		\caption{Comparativa de media de tiempos en el primer escenario}
+ 		\label{figura:mediabucle4}
+ 	\end{figure}
+ 	
+ 	Con estos resultados, podemos confirmar que la agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de mejora en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario.
+ 	
+ 	 	
+ 	Para el caso de 1 controlador, los esquemas se han ido conectando de las siguientes formas:
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_1}
+ 		\caption{Orden de conexión de los experimentos 1, 3, 4, 5, 6 ,7, 8, 10}
+ 		\label{figura:escenario1_1c_1}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_2}
+ 		\caption{Orden de conexión de los experimentos 2, 9}
+ 		\label{figura:escenario1_1c_2}
+ 	\end{figure}
+ 	
+ 	Para el caso de 2 controladores, como era de esperar es bastante diferente, quedando así:
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_1}
+ 		\caption{Orden de conexión de los experimentos 1, 4}
+ 		\label{figura:escenario1_2c_1}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_2}
+ 		\caption{Orden de conexión de los experimentos 2, 9}
+ 		\label{figura:escenario1_2c_2}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_3}
+ 		\caption{Orden de conexión del experimento 3}
+ 		\label{figura:escenario_2c_3}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_4}
+ 		\caption{Orden de conexión del experimento 5}
+ 		\label{figura:escenario1_2c_4}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_5}
+ 		\caption{Orden de conexión del experimento 6}
+ 		\label{figura:escenario1_2c_5}
+ 	\end{figure}
+ 	
+ 	\begin{figure}
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_6}
+ 		\caption{Orden de conexión del experimento 7}
+ 		\label{figura:escenario1_2c_6}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_7}
+ 		\caption{Orden de conexión del experimento 8}
+ 		\label{figura:escenario1_2c_7}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_8}
+ 		\caption{Orden de conexión del experimento 10}
+ 		\label{figura:escenario1_2c_8}
+ 	\end{figure}
+ 	
+ 	\section{Resultados escenario 2} 
+ 	\label{sec:resultEsc2}
+ 	
+ 	Para el segundo caso, se trabaja con un escenario mucho mas grande, el visto en ~\ref{figura:mesh} y ~\ref{figura:mesh4c}. Hemos obtenido los siguientes resultados:
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/comparativamesh}
+ 		\caption{Comparativa de tiempos en el segundo escenario}
+ 		\label{figura:comparativamesh}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediamesh}
+ 		\caption{Comparativa de media de tiempos en el segundo escenario}
+ 		\label{figura:mediamesh}
+ 	\end{figure}
+ 	
+	Con estos resultados, podemos confirmar lo visto en el escenario 1, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -477,7 +532,7 @@
 	\chapter{Conclusiones}
 	\label{chap:conclusiones}
 	
-	Explicar las conclusiones sacadas de comparar los escenarios con 1 y varios controladores.
+	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir un controlador a un escenario, va a ayudar a la hora de minimizar tiempos de conexión. Además, dicho tiempo mejorará cuanto mas lejos estén los nuevos controladores de los actuales del sistema, ya que la conexión tendrá que pasar por menos switches, y por tanto, se realizarán menos llamadas.
 	
 	\section{Consecución de objetivos}
 	\label{sec:consecucion-objetivos}
@@ -489,7 +544,7 @@
 	
 	\begin{enumerate}
 		\item Arquitectura de Redes de Ordenadores
-		\item 
+		\item Sistemas Telemáticos
 	\end{enumerate}
 	
 	
@@ -500,8 +555,9 @@
 	
 	\begin{enumerate}
 		\item Durante todo el trabajo de fin de grado he ido aprendiendo sobre Openflow, algo que no me ha costado demasiado ya que trabajo en el sector del tráfico ferroviario y es bastante similar la casuística que se daba aquí.
-		\item LaTeX, ya que la memoria se ha realizado íntegramente con LaTeX.
-		\item Python. Pese a que el trabajo en si no tenía programación, he tenido que aprender las bases del lenguaje para entender que hacían los scripts.
+		\item LaTeX, ya que la memoria se ha realizado íntegramente con LaTeX. Con la ayuda de la plantilla hecha por el profesor Gregorio Robles y sus indicaciones, ha sido bastante sencillo realizar la documentación con dicha herramienta.
+		\item Python. Pese a que el trabajo en si no tenía programación, he tenido que aprender las bases del lenguaje para entender los scripts.
+		
 	\end{enumerate}
 	
 	
