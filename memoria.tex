@@ -56,7 +56,7 @@
 			\vspace{1cm}
 			
 			\LARGE
-			GRADO EN INGENIERIA EN TECNOLOGIAS DE LA TELECOMUNICACION
+			GRADO EN INGENIERÍA EN TECNOLOGÍAS DE LA TELECOMUNICACIÓN
 			
 			\vspace{1cm}
 			\LARGE
@@ -96,7 +96,7 @@
 	\vspace{-4cm}
 	\begin{center}
 		\LARGE
-		\textbf{Trabajo Fin de Grado/Máster}
+		\textbf{Trabajo Fin de Grado}
 		
 		\vspace{1cm}
 		\large
@@ -135,14 +135,6 @@
 		Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2023
 	\end{flushright}
 	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%% Dedicatoria
-	
-	\chapter*{}
-	\pagenumbering{Roman} % para comenzar la numeracion de paginas en numeros romanos
-	\begin{flushright}
-		\textit{Dedicado a todos los que me han apoyado con este trabajo, y sobretodo, a los que ya no están.}
-	\end{flushright}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%% Agradecimientos
@@ -153,7 +145,7 @@
 	
 	Estimada familia, pareja, amigos y seres queridos,
 	
-	Hoy quiero tomar un momento para expresar mi más profundo agradecimiento por todo su apoyo y amor incondicional durante mi trayectoria académica y, en particular, en la culminación de mi trabajo de fin de grado. Vuestra presencia constante, aliento y comprensión han sido fundamentales en mi camino hacia el éxito.
+	Hoy quiero tomar un momento para expresar mi más profundo agradecimiento por todo su apoyo y amor incondicional durante mi trayectoria académica y, en particular, en la culminación de mi TFG. Vuestra presencia constante, aliento y comprensión han sido fundamentales en mi camino hacia el éxito.
 	
 	En primer lugar, quiero agradecer a mis padres, quienes me han brindado un apoyo inquebrantable desde el principio. Vuestra dedicación, paciencia y sacrificios han sido el pilar sobre el cual he construido mi educación. Gracias por estar siempre ahí, incluso en los momentos más difíciles.
 		
@@ -219,26 +211,22 @@
 	% INTRODUCCIÓN %
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\cleardoublepage
+	\clearpage
 	\chapter{Introducción}
 	\label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 	\pagenumbering{arabic} % para empezar la numeración de página con números
 	
 	
+	Escribir una breve introducción del TFG.
 	
-	
-	\section{Sección}
-	\label{sec:seccion}
+	\section{Contexto}
+	\label{sec:contexto}
 	
 	Este trabajo consiste en el análisis y comprensión de un plano de control In-Band SDN/Openflow en varios escenarios con diferente número de controladores.
 	
+	 Se realiza debido a....
+	
 
-	
-	\subsection{Estilo}
-	\label{subsec:estilo}
-	
-	TO DO
-	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,10 +240,22 @@
 	\section{Objetivo general} % título de sección (se muestra)
 	\label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 	
-	La realización de este trabajo fin de grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow, para ver su comportamiento en dichos escenarios. Se buscará principalmente, cuanto tarda cada switch en estar manejado por un controlador, comparando como de rentable es en cuanto a tiempo que se añadan mas controladores.
+	En el presente apartado se va a dedicar al establecimiento del objetivo principal para la realización de la investigación. 
+	
+	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow para ver su comportamiento. Se buscará principalmente, conocer cuanto tarda cada switch en estar manejado por un controlador, comparando como de rentable es en cuanto a tiempo que se añadan mas controladores.
+	
 	
 	\section{Objetivos específicos}
 	\label{sec:objetivos-especificos}
+	
+	Para la realización de esta investigación, pretendemos cumplir los siguientes objetivos específicos: 
+	
+	\begin{enumerate}
+		\item 	Realizar 10 experimentos en cada escenario para conseguir diferentes resultados.
+		\item  	Analizar y comparar los resultados obtenidos.
+		\item 	Estudiar los resultados con el objetivo de llegar a una conclusión.
+		
+	\end{enumerate}
 	
  	Se va a analizar primero el escenario ~\ref{figura:bucle4} y el mismo escenario con 2 controladores ~\ref{figura:2controllers}
 	
@@ -293,8 +293,8 @@
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
-	El trabajo de fin de grado se ha realizado durante mas de un año, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este trabajo de fin de grado era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos mas bajas de las que finalmente he tenido que usar para realizar los experimentos.
-	Además ha habido varios problemas con las herramientas de trabajo que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
+	El TFG se ha realizado durante mas de un año, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de esteTFG era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos mas bajas de las que finalmente he tenido que usar para realizar los experimentos.
+	Además ha habido varios problemas con las herramientas utilizadas que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -315,15 +315,14 @@
 	
 	Algunas características importantes de Mininet incluyen:
 	
-	Emulación de red: Mininet permite crear una topología de red virtual con switches Open vSwitch (OVS) y hosts emulados. Puedes definir la topología de red y las características de los dispositivos de red utilizando scripts en Python.
-	
-	Entorno aislado: Cada instancia de Mininet se ejecuta en su propio espacio de nombres (namespace) y utiliza recursos de red virtuales, lo que proporciona un entorno aislado y seguro para realizar experimentos.
-	
-	Integración con controladores SDN: Mininet se integra fácilmente con controladores SDN como OpenDaylight, ONOS o Ryu. Esto permite probar y desarrollar aplicaciones y protocolos de red definidos por software utilizando un entorno emulado.
-	
-	Simulación de tráfico: Mininet permite generar y simular tráfico de red en la topología emulada. Esto es útil para evaluar el rendimiento de la red, analizar el comportamiento de los protocolos y probar la tolerancia a fallos.
-	
-	Extensibilidad: Mininet es altamente extensible y se puede personalizar según las necesidades del usuario. Es posible agregar nuevos tipos de nodos de red, desarrollar controladores personalizados y utilizar módulos de extensión para ampliar su funcionalidad.
+	\begin{enumerate}
+		\item 	Emulación de red: Mininet permite crear una topología de red virtual con switches Open vSwitch (OVS) y hosts emulados. Puedes definir la topología de red y las características de los dispositivos de red utilizando scripts en Python.
+		\item 	Entorno aislado: Cada instancia de Mininet se ejecuta en su propio espacio de nombres (namespace) y utiliza recursos de red virtuales, lo que proporciona un entorno aislado y seguro para realizar experimentos.
+		\item 	Integración con controladores SDN: Mininet se integra fácilmente con controladores SDN como OpenDaylight, ONOS o Ryu. Esto permite probar y desarrollar aplicaciones y protocolos de red definidos por software utilizando un entorno emulado.
+		\item 	Simulación de tráfico: Mininet permite generar y simular tráfico de red en la topología emulada. Esto es útil para evaluar el rendimiento de la red, analizar el comportamiento de los protocolos y probar la tolerancia a fallos.
+		\item   Extensibilidad: Mininet es altamente extensible y se puede personalizar según las necesidades del usuario. Es posible agregar nuevos tipos de nodos de red, desarrollar controladores personalizados y utilizar módulos de extensión para ampliar su funcionalidad.
+	\end{enumerate}
+
 	
 	En resumen, Mininet es una herramienta muy útil para la experimentación y desarrollo de redes. Proporciona un entorno de red virtualizado y aislado, lo que permite probar y evaluar diversas configuraciones de red y escenarios de manera eficiente y segura.
 	
@@ -350,19 +349,18 @@
 	
 	Algunas características clave de Wireshark incluyen:
 	
-	Captura de paquetes: Wireshark puede capturar y analizar paquetes en tiempo real de diversas interfaces de red, como Ethernet, Wi-Fi y Bluetooth. Permite seleccionar las interfaces de red específicas de las que se desea capturar el tráfico.
+	\begin{enumerate}
+		\item 	Captura de paquetes: Wireshark puede capturar y analizar paquetes en tiempo real de diversas interfaces de red, como Ethernet, Wi-Fi y Bluetooth. Permite seleccionar las interfaces de red específicas de las que se desea capturar el tráfico.	
+		\item 	Análisis detallado: Wireshark proporciona una vista detallada de cada paquete capturado, mostrando información como direcciones IP de origen y destino, puertos, protocolos, datos de encabezado y carga útil. Permite filtrar y buscar paquetes por varios criterios, lo que facilita el análisis de tráfico específico.
+		\item 	Decodificación de protocolos: Wireshark es capaz de decodificar y analizar una amplia gama de protocolos de red, incluyendo TCP/IP, HTTP, DNS, SSH, FTP, entre otros. Puede reconstruir sesiones y mostrar la secuencia de intercambio de paquetes entre los dispositivos de la red.
+		\item 	Estadísticas y gráficos: Wireshark proporciona estadísticas y gráficos sobre el tráfico de red capturado, como la cantidad de paquetes, la distribución de protocolos y el ancho de banda utilizado. Esto puede ayudar a identificar patrones de tráfico, detectar anomalías y optimizar el rendimiento de la red.
+		\item   Soporte multiplataforma: Wireshark es compatible con varios sistemas operativos, incluyendo Windows, macOS y Linux. Además, está disponible en varios idiomas, lo que facilita su uso en diferentes entornos.
+	\end{enumerate}
 	
-	Análisis detallado: Wireshark proporciona una vista detallada de cada paquete capturado, mostrando información como direcciones IP de origen y destino, puertos, protocolos, datos de encabezado y carga útil. Permite filtrar y buscar paquetes por varios criterios, lo que facilita el análisis de tráfico específico.
-	
-	Decodificación de protocolos: Wireshark es capaz de decodificar y analizar una amplia gama de protocolos de red, incluyendo TCP/IP, HTTP, DNS, SSH, FTP, entre otros. Puede reconstruir sesiones y mostrar la secuencia de intercambio de paquetes entre los dispositivos de la red.
-	
-	Estadísticas y gráficos: Wireshark proporciona estadísticas y gráficos sobre el tráfico de red capturado, como la cantidad de paquetes, la distribución de protocolos y el ancho de banda utilizado. Esto puede ayudar a identificar patrones de tráfico, detectar anomalías y optimizar el rendimiento de la red.
-	
-	Soporte multiplataforma: Wireshark es compatible con varios sistemas operativos, incluyendo Windows, macOS y Linux. Además, está disponible en varios idiomas, lo que facilita su uso en diferentes entornos.
 	
 	Wireshark es una herramienta poderosa para el análisis de redes y resolución de problemas. Su interfaz intuitiva y sus capacidades de filtrado y análisis detallado lo convierten en una opción popular tanto para usuarios principiantes como para expertos en redes.
 	
-	Se ha utilizado sobretodo en las fases iniciales del trabajo de fin de grado, ya que con esta herramienta podía entender perfectamente lo que pasaba al mas bajo nivel entre los switches y los controladores, viendo todo tipo de tráfico y comunicación.	
+	Se ha utilizado sobretodo en las fases iniciales del TFG, ya que con esta herramienta podía entender perfectamente lo que pasaba al mas bajo nivel entre los switches y los controladores, viendo todo tipo de tráfico y comunicación.	
 	
 	\section{Python} 
 	\label{sec:python}
@@ -403,7 +401,7 @@
 	% RESULTADOS %
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\cleardoublepage
+	\clearpage
 	\chapter{Resultados}
 	\label{chap:resultados}
 	\section{Resultados escenario 1} 
@@ -528,7 +526,7 @@
 	% CONCLUSIONES %
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\cleardoublepage
+	\clearpage
 	\chapter{Conclusiones}
 	\label{chap:conclusiones}
 	
@@ -551,12 +549,13 @@
 	\section{Lecciones aprendidas}
 	\label{sec:lecciones_aprendidas}
 	
-	Durante todo el trabajo de fin de grado he ido aprendiendo sobre Openflow, algo que no me ha costado demasiado ya que trabajo en el sector del tráfico ferroviario y es bastante similar la casuística que se daba aquí.
+	A raíz de empezar a investigar para poder realizar el presente TFG hemos podido adquirir conocimientos en lo que respecta a:
 	
 	\begin{enumerate}
-		\item Durante todo el trabajo de fin de grado he ido aprendiendo sobre Openflow, algo que no me ha costado demasiado ya que trabajo en el sector del tráfico ferroviario y es bastante similar la casuística que se daba aquí.
+		\item OpenFlow. Al ser el elemento principal de esta investigación, la mayor parte de conocimiento que he adquirido ha sido sobre el protocolo de comunicación OpenFlow. El protocolo OpenFlow establece una comunicación entre el controlador y los dispositivos de red mediante mensajes definidos. El controlador puede enviar instrucciones a los dispositivos de red, como reglas de enrutamiento o de flujo, y recibir información sobre el estado de la red, como estadísticas de tráfico. Esto permite una gestión centralizada y programable de la red, lo que facilita la implementación de políticas de red, la optimización del tráfico y la resolución de problemas.
 		\item LaTeX, ya que la memoria se ha realizado íntegramente con LaTeX. Con la ayuda de la plantilla hecha por el profesor Gregorio Robles y sus indicaciones, ha sido bastante sencillo realizar la documentación con dicha herramienta.
-		\item Python. Pese a que el trabajo en si no tenía programación, he tenido que aprender las bases del lenguaje para entender los scripts.
+		\item Python. Pese a que el trabajo en si no tenía programación, he tenido que aprender las bases del lenguaje para entender los Scripts que se han utilizado tanto para definir los escenarios como para la realización de las pruebas.
+		\item Desarrollar actitudes de investigación.
 		
 	\end{enumerate}
 	
@@ -564,7 +563,7 @@
 	\section{Trabajos futuros}
 	\label{sec:trabajos_futuros}
 	
-	Visto lo aprendido y analizado en este trabajo de fin de grado, creo que sería una opción a tener en cuenta el optimizar los circuitos del sistema, creando algo de lógica en los controladores si fuese posible. **
+	Tras realizar el presente TFG y visto lo aprendido y analizado el contenido del mismo, considero que sería una buena opción a tener en cuenta el optimizar los escenarios del sistema, creando lógica en los controladores, con el objetivo de evitar saturar determinados switches. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
