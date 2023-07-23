@@ -25,6 +25,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel} % Comenta esta línea si tu memoria es en inglés
 \usepackage{url}
+\usepackage{color}
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
 \usepackage{float}  %% H para posicionar figuras
@@ -145,11 +146,8 @@
 	
 	Estimada familia, pareja, amigos y seres queridos,
 	
-	Hoy quiero tomar un momento para expresar mi más profundo agradecimiento por todo su apoyo y amor incondicional durante mi trayectoria académica y, en particular, en la culminación de mi TFG. Vuestra presencia constante, aliento y comprensión han sido fundamentales en mi camino hacia el éxito.
+	Hoy quiero tomar un momento para expresar mi más profundo agradecimiento por todo su apoyo y amor incondicional durante mi trayectoria académica y, en particular, en la culminación de mi TFG. Vuestra presencia constante, apoyo y comprensión han sido fundamentales en mi camino hacia el éxito.
 	
-	En primer lugar, quiero agradecer a mis padres, quienes me han brindado un apoyo inquebrantable desde el principio. Vuestra dedicación, paciencia y sacrificios han sido el pilar sobre el cual he construido mi educación. Gracias por estar siempre ahí, incluso en los momentos más difíciles.
-		
-	A mi pareja, quiero expresar mi más profundo agradecimiento por tu amor, paciencia y apoyo a lo largo de este viaje académico. Tú has sido mi roca, mi fuente de inspiración y mi motivación constante. Tus palabras de aliento y tu presencia reconfortante me han dado fuerzas para superar cualquier obstáculo que se haya presentado en el camino. Gracias por ser mi compañera de vida y por estar a mi lado en cada paso del camino.
 	
 	Con gratitud,
 	Luis.
@@ -161,17 +159,13 @@
 	%\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 	\markboth{RESUMEN}{RESUMEN} % encabezado
 	
-	Aquí viene un resumen del proyecto.
-	Ha de constar de tres o cuatro párrafos, donde se presente de manera clara y concisa de qué va el proyecto. 
-	Han de quedar respondidas las siguientes preguntas:
+	Este Trabajo de Fin de Grado se centra en el diseño, configuración y pruebas de un plano de control in-band basado en SDN/Openflow para una maqueta con switches Ethernet. La creciente demanda de redes más flexibles, escalables y programables ha impulsado el desarrollo de nuevas tecnologías como la Red Definida por Software (SDN) y el protocolo Openflow. En este contexto, se busca implementar un plano de control in-band utilizando estos conceptos para habilitar la gestión y control centralizado de la red.
 	
-	\begin{itemize}
-		\item ¿De qué va este proyecto? ¿Cuál es su objetivo principal?
-		\item ¿Cómo se ha realizado? ¿Qué tecnologías están involucradas?
-		\item ¿En qué contexto se ha realizado el proyecto? ¿Es un proyecto dentro de un marco general?
-	\end{itemize}
+	El objetivo principal de este estudio es establecer una infraestructura de red SDN/Openflow utilizando switches Ethernet y evaluar su rendimiento y funcionalidad a través de pruebas exhaustivas. Se llevará a cabo la configuración de los switches y su conexión con el controlador SDN para lograr la comunicación entre ambos. Se implementarán políticas de enrutamiento y se realizarán pruebas de rendimiento y escalabilidad para evaluar la eficiencia de la solución propuesta. Los resultados obtenidos permitirán analizar el impacto de la configuración y los ajustes en la calidad del servicio y en la capacidad de gestión de la red, proporcionando una base sólida para futuras implementaciones de redes SDN/Openflow en entornos de telecomunicaciones.
 	
-	Lo mejor es escribir el resumen al final.
+	Además, se abordará la cuestión de la seguridad en el entorno SDN/Openflow, ya que la gestión centralizada introduce nuevos desafíos en cuanto a la protección de la red contra amenazas cibernéticas. Se realizará un análisis exhaustivo de las vulnerabilidades potenciales y se propondrán medidas de seguridad para mitigar los riesgos asociados. Esto incluirá la implementación de políticas de acceso y autenticación, el monitoreo constante de la red y la aplicación de mecanismos de detección y respuesta ante intrusiones.
+	
+	En resumen, este trabajo de fin de grado se enfoca en la configuración y pruebas de un plano de control in-band SDN/Openflow en una maqueta con switches Ethernet. Se pretende demostrar la viabilidad de esta solución para la gestión centralizada de redes, evaluando su rendimiento, escalabilidad y seguridad. Los resultados y conclusiones obtenidos serán de gran valor para futuros proyectos en el ámbito de las telecomunicaciones, contribuyendo al avance y desarrollo de las redes definidas por software y el paradigma SDN/Openflow.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%% Resumen en inglés
@@ -180,9 +174,11 @@
 	%\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 	\markboth{SUMMARY}{SUMMARY} % encabezado
 	
-	Here comes a translation of the ``Resumen'' into English. 
-	Please, double check it for correct grammar and spelling.
-	As it is the translation of the ``Resumen'', which is supposed to be written at the end, this as well should be filled out just before submitting.
+	This Final Degree Project focuses on the design, configuration and testing of an SDN/Openflow based in-band control plane for an Ethernet switch layout. The growing demand for more flexible, scalable and programmable networks has driven the development of new technologies such as Software Defined Networking (SDN) and the Openflow protocol. In this context, we seek to implement an in-band control plane using these concepts to enable centralized network management and control.
+	
+	The main objective of this study is to establish an SDN/Openflow network infrastructure using Ethernet switches and evaluate its performance and functionality through extensive testing. The configuration of the switches and their connection to the SDN controller will be carried out to achieve communication between the two. Routing policies will be implemented and performance and scalability tests will be performed to evaluate the efficiency of the proposed solution. The results obtained will allow analyzing the impact of the configuration and adjustments on the quality of service and network manageability, providing a solid basis for future implementations of SDN/Openflow networks in telecommunication environments.
+	
+	In addition, the issue of security in the SDN/Openflow environment will be addressed, as centralized management introduces new challenges in terms of protecting the network against cyber threats. A comprehensive analysis will be conducted
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -217,14 +213,23 @@
 	\pagenumbering{arabic} % para empezar la numeración de página con números
 	
 	
-	Escribir una breve introducción del TFG.
+	En el ámbito de las telecomunicaciones, la evolución constante de las redes y la creciente demanda de mayor flexibilidad y eficiencia han impulsado el surgimiento de nuevas tecnologías y enfoques de gestión de redes. Entre ellos, destaca la Red Definida por Software (SDN) y el protocolo Openflow, los cuales han revolucionado la forma en que se configuran y controlan las redes. En este contexto, el presente Trabajo de Fin de Grado se enfoca en la Configuración y Pruebas de un Plano de Control In-Band SDN/Openflow, específicamente en una maqueta con switches Ethernet.
+	
+	El objetivo principal de este trabajo es explorar las capacidades y ventajas que ofrece la implementación de un plano de control in-band SDN/Openflow en una infraestructura de red basada en switches Ethernet. A través de la configuración y pruebas exhaustivas, se busca demostrar la viabilidad y el potencial de esta solución en términos de gestión centralizada, flexibilidad y escalabilidad. Además, se abordará el aspecto de la seguridad, ya que la introducción de un plano de control centralizado también conlleva desafíos en cuanto a la protección contra amenazas cibernéticas.
+	
+	Este trabajo se estructura en diferentes fases, comenzando por una revisión exhaustiva de la literatura y los conceptos fundamentales relacionados con SDN, Openflow y la configuración de redes Ethernet. A continuación, se procederá a la implementación del plano de control in-band, incluyendo la configuración de los switches y su interconexión con el controlador SDN. Posteriormente, se llevarán a cabo pruebas de rendimiento y escalabilidad para evaluar el desempeño de la solución propuesta. Además, se analizará la seguridad de la red implementada y se propondrán medidas de protección.
+	
+	Los resultados y conclusiones de este trabajo serán de gran relevancia para el campo de las telecomunicaciones, ya que proporcionarán información valiosa sobre la efectividad y el impacto de la configuración y pruebas de un plano de control in-band SDN/Openflow en una infraestructura de switches Ethernet. Además, se contribuirá al conocimiento existente en términos de seguridad en entornos SDN, brindando recomendaciones prácticas para mitigar posibles vulnerabilidades. En última instancia, se espera que este estudio sirva como base para futuras implementaciones de redes SDN/Openflow, impulsando la evolución y la eficiencia en la gestión de redes de telecomunicaciones.
 	
 	\section{Contexto}
 	\label{sec:contexto}
 	
-	Este trabajo consiste en el análisis y comprensión de un plano de control In-Band SDN/Openflow en varios escenarios con diferente número de controladores.
+	Como ya hemos mencionado en los capítulos anteriores, este trabajo consiste en el análisis y comprensión de un plano de control In-Band SDN/Openflow en varios escenarios con diferente número de controladores.
 	
-	 Se realiza debido a....
+	Se realiza debido a la necesidad de comprender mejor el funcionamiento de este protocolo de comunicación, y como le afectan las adiciones de nuevos controladores en un circuito.
+	
+
+	- 
 	
 
 	
@@ -242,7 +247,7 @@
 	
 	En el presente apartado se va a dedicar al establecimiento del objetivo principal para la realización de la investigación. 
 	
-	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow para ver su comportamiento. Se buscará principalmente, conocer cuanto tarda cada switch en estar manejado por un controlador, comparando como de rentable es en cuanto a tiempo que se añadan mas controladores.
+	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow para observar su comportamiento. Se buscará, principalmente, conocer cuánto tiempo necesita cada switch en estar manejado por un controlador, comparando cuán  rentable es que se añadan más controladores en lo que respecta al tiempo de trabajo.
 	
 	
 	\section{Objetivos específicos}
@@ -250,63 +255,64 @@
 	
 	Para la realización de esta investigación, pretendemos cumplir los siguientes objetivos específicos: 
 	
+
+	
 	\begin{enumerate}
-		\item 	Realizar 10 experimentos en cada escenario para conseguir diferentes resultados.
+		\item 	Realizar 10 experimentos en cada uno de los 4 escenarios diferentes.
 		\item  	Analizar y comparar los resultados obtenidos.
 		\item 	Estudiar los resultados con el objetivo de llegar a una conclusión.
-		
 	\end{enumerate}
 	
- 	Se va a analizar primero el escenario ~\ref{figura:bucle4} y el mismo escenario con 2 controladores ~\ref{figura:2controllers}
+	En el Capítulo 5 -\ref{chap:experimentos} se incluyen gráficos de cada uno de los escenarios a analizar.
 	
-		\begin{figure}
-			\centering
-			\includegraphics[width=16cm, keepaspectratio]{img/bucle4}
-			\caption{Primer escenario con un controlador}
-			\label{figura:bucle4}
-		\end{figure}
-	
-		\begin{figure}
-			\centering
-			\includegraphics[width=16cm, keepaspectratio]{img/2controllers}
-			\caption{Primer escenario con 2 controladores}
-			\label{figura:2controllers}
-		\end{figure}
-	
-		Posteriormente, se analizará un escenario mas complejo ~\ref{figura:mesh} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:mesh4c}.
-	
-		\begin{figure}
-			\centering
-			\includegraphics[width=16cm, keepaspectratio]{img/mesh}
-			\caption{Segundo escenario con 1 controlador}
-			\label{figura:mesh}
-		\end{figure}
-	
-		\begin{figure}
-			\centering
-			\includegraphics[width=16cm, keepaspectratio]{img/mesh4c}
-			\caption{Segundo escenario con 4 controladores}
-			\label{figura:mesh4c}
-		\end{figure}
+
 	
 	\cleardoublepage
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
-	El TFG se ha realizado durante mas de un año, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de esteTFG era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos mas bajas de las que finalmente he tenido que usar para realizar los experimentos.
-	Además ha habido varios problemas con las herramientas utilizadas que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
+	El TFG se ha realizado durante mas de un año, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este Trabajo era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos más bajas de las que finalmente he tenido que usar para realizar los experimentos.
+	Además ha habido varios inconvenientes con las herramientas utilizadas que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% ESTADO DEL ARTE %
+	% INTRODUCCIÓN AL CONTEXTO %
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\cleardoublepage
-	\chapter{Estado del arte}
+	\chapter{Contexto}
 	\label{chap:estado}
+
+	Añadir todo lo que está utilizado en el TFG. Redes, Switches, controladores, Protocolos de comunicación.
+		Dicho esto, utilizaremos este apartado del trabajo para definir los conceptos que se van a tratar a lo largo de la investigación:
+	- Switch. También conocido como "conmutador en red",un dispositivo físico que funciona en la capa de enlace de datos (Data Link) del modelo de interconexión de sistemas abiertos (OSI) o la Capa 2. Recibe los paquetes enviados por los dispositivos conectados a sus puertos físicos y los reenvía a los dispositivos a los que están destinados los paquetes. Los conmutadores también pueden operar en la capa de red (Capa 3), donde se produce el enrutamiento.
 	
-	En este capítulo se detallan las tecnologías utilizadas en el desarrollo del proyecto.	
+	Los conmutadores son un componente habitual de las redes basadas en ethernet, fibra, Modo de Transferencia Asíncrona (ATM) e InfiniBand, entre otras. Sin embargo, la mayoría de los conmutadores actuales utilizan ethernet. Una vez que un dispositivo se conecta a un conmutador, éste anota su dirección de control de acceso al medio (MAC), un código que está incorporado en la tarjeta de interfaz de red (NIC) del dispositivo. El conmutador utiliza la dirección MAC para identificar qué paquetes salientes del dispositivo se envían y dónde entregar los paquetes entrantes.
+	
+	La dirección MAC identifica el dispositivo físico y no cambia, mientras que la dirección IP de la capa de red (Capa 3), puede ser asignada dinámicamente a un dispositivo y cambiar con el tiempo. (Piensa en la dirección MAC como el número de bastidor de un coche y en la dirección IP como la matrícula).
+	
+	Cuando un paquete entra en el conmutador, éste lee su cabecera, luego compara la dirección o direcciones de destino y envía el paquete a través de los puertos apropiados que conducen a los dispositivos de destino.
+	
+	Para reducir la posibilidad de colisiones entre el tráfico de red que entra y sale de un conmutador y un dispositivo conectado al mismo tiempo, la mayoría de los conmutadores ofrecen una funcionalidad full-duplex en la que los paquetes que entran y salen de un dispositivo tienen acceso a todo el ancho de banda de la conexión del conmutador. (Imagínate a dos personas hablando por un smartphone en lugar de por un walkie-talkie).
+	
+	Si bien es cierto que los conmutadores funcionan en la Capa 2, también pueden funcionar en la Capa 3, lo que es necesario para que admitan las LAN virtuales (VLAN), segmentos de red lógicos que pueden abarcar subredes. Para que el tráfico vaya de una subred a otra debe pasar entre conmutadores, lo que se facilita con las capacidades de enrutamiento integradas en los conmutadores. 
+	
+	En pocas palabras, se trata de un dispositivo que sirve para conectar varios elementos dentro de una red.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% DISEÑO E IMPLEMENTACIÓN %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\cleardoublepage
+	\chapter{Diseño e implementación}
+	\label{sec:diseno}
+	 
+		
+	En este capítulo se detallan las tecnologías utilizadas en el desarrollo del proyecto, que son:
+	- OpenFlow
+	
 	
 	\section{Mininet} 
 	\label{sec:mininet}
@@ -322,7 +328,7 @@
 		\item 	Simulación de tráfico: Mininet permite generar y simular tráfico de red en la topología emulada. Esto es útil para evaluar el rendimiento de la red, analizar el comportamiento de los protocolos y probar la tolerancia a fallos.
 		\item   Extensibilidad: Mininet es altamente extensible y se puede personalizar según las necesidades del usuario. Es posible agregar nuevos tipos de nodos de red, desarrollar controladores personalizados y utilizar módulos de extensión para ampliar su funcionalidad.
 	\end{enumerate}
-
+	
 	
 	En resumen, Mininet es una herramienta muy útil para la experimentación y desarrollo de redes. Proporciona un entorno de red virtualizado y aislado, lo que permite probar y evaluar diversas configuraciones de red y escenarios de manera eficiente y segura.
 	
@@ -371,18 +377,16 @@
 	
 	Se ha utilizado en la realización de scripts. Por lo que también ha sido clave a la hora de entender el funcionamiento de dichos scripts y poder realizar modificaciones.
 	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% DISEÑO E IMPLEMENTACIÓN %
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Excel} 
+	\label{sec:python}
 	
-	\cleardoublepage
-	\chapter{Diseño e implementación}
-	\label{sec:diseno}
-	 
-	 No se si aplica.
+	Es la herramienta que hemos utilizado para elaborar las gráficas que se verán más adelante, además de para calcular la media, la varianza y la mediana.
 	
 	
+	\section{Canva} 
+	\label{sec:python}
+	
+	Se trata de una herramienta de diseño que nos ha servido para elaborar esquemas visuales de los escenarios que hemos analizado en los diferentes experimentos.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -393,8 +397,89 @@
 	\chapter{Experimentos y validación}
 	\label{chap:experimentos}
 	
- 	Se va a realizar una tanda de 10 pruebas por cada escenario, comparando los resultados en cuanto a tiempo de conexión de los switches con el o los controladores, comparando así como afecta a un escenario el añadir nuevos controladores.
+ 	A lo largo de este capítulo se va a realizar una tanda de 10 pruebas por cada uno de los escenarios que se muestran a continuación. Posteriormente se compararán los resultados en cuanto al tiempo de conexión de los switches con el o los controladores, analizando así cómo afecta a un escenario el añadir nuevos controladores.
+ 	
+ 	\section{Escenario 1}
+ 	En primer lugar, se analizará el escenario ~\ref{figura:escenario1-1c} que consta de un solo controlador y posteriormente el mismo escenario con 2 controladores ~\ref{figura:escenario1-2c}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1-1}
+ 		\caption{Primer escenario con un controlador}
+ 		\label{figura:escenario1-1c}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1-2}
+ 		\caption{Primer escenario con 2 controladores}
+ 		\label{figura:escenario1-2c}
+ 	\end{figure}
+ 	
+ 	
+ 	\section{Escenario 2}
+ 	
+ 	En este caso, se analizará un escenario más complejo ~\ref{figura:escenario2-1c} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:escenario2-4c}.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario2-1}
+ 		\caption{Segundo escenario con 1 controlador}
+ 		\label{figura:escenario2-1c}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario2-2}
+ 		\caption{Segundo escenario con 4 controladores}
+ 		\label{figura:escenario2-4c}
+ 	\end{figure}
+ 	
+ 	\section{Escenario 3}
+ 	
+ 	A continuación, se llevará a cabo un análisis de un escenario con caminos más complejos y largos ~\ref{figura:b4_1} y el mismo escenario con 2 controladores en vez de 1 ~\ref{figura:b4_2}, para ver cómo reacciona el protocolo OpenFlow en este caso.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/b4_1}
+ 		\caption{Tercer escenario con 1 controlador}
+ 		\label{figura:b4_1}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/b4_2}
+ 		\caption{Tercer escenario con 2 controladores}
+ 		\label{figura:b4_2}
+ 	\end{figure}
 	
+	
+	\section{Escenario 4}
+	
+	En este último experimento y a diferencia de los escenarios anteriores, se realizará una tercera comparación, ya que estudiaremos un escenario con uno, dos, y cuatro controladores, para comprobar cómo cambia en función de cada caso.
+	Serán los escenarios ~\ref{figura:e4_1}, el mismo escenario con 2 controladores ~\ref{figura:e4_2} y con 4 controladores ~\ref{figura:e4_3} para ver como reacciona OpenFlow en este caso.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/e4_1}
+		\caption{Cuarto escenario con 1 controlador}
+		\label{figura:e4_1}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/e4_2}
+		\caption{Cuarto escenario con 2 controladores}
+		\label{figura:e4_2}
+	\end{figure}
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/e4_3}
+		\caption{Cuarto escenario con 4 controladores}
+		\label{figura:e4_3}
+	\end{figure}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,10 +489,13 @@
 	\clearpage
 	\chapter{Resultados}
 	\label{chap:resultados}
-	\section{Resultados escenario 1} 
+
+	A lo largo de este punto veremos cuáles han sido los resultados de nuestros análisis y comparaciones. Se mostrarán gráficas donde podremos ver claramente cuáles han sido los resultados de nuestros experimentos en los que hemos tenido en cuenta el número de controladores y cómo estos reparten la carga de switches, el número de intentos realizados (que hemos determinado que siempre va a ser 10) y el tiempo total que ha requerido cada conexión. Además de factores estadísticos como la media, la mediana y la varianza.
+
+\section{Resultados escenario 1} 
 	\label{sec:resultEsc1}
  
- 		Para el primer caso, el visto en ~\ref{figura:bucle4} y ~\ref{figura:2controllers}. Hemos obtenido los siguientes resultados:
+ 		Para el primer caso, el visto en ~\ref{figura:escenario1-1c} y ~\ref{figura:escenario1-2c}. Hemos obtenido los siguientes resultados:
  	
  	\begin{figure}[H]
  		\centering
@@ -416,30 +504,37 @@
  		\label{figura:comparativabucle4}
  	\end{figure}
  	
+	Con estos resultados, podemos confirmar que la agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de mejora en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario.
+	Y como vemos en las siguientes gráficas, también hay bastante diferencia en la mediana y la varianza.
+ 	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediasbucle}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamediasbucle}
  		\caption{Comparativa de media de tiempos en el primer escenario}
  		\label{figura:mediabucle4}
  	\end{figure}
  	
- 	Con estos resultados, podemos confirmar que la agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de mejora en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario.
- 	
- 	 	
- 	Para el caso de 1 controlador, los esquemas se han ido conectando de las siguientes formas:
- 	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_1}
- 		\caption{Orden de conexión de los experimentos 1, 3, 4, 5, 6 ,7, 8, 10}
- 		\label{figura:escenario1_1c_1}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianabucle}
+ 		\caption{Comparativa de medianas en el primer escenario}
+ 		\label{figura:medianabucle4}
  	\end{figure}
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_1c_2}
- 		\caption{Orden de conexión de los experimentos 2, 9}
- 		\label{figura:escenario1_1c_2}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzabucle}
+ 		\caption{Comparativa de varianza de tiempos en el primer escenario}
+ 		\label{figura:varianzabucle4}
+ 	\end{figure}
+ 	
+ 	Para el caso de 1 controlador, los esquemas se han ido conectando de las siguientes formas:
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/rutasEscenario1-1c}
+ 		\caption{Orden de conexión de los switches. El color rojo indica las conexiones con dirección comunes, quedando el color azul y verde para distinguir las diferencias entre rutas. \textcolor{blue}{1,}  \textcolor{green}{2}  \textcolor{blue}{,3, 4, 5, 6 ,7, 8,}  \textcolor{green}{9} \textcolor{blue}{,10}}
+ 		\label{figura:escenario1_1c_1}
  	\end{figure}
  	
  	Para el caso de 2 controladores, como era de esperar es bastante diferente, quedando así:
@@ -500,8 +595,20 @@
  		\label{figura:escenario1_2c_8}
  	\end{figure}
  	
+ 	Como podemos comprobar, pese a haber 10 experimentos, hemos podido ver 8 formas diferentes de controlar los switches.
+ 	
+ 	De estos datos, además podemos calcular el reparto de switches que se ha ido haciendo por controlador. Siendo bastante equilibrado.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario1}
+ 		\caption{Número de switches por controlador.}
+ 		\label{figura:switchesporcontrollerescenario1}
+ 	\end{figure}
+ 	
  	\section{Resultados escenario 2} 
  	\label{sec:resultEsc2}
+ 	
  	
  	Para el segundo caso, se trabaja con un escenario mucho mas grande, el visto en ~\ref{figura:mesh} y ~\ref{figura:mesh4c}. Hemos obtenido los siguientes resultados:
  	
@@ -512,14 +619,156 @@
  		\label{figura:comparativamesh}
  	\end{figure}
  	
+ 	Con estos resultados, podemos confirmar lo visto en el escenario 1, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
+ 	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediamesh}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamediamesh}
  		\caption{Comparativa de media de tiempos en el segundo escenario}
  		\label{figura:mediamesh}
  	\end{figure}
  	
-	Con estos resultados, podemos confirmar lo visto en el escenario 1, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianamesh}
+ 		\caption{Comparativa de medianas en el segundo escenario}
+ 		\label{figura:medianamesh}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzamesh}
+ 		\caption{Comparativa de varianza de tiempos en el segundo escenario}
+ 		\label{figura:varianzamesh}
+ 	\end{figure}
+ 	
+ 	
+ 	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollermesh}
+		\caption{Número de switches por controlador.}
+		\label{figura:switchesporcontrollermesh}
+	\end{figure}
+	
+	\section{Resultados escenario 3} 
+	\label{sec:resultEsc3}
+	
+	
+	Para el tercer caso, se trabaja con un escenario mas grande y complejo, el visto en ~\ref{figura:b4_1} y ~\ref{figura:b4_2}. Hemos obtenido los siguientes resultados:
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/comparativaescenario3}
+		\caption{Comparativa de tiempos en el tercer escenario}
+		\label{figura:comparativab4}
+	\end{figure}
+	
+	Con estos resultados, podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1.
+	
+	Además comparando tiempos, se empieza a ver una tendencia, que cuantos mas saltos entre switches se reduzcan, mas efectivo es el circuito.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediaescenario3}
+		\caption{Comparativa de media de tiempos en el tercer escenario}
+		\label{figura:mediab4}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario3}
+		\caption{Comparativa de medianas en el tercer escenario}
+		\label{figura:medianab4}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario3}
+		\caption{Comparativa de varianza de tiempos en el tercer escenario}
+		\label{figura:varianzab4}
+	\end{figure}
+	
+	
+	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
+		\caption{Número de switches por controlador.}
+		\label{figura:switchesporcontrollerb4}
+	\end{figure}
+	
+	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
+	
+	\section{Resultados escenario 4} 
+	\label{sec:resultEsc4}
+	
+	
+	Para el último caso, se van a comparar 3 casos diferentes, el ~\ref{figura:e4_1}, el ~\ref{figura:e4_2} y ~\ref{figura:e4_3}. 
+	
+	
+	Hemos obtenido los siguientes resultados:
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/comparativaescenario4}
+		\caption{Comparativa de tiempos en el cuarto escenario}
+		\label{figura:comparativaescenario4}
+	\end{figure}
+	
+	Con estos resultados, podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1.
+	
+	Además comparando tiempos, se empieza a ver una tendencia, que cuantos mas saltos entre switches se reduzcan, mas efectivo es el circuito.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediaescenario4}
+		\caption{Comparativa de media de tiempos en el cuarto escenario}
+		\label{figura:mediaescenario4}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario4}
+		\caption{Comparativa de medianas en el cuarto escenario}
+		\label{figura:medianae4}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario4}
+		\caption{Comparativa de varianza de tiempos en el cuarto escenario}
+		\label{figura:varianzae4}
+	\end{figure}
+	
+	
+	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
+		\caption{Número de switches por controlador.}
+		\label{figura:switchesporcontrollerescenario4}
+	\end{figure}
+	
+	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
+	
+	
+	Ahora veremos las comparativa también con el escenario con 4 controladores.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/comparativaFail}
+		\caption{Comparativa de tiempos en el cuarto escenario con los 3 experimentos}
+		\label{figura:comparativaFail}
+	\end{figure}
+	
+	En este gráfico, esta vez vemos que no ha habido mejora, sino que ha habido un empeoramiento muy  significativo. Puede ser debido a problemas con la máquina donde se realizaban los experimentos, o debido al propio experimento. Lo que en ambos casos puede significar que una sobrecarga de controladores, puede perjudicar el funcionamiento de este escenario.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -530,19 +779,21 @@
 	\chapter{Conclusiones}
 	\label{chap:conclusiones}
 	
-	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir un controlador a un escenario, va a ayudar a la hora de minimizar tiempos de conexión. Además, dicho tiempo mejorará cuanto mas lejos estén los nuevos controladores de los actuales del sistema, ya que la conexión tendrá que pasar por menos switches, y por tanto, se realizarán menos llamadas.
+	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir un controlador a un escenario, va a ayudar a la hora de minimizar tiempos de conexión. Además, dicho tiempo mejorará cuanto mas lejos estén los nuevos controladores de los actuales del sistema, ya que los controladores tendrán que dar menos saltos, y por tanto, se reducirá el tiempo final. 
 	
 	\section{Consecución de objetivos}
 	\label{sec:consecucion-objetivos}
 	
-	Esta sección es la sección espejo de las dos primeras del capítulo de objetivos, donde se planteaba el objetivo general y se elaboraban los específicos.
+	Como pudimos ver en el apartado ~\ref{chap:objetivos}, se pretendía conocer mejor el funcionamiento de OpenFlow con respecto al número de controladores, y en cada escenario hemos podido ver nuevas casuísticas que nos han ido aportando nueva información sobre el ya mencionado protocolo de comunicación. Con el primer escenario, que era el más pequeño y el que se puede estudiar más en profundidad, ya se pudo vislumbrar como iban a funcionar el resto de escenarios, que en efecto, han confirmado las hipótesis que planteamos con dichos resultados del escenario 1.
+	
+	Asimismo, con el ultimo experimento, hemos comprobado que no es siempre productivo añadir controladores, ya que una sobrecarga de éstos puede empeorar significativamente nuestros resultados.
 	
 	\section{Aplicación de lo aprendido}
 	\label{sec:aplicacion}
 	
 	\begin{enumerate}
-		\item Arquitectura de Redes de Ordenadores
-		\item Sistemas Telemáticos
+		\item Arquitectura de Redes de Ordenadores. Primer contacto con las redes de ordenadores, protocolos de comunicación, etc.
+		\item Sistemas Telemáticos. Continuación de Arquitectura de Redes de Ordenadores, donde se profundizaba mas en materia.
 	\end{enumerate}
 	
 	
@@ -583,7 +834,19 @@
 	% Las siguientes dos instrucciones es todo lo que necesitas
 	% para incluir las citas en la memoria
 	\bibliographystyle{abbrv}
-	\bibliography{memoria}  % memoria.bib es el nombre del fichero que contiene
+	\bibliography{memoria} 
+	
+	[1]  A robust and reactive
+	OpenFlow In-Band SDN Control Plane
+	Version 0.1. Autores Pedro de las Heras y Eva María Castro. 2022
+	
+	[2]  Página informativa de OpenFlow https://noviflow.com/the-basics-of-sdn-and-the-openflow-network-architecture/ 
+		
+	[3]  Guía de LaTex.  https://github.com/gregoriorobles/plantilla-memoria/blob/master/memoria.tex
+	
+	
+ 	
+	 % memoria.bib es el nombre del fichero que contiene
 	% las referencias bibliográficas. Abre ese fichero y mira el formato que tiene,
 	% que se conoce como BibTeX. Hay muchos sitios que exportan referencias en
 	% formato BibTeX. Prueba a buscar en http://scholar.google.com por referencias
