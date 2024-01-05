@@ -242,28 +242,25 @@
 	\chapter{Objetivos} % título del capítulo (se muestra)
 	\label{chap:objetivos} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 	
-	\section{Objetivo general} % título de sección (se muestra)
-	\label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
-	
 	En el presente apartado se va a dedicar al establecimiento del objetivo principal para la realización de la investigación. 
 	
 	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow para observar su comportamiento. Se buscará, principalmente, conocer cuánto tiempo necesita cada switch en estar manejado por un controlador, comparando cuán  rentable es que se añadan más controladores en lo que respecta al tiempo de trabajo.
 	
+	\section{Estudio y análisis de SDN con Mininet} % título de sección (se muestra)
+	\label{sec:objetivo-mininet} % identificador de sección (no se muestra, es para poder referenciarla)
 	
-	\section{Objetivos específicos}
-	\label{sec:objetivos-especificos}
+	Contar los experimentos iniciales de ejercicios de uso manual en línea de comandos con OpenFlow, linux network namespaces, añadir reglas OpenFlow a Open vSwitch
 	
-	Para la realización de esta investigación, pretendemos cumplir los siguientes objetivos específicos: 
 	
-
+	\section{Estudio del plano de control en banda Periplus}
+	\label{sec:objetivos-periplus}
 	
-	\begin{enumerate}
-		\item 	Realizar 10 experimentos en cada uno de los 4 escenarios diferentes.
-		\item  	Analizar y comparar los resultados obtenidos.
-		\item 	Estudiar los resultados con el objetivo de llegar a una conclusión.
-	\end{enumerate}
+	Aprender como funciona el plano de control en banda Periplus, para poder realizar experimentos con diferentes escenarios y posteriormente analizar dichos experimentos.
 	
-	En el Capítulo 5 -\ref{chap:experimentos} se incluyen gráficos de cada uno de los escenarios a analizar.
+	\section{Análisis del plano de control en banda para redes SDN Periplus}
+	
+	Analizar los experimentos realizados en un plano de control en banda para redes SDN Periplus, viendo como cambia el comportamiento de los diferentes escenarios, y comparando con el resultado esperado según lo aprendido durante el estudio de dichos planos de control.
+	\label{sec:objetivos-analisis-periplus}
 	
 
 	
@@ -271,7 +268,7 @@
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
-	El TFG se ha realizado durante mas de un año, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este Trabajo era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos más bajas de las que finalmente he tenido que usar para realizar los experimentos.
+	El TFG se ha realizado durante mas de dos años, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este Trabajo era entender perfectamente lo que ocurría en el escenario, viendo así capas muchos más bajas de las que finalmente he tenido que usar para realizar los experimentos.
 	Además ha habido varios inconvenientes con las herramientas utilizadas que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
 	
 	
@@ -311,8 +308,24 @@
 	 
 		
 	En este capítulo se detallan las tecnologías utilizadas en el desarrollo del proyecto, que son:
-	- OpenFlow
 	
+	\section{Redes de Ordenadores} 
+	\label{sec:redes}
+	
+	Las redes de ordenadores son sistemas interconectados que permiten la comunicación y el intercambio de datos entre diferentes dispositivos informáticos. Estas redes pueden ser locales (LAN), que conectan dispositivos en un área geográfica limitada, o extenderse a través de distancias más grandes, como en las redes de área amplia (WAN) o incluso redes globales como Internet.
+	
+	En una red de ordenadores, los dispositivos, como computadoras, servidores, impresoras y dispositivos de almacenamiento, se conectan mediante cables o tecnologías inalámbricas. La comunicación se facilita a través de protocolos y estándares, como TCP/IP (Protocolo de Control de Transmisión/Protocolo de Internet).
+	
+	Las redes pueden clasificarse según su topología (la disposición física de los componentes), su tamaño y su uso específico. Las tecnologías asociadas incluyen Ethernet, Wi-Fi, VPN (Red Privada Virtual), y dispositivos como routers y switches que gestionan el flujo de datos en la red. Las redes de ordenadores son fundamentales en la actualidad para la comunicación, el acceso a recursos compartidos y la colaboración en entornos empresariales y domésticos.
+	
+	\section{Redes Definidas por Software(SDN)} 
+	\label{sec:sdn}
+	
+	SDN, que significa "Software Defined Networking" o Redes Definidas por Software en español, es una arquitectura de red que busca mejorar la flexibilidad y el control de las redes mediante la separación del plano de control y el plano de datos. En las redes tradicionales, estos dos planos están integrados en los dispositivos de red, como switches y routers.
+	
+	En un entorno SDN, el plano de control se centraliza en un controlador SDN, que es un software que tiene una visión global de la red y toma decisiones sobre cómo debe ser dirigido el tráfico. El plano de datos, que se ocupa de la transmisión real de los datos, permanece distribuido en los dispositivos de red. La comunicación entre el controlador y los dispositivos se realiza a través de interfaces estandarizadas, como OpenFlow.
+	
+	Los beneficios de SDN incluyen una mayor flexibilidad y agilidad para adaptarse a cambios en la red, una gestión más centralizada que facilita la automatización y la programabilidad de la red, y una mayor eficiencia en la utilización de los recursos de red. SDN ha ganado popularidad en entornos empresariales y de centros de datos debido a su capacidad para simplificar la administración de la red y mejorar la capacidad de respuesta a las demandas cambiantes de tráfico y servicios.
 	
 	\section{Mininet} 
 	\label{sec:mininet}
@@ -347,6 +360,53 @@
 	Algunas de las ventajas de OpenFlow y SDN incluyen la flexibilidad y la capacidad de adaptación de la red a las necesidades cambiantes, la simplificación de la administración y la configuración de la red, y la posibilidad de implementar nuevas funcionalidades y servicios de manera más rápida y eficiente.
 	
 	OpenFlow es el protocolo utilizado para la realización de las pruebas, y en definitiva, es su comportamiento lo que se buscaba entender.
+	
+	\section{Open vSwitch} 
+	\label{sec:vswitch}
+	
+	Open vSwitch (OVS) es un conmutador virtual de código abierto diseñado para su uso en entornos de virtualización y redes definidas por software (SDN). Se integra con hipervisores como KVM (Kernel-based Virtual Machine), Xen, y es compatible con plataformas de virtualización como VMware.
+	
+	Algunas características clave de Open vSwitch incluyen:
+	
+	\begin{enumerate}
+		\item Conmutación Virtual: Open vSwitch permite la conmutación de paquetes a nivel de hipervisor, facilitando la comunicación entre máquinas virtuales (VM) y con la red física.
+	
+	
+		\item Soporte SDN: Se puede utilizar en entornos SDN, ya que es compatible con el protocolo OpenFlow. Esto permite una gestión centralizada y programable de la red.
+	
+		\item Compatibilidad Multiplataforma: Puede funcionar en una variedad de sistemas operativos, incluyendo Linux y Windows. También es compatible con diversas interfaces de red, como Ethernet y OpenFlow.
+	
+		\item Bridging y Routing: Ofrece funcionalidades de bridging y routing a nivel de capa 2 y capa 3, lo que significa que puede operar en diferentes capas del modelo OSI para proporcionar conectividad y enrutamiento.
+	
+		\item Port Mirroring: Permite la replicación selectiva del tráfico de red para su análisis y monitorización.
+	
+	\end{enumerate}
+	
+	Open vSwitch es una herramienta versátil que se ha convertido en una opción popular en entornos de virtualización debido a su capacidad para integrarse con diversas tecnologías y sistemas de gestión de red. Su naturaleza de código abierto también facilita la adaptación y personalización según las necesidades específicas de un entorno de red.
+	
+	\section{Ryu} 
+	\label{sec:ryu}
+	
+	
+	Ryu es un marco de controlador SDN (Software Defined Networking) de código abierto escrito en Python. Este framework proporciona una plataforma para desarrollar controladores SDN que son compatibles con el protocolo OpenFlow. OpenFlow es un estándar de comunicación que permite la programación y gestión centralizada de dispositivos de red.
+	
+	Algunas características y puntos clave sobre Ryu incluyen:
+	
+	\begin{enumerate}
+		
+		\item Flexibilidad: Ryu es altamente flexible y puede utilizarse para implementar diversos algoritmos y lógicas de control en redes SDN. Los desarrolladores pueden personalizar y extender sus funcionalidades según las necesidades específicas de su red.
+	
+		\item Compatibilidad con OpenFlow: Ryu es compatible con múltiples versiones del protocolo OpenFlow, lo que le permite trabajar con una variedad de dispositivos y conmutadores que admiten distintas versiones del estándar.
+	
+		\item Programación en Python: Una característica distintiva de Ryu es que se basa en el lenguaje de programación Python. Esto facilita la escritura de controladores y aplicaciones SDN, ya que Python es conocido por su simplicidad y legibilidad.
+	
+		\item Aplicaciones SDN: Ryu no solo se utiliza como un controlador básico, sino que también puede ejecutar aplicaciones específicas SDN. Estas aplicaciones pueden implementar lógicas de red personalizadas, políticas de enrutamiento, y otras funciones.
+	
+		\item Comunidad Activa: Ryu es un proyecto de código abierto respaldado por una comunidad activa de desarrolladores. Esto significa que está en constante evolución y mejoramiento, con nuevas características y correcciones de errores que se implementan de forma regular.
+		
+	\end{enumerate}
+	
+	En resumen, Ryu es una herramienta poderosa para aquellos que buscan construir y personalizar controladores SDN utilizando Python y aprovechando las capacidades del protocolo OpenFlow. Su flexibilidad y comunidad activa lo hacen una opción atractiva en el ámbito de las redes definidas por software.
 	
 	\section{Wireshark} 
 	\label{sec:wireshark}
@@ -387,6 +447,25 @@
 	\label{sec:python}
 	
 	Se trata de una herramienta de diseño que nos ha servido para elaborar esquemas visuales de los escenarios que hemos analizado en los diferentes experimentos.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% ESTUDIO Y ANÁLISIS DE EXPERIMENTOS CON MININET %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\cleardoublepage % empezamos en página impar
+	\chapter{Estudio y análisis de experimentos con Mininet} % título del capítulo (se muestra)
+	\label{chap:mininet} % identificador del capítulo (no se muestra, es para poder referenciarlo)
+	Mostrar ejemplos, y todo lo inicial de la práctica.
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% ESTUDIO Y ANÁLISIS DEL PLANO DE CONTROL EN BANDA PERIPLUS %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\cleardoublepage % empezamos en página impar
+	\chapter{studio y análisis del plano de control en banda Periplus} % título del capítulo (se muestra)
+	\label{chap:periplus} % identificador del capítulo (no se muestra, es para poder referenciarlo)
+	Explicar encaminamiento basado en grafos, bootstrap, conmutacion con cabeceras nsh, multicontroladores, de forma teórica, para que en el siguiente punto, se pueda entender.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
