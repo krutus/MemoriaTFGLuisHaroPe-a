@@ -28,6 +28,7 @@
 \usepackage{color}
 %\usepackage[dvipdfm]{graphicx}
 \usepackage{graphicx}
+\usepackage{subfigure}
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
@@ -222,16 +223,30 @@
 	Los resultados y conclusiones de este trabajo serán de gran relevancia para el campo de las telecomunicaciones, ya que proporcionarán información valiosa sobre la efectividad y el impacto de la configuración y pruebas de un plano de control in-band SDN/Openflow en una infraestructura de switches Ethernet. Además, se contribuirá al conocimiento existente en términos de seguridad en entornos SDN, brindando recomendaciones prácticas para mitigar posibles vulnerabilidades. En última instancia, se espera que este estudio sirva como base para futuras implementaciones de redes SDN/Openflow, impulsando la evolución y la eficiencia en la gestión de redes de telecomunicaciones.
 	
 	\section{Contexto}
-	\label{sec:contexto}
+	\label{chap:estado}
+	Dicho esto, utilizaremos este apartado del trabajo para definir los conceptos que se van a tratar a lo largo de la investigación:
+	- Switch. También conocido como "conmutador en red",un dispositivo físico que funciona en la capa de enlace de datos (Data Link) del modelo de interconexión de sistemas abiertos (OSI) o la Capa 2. Recibe los paquetes enviados por los dispositivos conectados a sus puertos físicos y los reenvía a los dispositivos a los que están destinados los paquetes. Los conmutadores también pueden operar en la capa de red (Capa 3), donde se produce el enrutamiento.
 	
-	Como ya hemos mencionado en los capítulos anteriores, este trabajo consiste en el análisis y comprensión de un plano de control In-Band SDN/Openflow en varios escenarios con diferente número de controladores.
+	Los conmutadores son un componente habitual de las redes basadas en ethernet, fibra, Modo de Transferencia Asíncrona (ATM) e InfiniBand, entre otras. Sin embargo, la mayoría de los conmutadores actuales utilizan ethernet. Una vez que un dispositivo se conecta a un conmutador, éste anota su dirección de control de acceso al medio (MAC), un código que está incorporado en la tarjeta de interfaz de red (NIC) del dispositivo. El conmutador utiliza la dirección MAC para identificar qué paquetes salientes del dispositivo se envían y dónde entregar los paquetes entrantes.
 	
-	Se realiza debido a la necesidad de comprender mejor el funcionamiento de este protocolo de comunicación, y como le afectan las adiciones de nuevos controladores en un circuito.
+	La dirección MAC identifica el dispositivo físico y no cambia, mientras que la dirección IP de la capa de red (Capa 3), puede ser asignada dinámicamente a un dispositivo y cambiar con el tiempo. (Piensa en la dirección MAC como el número de bastidor de un coche y en la dirección IP como la matrícula).
 	
-
-	- 
+	Cuando un paquete entra en el conmutador, éste lee su cabecera, luego compara la dirección o direcciones de destino y envía el paquete a través de los puertos apropiados que conducen a los dispositivos de destino.
 	
-
+	Para reducir la posibilidad de colisiones entre el tráfico de red que entra y sale de un conmutador y un dispositivo conectado al mismo tiempo, la mayoría de los conmutadores ofrecen una funcionalidad full-duplex en la que los paquetes que entran y salen de un dispositivo tienen acceso a todo el ancho de banda de la conexión del conmutador. (Imagínate a dos personas hablando por un smartphone en lugar de por un walkie-talkie).
+	
+	Si bien es cierto que los conmutadores funcionan en la Capa 2, también pueden funcionar en la Capa 3, lo que es necesario para que admitan las LAN virtuales (VLAN), segmentos de red lógicos que pueden abarcar subredes. Para que el tráfico vaya de una subred a otra debe pasar entre conmutadores, lo que se facilita con las capacidades de enrutamiento integradas en los conmutadores. 
+	
+	En pocas palabras, se trata de un dispositivo que sirve para conectar varios elementos dentro de una red.
+	
+	\section{Redes de Ordenadores} 
+	\label{sec:redes}
+	
+	Las redes de ordenadores son sistemas interconectados que permiten la comunicación y el intercambio de datos entre diferentes dispositivos informáticos. Estas redes pueden ser locales (LAN), que conectan dispositivos en un área geográfica limitada, o extenderse a través de distancias más grandes, como en las redes de área amplia (WAN) o incluso redes globales como Internet.
+	
+	En una red de ordenadores, los dispositivos, como computadoras, servidores, impresoras y dispositivos de almacenamiento, se conectan mediante cables o tecnologías inalámbricas. La comunicación se facilita a través de protocolos y estándares, como TCP/IP (Protocolo de Control de Transmisión/Protocolo de Internet).
+	
+	Las redes pueden clasificarse según su topología (la disposición física de los componentes), su tamaño y su uso específico. Las tecnologías asociadas incluyen Ethernet, Wi-Fi, VPN (Red Privada Virtual), y dispositivos como routers y switches que gestionan el flujo de datos en la red. Las redes de ordenadores son fundamentales en la actualidad para la comunicación, el acceso a recursos compartidos y la colaboración en entornos empresariales y domésticos.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -278,24 +293,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\cleardoublepage
-	\chapter{Contexto}
-	\label{chap:estado}
-
-	Añadir todo lo que está utilizado en el TFG. Redes, Switches, controladores, Protocolos de comunicación.
-		Dicho esto, utilizaremos este apartado del trabajo para definir los conceptos que se van a tratar a lo largo de la investigación:
-	- Switch. También conocido como "conmutador en red",un dispositivo físico que funciona en la capa de enlace de datos (Data Link) del modelo de interconexión de sistemas abiertos (OSI) o la Capa 2. Recibe los paquetes enviados por los dispositivos conectados a sus puertos físicos y los reenvía a los dispositivos a los que están destinados los paquetes. Los conmutadores también pueden operar en la capa de red (Capa 3), donde se produce el enrutamiento.
 	
-	Los conmutadores son un componente habitual de las redes basadas en ethernet, fibra, Modo de Transferencia Asíncrona (ATM) e InfiniBand, entre otras. Sin embargo, la mayoría de los conmutadores actuales utilizan ethernet. Una vez que un dispositivo se conecta a un conmutador, éste anota su dirección de control de acceso al medio (MAC), un código que está incorporado en la tarjeta de interfaz de red (NIC) del dispositivo. El conmutador utiliza la dirección MAC para identificar qué paquetes salientes del dispositivo se envían y dónde entregar los paquetes entrantes.
-	
-	La dirección MAC identifica el dispositivo físico y no cambia, mientras que la dirección IP de la capa de red (Capa 3), puede ser asignada dinámicamente a un dispositivo y cambiar con el tiempo. (Piensa en la dirección MAC como el número de bastidor de un coche y en la dirección IP como la matrícula).
-	
-	Cuando un paquete entra en el conmutador, éste lee su cabecera, luego compara la dirección o direcciones de destino y envía el paquete a través de los puertos apropiados que conducen a los dispositivos de destino.
-	
-	Para reducir la posibilidad de colisiones entre el tráfico de red que entra y sale de un conmutador y un dispositivo conectado al mismo tiempo, la mayoría de los conmutadores ofrecen una funcionalidad full-duplex en la que los paquetes que entran y salen de un dispositivo tienen acceso a todo el ancho de banda de la conexión del conmutador. (Imagínate a dos personas hablando por un smartphone en lugar de por un walkie-talkie).
-	
-	Si bien es cierto que los conmutadores funcionan en la Capa 2, también pueden funcionar en la Capa 3, lo que es necesario para que admitan las LAN virtuales (VLAN), segmentos de red lógicos que pueden abarcar subredes. Para que el tráfico vaya de una subred a otra debe pasar entre conmutadores, lo que se facilita con las capacidades de enrutamiento integradas en los conmutadores. 
-	
-	En pocas palabras, se trata de un dispositivo que sirve para conectar varios elementos dentro de una red.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,20 +301,12 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\cleardoublepage
-	\chapter{Diseño e implementación}
-	\label{sec:diseno}
+	\chapter{Estado del arte}
+	\label{sec:arte}
 	 
 		
 	En este capítulo se detallan las tecnologías utilizadas en el desarrollo del proyecto, que son:
 	
-	\section{Redes de Ordenadores} 
-	\label{sec:redes}
-	
-	Las redes de ordenadores son sistemas interconectados que permiten la comunicación y el intercambio de datos entre diferentes dispositivos informáticos. Estas redes pueden ser locales (LAN), que conectan dispositivos en un área geográfica limitada, o extenderse a través de distancias más grandes, como en las redes de área amplia (WAN) o incluso redes globales como Internet.
-	
-	En una red de ordenadores, los dispositivos, como computadoras, servidores, impresoras y dispositivos de almacenamiento, se conectan mediante cables o tecnologías inalámbricas. La comunicación se facilita a través de protocolos y estándares, como TCP/IP (Protocolo de Control de Transmisión/Protocolo de Internet).
-	
-	Las redes pueden clasificarse según su topología (la disposición física de los componentes), su tamaño y su uso específico. Las tecnologías asociadas incluyen Ethernet, Wi-Fi, VPN (Red Privada Virtual), y dispositivos como routers y switches que gestionan el flujo de datos en la red. Las redes de ordenadores son fundamentales en la actualidad para la comunicación, el acceso a recursos compartidos y la colaboración en entornos empresariales y domésticos.
 	
 	\section{Redes Definidas por Software(SDN)} 
 	\label{sec:sdn}
@@ -428,25 +418,6 @@
 	
 	Se ha utilizado sobretodo en las fases iniciales del TFG, ya que con esta herramienta podía entender perfectamente lo que pasaba al mas bajo nivel entre los switches y los controladores, viendo todo tipo de tráfico y comunicación.	
 	
-	\section{Python} 
-	\label{sec:python}
-	
-	Python es un lenguaje de programación de alto nivel, interpretado y de propósito general. 
-	
-	Python es ampliamente utilizado en una variedad de campos, como desarrollo de software, ciencia de datos, aprendizaje automático, automatización de tareas, desarrollo web y más. Su popularidad se debe a su facilidad de uso, flexibilidad y su enfoque en la legibilidad del código, lo que lo convierte en un lenguaje ideal tanto para principiantes como para desarrolladores experimentados.
-	
-	Se ha utilizado en la realización de scripts. Por lo que también ha sido clave a la hora de entender el funcionamiento de dichos scripts y poder realizar modificaciones.
-	
-	\section{Excel} 
-	\label{sec:python}
-	
-	Es la herramienta que hemos utilizado para elaborar las gráficas que se verán más adelante, además de para calcular la media, la varianza y la mediana.
-	
-	
-	\section{Canva} 
-	\label{sec:python}
-	
-	Se trata de una herramienta de diseño que nos ha servido para elaborar esquemas visuales de los escenarios que hemos analizado en los diferentes experimentos.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -463,7 +434,7 @@
 	% ESTUDIO Y ANÁLISIS DEL PLANO DE CONTROL EN BANDA PERIPLUS %
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\cleardoublepage % empezamos en página impar
-	\chapter{studio y análisis del plano de control en banda Periplus} % título del capítulo (se muestra)
+	\chapter{Estudio y análisis del plano de control en banda Periplus} % título del capítulo (se muestra)
 	\label{chap:periplus} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 	Explicar encaminamiento basado en grafos, bootstrap, conmutacion con cabeceras nsh, multicontroladores, de forma teórica, para que en el siguiente punto, se pueda entender.
 	
@@ -473,109 +444,39 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\cleardoublepage
-	\chapter{Experimentos y validación}
+	\chapter{Experimentos y resultados}
 	\label{chap:experimentos}
 	
- 	A lo largo de este capítulo se va a realizar una tanda de 10 pruebas por cada uno de los escenarios que se muestran a continuación. Posteriormente se compararán los resultados en cuanto al tiempo de conexión de los switches con el o los controladores, analizando así cómo afecta a un escenario el añadir nuevos controladores.
+ 	A lo largo de este capítulo se va a realizar una tanda de 10 pruebas por cada uno de los escenarios que se muestran a continuación. Posteriormente se compararán los resultados en cuanto al tiempo de conexión de los switches con el o los controladores, analizando así cómo afecta a un escenario el añadir nuevos controladores.%
  	
+ 	\clearpage
  	\section{Escenario 1}
- 	En primer lugar, se analizará el escenario ~\ref{figura:escenario1-1c} que consta de un solo controlador y posteriormente el mismo escenario con 2 controladores ~\ref{figura:escenario1-2c}
+ 	En primer lugar, se analizará el escenario ~\ref{figura:escenario1-1c} que consta de un solo controlador y posteriormente el mismo escenario con 2 controladores ~\ref{figura:escenario1-2c}.%
  	
+ 	\vspace*{-18pt}
+ 	%Figura Escenario 1 con 1 controlador
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1-1}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/escenario1-1}
  		\caption{Primer escenario con un controlador}
  		\label{figura:escenario1-1c}
  	\end{figure}
  	
+ 	%Figura Escenario 1 con 2 controladores
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1-2}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/escenario1-2}
  		\caption{Primer escenario con 2 controladores}
  		\label{figura:escenario1-2c}
+ 		\vspace{-18pt}
  	\end{figure}
  	
+ 	En este escenario, vemos como desde el primer controlador al switch mas lejano, hay 4 saltos de switch. Al añadir un segundo controlador en el otro extremo del escenario, el switch mas lejano sería 3 saltos, por lo que ya vemos que deberíamos ver mejoría, pero tampoco se espera unos tiempos muy inferiores al mismo escenario con un controlador.
  	
- 	\section{Escenario 2}
+ 	Con estos resultados (~\ref{figura:comparativabucle4}), podemos confirmar que la agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de mejora en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario. 
+ 	Estos resultados coinciden con lo que se esperaba previamente, ya que hay una mejoría, pero no es demasiado grande con respecto al mismo escenario con un solo controlador.
  	
- 	En este caso, se analizará un escenario más complejo ~\ref{figura:escenario2-1c} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:escenario2-4c}.
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario2-1}
- 		\caption{Segundo escenario con 1 controlador}
- 		\label{figura:escenario2-1c}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario2-2}
- 		\caption{Segundo escenario con 4 controladores}
- 		\label{figura:escenario2-4c}
- 	\end{figure}
- 	
- 	\section{Escenario 3}
- 	
- 	A continuación, se llevará a cabo un análisis de un escenario con caminos más complejos y largos ~\ref{figura:b4_1} y el mismo escenario con 2 controladores en vez de 1 ~\ref{figura:b4_2}, para ver cómo reacciona el protocolo OpenFlow en este caso.
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/b4_1}
- 		\caption{Tercer escenario con 1 controlador}
- 		\label{figura:b4_1}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/b4_2}
- 		\caption{Tercer escenario con 2 controladores}
- 		\label{figura:b4_2}
- 	\end{figure}
-	
-	
-	\section{Escenario 4}
-	
-	En este último experimento y a diferencia de los escenarios anteriores, se realizará una tercera comparación, ya que estudiaremos un escenario con uno, dos, y cuatro controladores, para comprobar cómo cambia en función de cada caso.
-	Serán los escenarios ~\ref{figura:e4_1}, el mismo escenario con 2 controladores ~\ref{figura:e4_2} y con 4 controladores ~\ref{figura:e4_3} para ver como reacciona OpenFlow en este caso.
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/e4_1}
-		\caption{Cuarto escenario con 1 controlador}
-		\label{figura:e4_1}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/e4_2}
-		\caption{Cuarto escenario con 2 controladores}
-		\label{figura:e4_2}
-	\end{figure}
-	
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/e4_3}
-		\caption{Cuarto escenario con 4 controladores}
-		\label{figura:e4_3}
-	\end{figure}
-
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% RESULTADOS %
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\clearpage
-	\chapter{Resultados}
-	\label{chap:resultados}
-
-	A lo largo de este punto veremos cuáles han sido los resultados de nuestros análisis y comparaciones. Se mostrarán gráficas donde podremos ver claramente cuáles han sido los resultados de nuestros experimentos en los que hemos tenido en cuenta el número de controladores y cómo estos reparten la carga de switches, el número de intentos realizados (que hemos determinado que siempre va a ser 10) y el tiempo total que ha requerido cada conexión. Además de factores estadísticos como la media, la mediana y la varianza.
-
-\section{Resultados escenario 1} 
-	\label{sec:resultEsc1}
- 
- 		Para el primer caso, el visto en ~\ref{figura:escenario1-1c} y ~\ref{figura:escenario1-2c}. Hemos obtenido los siguientes resultados:
- 	
+ 	%Figura comparativa de tiempos en el primer escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=16cm, keepaspectratio]{img/comparativabucle4}
@@ -583,9 +484,7 @@
  		\label{figura:comparativabucle4}
  	\end{figure}
  	
-	Con estos resultados, podemos confirmar que la agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de mejora en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario.
-	Y como vemos en las siguientes gráficas, también hay bastante diferencia en la mediana y la varianza.
- 	
+ 	%Figura comparativa de medias en el primer escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/comparativamediasbucle}
@@ -593,6 +492,10 @@
  		\label{figura:mediabucle4}
  	\end{figure}
  	
+ 	
+ 	Y como vemos en las siguientes gráficas, también hay bastante diferencia en la mediana y la varianza. Ya que al haber 2 controladores, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y la varianza.
+ 	
+ 	%Figura comparativa de medianas en el primer escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianabucle}
@@ -600,6 +503,7 @@
  		\label{figura:medianabucle4}
  	\end{figure}
  	
+ 	%Figura comparativa de varianzas en el primer escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzabucle}
@@ -607,11 +511,13 @@
  		\label{figura:varianzabucle4}
  	\end{figure}
  	
+ 	Con el objetivo de ilustrar como cambia el escenario al añadir un controlador extra, se van a comparar los dos experimentos, viendo como se han ido controlando los switches paso a paso.
+ 	
  	Para el caso de 1 controlador, los esquemas se han ido conectando de las siguientes formas:
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/rutasEscenario1-1c}
+ 		\includegraphics[width=12cm, keepaspectratio]{img/rutasEscenario1-1c}
  		\caption{Orden de conexión de los switches. El color rojo indica las conexiones con dirección comunes, quedando el color azul y verde para distinguir las diferencias entre rutas. \textcolor{blue}{1,}  \textcolor{green}{2}  \textcolor{blue}{,3, 4, 5, 6 ,7, 8,}  \textcolor{green}{9} \textcolor{blue}{,10}}
  		\label{figura:escenario1_1c_1}
  	\end{figure}
@@ -620,63 +526,33 @@
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_1}
- 		\caption{Orden de conexión de los experimentos 1, 4}
- 		\label{figura:escenario1_2c_1}
+ 		
+ 		\subfigure[Orden de conexión de los experimentos 1, 4]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_1}}
+ 		\hfill
+ 		\subfigure[Orden de conexión de los experimentos 2, 9]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_2}}
+ 		\hfill
+ 		\vspace{10pt} % Ajusta el espacio vertical entre las filas
+ 		\subfigure[Orden de conexión del experimento 3]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_3}}
+ 		\subfigure[Orden de conexión del experimento 5]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_4}}
+ 		\hfill
+ 		\vspace{10pt} % Ajusta el espacio vertical entre las filas
+ 		
+ 	
+ 		\subfigure[Orden de conexión del experimento 6]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_5}}
+ 		\hfill
+ 		\subfigure[Orden de conexión del experimento 7]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_6}}
+ 		
+ 		\vspace{10pt} % Ajusta el espacio vertical entre las filas
+ 		\subfigure[Orden de conexión del experimento 8]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_7}}
+ 		\hfill
+ 		\subfigure[Orden de conexión del experimento 10]{\includegraphics[width=0.45\textwidth]{img/escenario1_2c_8}}
+ 		
+ 		\caption{Conjunto de 8 imágenes}
  	\end{figure}
  	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_2}
- 		\caption{Orden de conexión de los experimentos 2, 9}
- 		\label{figura:escenario1_2c_2}
- 	\end{figure}
+ 	Como podemos comprobar, pese a haber 10 experimentos, hemos podido ver 8 formas diferentes de controlar los switches. Algo que muestra la flexibilidad que tiene Periplus a la hora de realizar conexiones, que para este caso no es necesario, pero para escenarios mucho mas grandes nos será muy útil.
  	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_3}
- 		\caption{Orden de conexión del experimento 3}
- 		\label{figura:escenario_2c_3}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_4}
- 		\caption{Orden de conexión del experimento 5}
- 		\label{figura:escenario1_2c_4}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_5}
- 		\caption{Orden de conexión del experimento 6}
- 		\label{figura:escenario1_2c_5}
- 	\end{figure}
- 	
- 	\begin{figure}
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_6}
- 		\caption{Orden de conexión del experimento 7}
- 		\label{figura:escenario1_2c_6}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_7}
- 		\caption{Orden de conexión del experimento 8}
- 		\label{figura:escenario1_2c_7}
- 	\end{figure}
- 	
- 	\begin{figure}[H]
- 		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1_2c_8}
- 		\caption{Orden de conexión del experimento 10}
- 		\label{figura:escenario1_2c_8}
- 	\end{figure}
- 	
- 	Como podemos comprobar, pese a haber 10 experimentos, hemos podido ver 8 formas diferentes de controlar los switches.
- 	
- 	De estos datos, además podemos calcular el reparto de switches que se ha ido haciendo por controlador. Siendo bastante equilibrado.
+ 	De estos datos, además podemos comprobar el reparto de switches que se ha ido haciendo por controlador. Siendo bastante equilibrado, algo que de nuevo nos muestra la utilidad de Periplus.
  	
  	\begin{figure}[H]
  		\centering
@@ -685,12 +561,32 @@
  		\label{figura:switchesporcontrollerescenario1}
  	\end{figure}
  	
- 	\section{Resultados escenario 2} 
- 	\label{sec:resultEsc2}
  	
  	
- 	Para el segundo caso, se trabaja con un escenario mucho mas grande, el visto en ~\ref{figura:mesh} y ~\ref{figura:mesh4c}. Hemos obtenido los siguientes resultados:
+ 	\clearpage
+ 	\section{Escenario 2}
  	
+ 	En este caso, se analizará un escenario más complejo ~\ref{figura:escenario2-1c} y el mismo escenario con 4 controladores en vez de 1 ~\ref{figura:escenario2-4c}.
+ 	
+ 	En este escenario se espera una mejora muy superior a la vista en el primer escenario, ya que en el ejemplo con 1 controlador hay hasta 6 saltos hasta el switch mas lejano, y con 4 controladores se reduce a 3, por lo que a priori podríamos esperar una mejora bastante superior a la obtenida en el primer escenario.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=14cm, keepaspectratio]{img/escenario2-1}
+ 		\caption{Segundo escenario con 1 controlador}
+ 		\label{figura:escenario2-1c}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=14cm, keepaspectratio]{img/escenario2-2}
+ 		\caption{Segundo escenario con 4 controladores}
+ 		\label{figura:escenario2-4c}
+ 	\end{figure}
+ 	
+ 	Con estos resultados (~\ref{figura:comparativamesh}, ~\ref{figura:mediamesh} ), podemos confirmar lo visto en el escenario 1 y lo que esperábamos antes de ver los resultados, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
+ 	
+ 	%Figura comparativa de tiempos en el segundo escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=16cm, keepaspectratio]{img/comparativamesh}
@@ -698,14 +594,17 @@
  		\label{figura:comparativamesh}
  	\end{figure}
  	
- 	Con estos resultados, podemos confirmar lo visto en el escenario 1, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
  	
+ 	%Figura comparativa de medias en el segundo escenario
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/comparativamediamesh}
  		\caption{Comparativa de media de tiempos en el segundo escenario}
  		\label{figura:mediamesh}
  	\end{figure}
+ 	
+ 	
+ 	Y como vemos en las siguientes gráficas, también hay bastante diferencia en la mediana y la varianza. Ya que al haber 4 controladores, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y la varianza.
  	
  	\begin{figure}[H]
  		\centering
@@ -721,111 +620,160 @@
  		\label{figura:varianzamesh}
  	\end{figure}
  	
+ 	\vspace{10pt} 
  	
- 	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+ 	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma bastante equitativa. El reparto de los últimos experimentos se asocian a fallo de la máquina al realizar los experimentos, algo que ha ocurrido en los escenarios mas grandes debido a la gran carga de trabajo que tenía el ordenador al realizar las simulaciones. Pero ya con el primer reparto de switches, que ha sido equitativo, vemos que la tecnología funciona perfectamente y hace lo que se espera.
+ 	
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollermesh}
+ 		\caption{Número de switches por controlador.}
+ 		\label{figura:switchesporcontrollermesh}
+ 	\end{figure}
+ 	
+ 	
+ 	\clearpage
+ 	\section{Escenario 3}
+ 	 
+ 	A continuación, se llevará a cabo un análisis de un escenario con caminos más complejos y largos ~\ref{figura:b4_1} y el mismo escenario con 2 controladores en vez de 1 ~\ref{figura:b4_2}, para ver cómo reacciona Periplus en este caso.
+ 	En el escenario con un controlador, vemos que el switch mas lejano está a 4 saltos, mientras que el escenario con dos controladores el switch mas lejano está a 3 saltos. Lo curioso de este escenario es la gran cantidad de conexiones entre switches que hay, y que el segundo controlador se coloca en el extremo mas lejano, pero lejos de otra gran parte de los switches.
+ 	
+ 	%Figura comparativa de tiempos en el tercer escenario
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=14cm, keepaspectratio]{img/b4_1}
+ 		\caption{Tercer escenario con 1 controlador}
+ 		\label{figura:b4_1}
+ 	\end{figure}
+ 	
+ 	%Figura comparativa de medias en el tercer escenario
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=14cm, keepaspectratio]{img/b4_2}
+ 		\caption{Tercer escenario con 2 controladores}
+ 		\label{figura:b4_2}
+ 	\end{figure}
+ 	
+ 	Con estos resultados(~\ref{figura:comparativab4}, ~\ref{figura:mediab4}), podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1.
+ 	
+ 	Además comparando tiempos, se empieza a ver una tendencia, que cuantos mas saltos entre switches se reduzcan, mas efectivo es el circuito.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativaescenario3}
+ 		\caption{Comparativa de tiempos en el tercer escenario}
+ 		\label{figura:comparativab4}
+ 	\end{figure}
+ 	
+ 	
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamediaescenario3}
+ 		\caption{Comparativa de media de tiempos en el tercer escenario}
+ 		\label{figura:mediab4}
+ 	\end{figure}
+ 	
+ 	Y como vemos en las siguientes gráficas, también hay bastante diferencia en la mediana y la varianza. Ya que al haber 2 controladores y tanta conexión, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y sobretodo la varianza.
+ 	
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario3}
+ 		\caption{Comparativa de medianas en el tercer escenario}
+ 		\label{figura:medianab4}
+ 	\end{figure}
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario3}
+ 		\caption{Comparativa de varianza de tiempos en el tercer escenario}
+ 		\label{figura:varianzab4}
+ 	\end{figure}
+ 	
+ 	\clearpage
+ 	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma previsible y como se intuía al principio, el primer controlador tiene mas switches conectados en cada experimento, debido a que tiene una mayor cantidad de switches mas cerca que el segundo controlador.
+ 	
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
+ 		\caption{Número de switches por controlador.}
+ 		\label{figura:switchesporcontrollerb4}
+ 	\end{figure}
 	
+	\clearpage
+	\section{Escenario 4}
+	
+	En este último experimento y a diferencia de los escenarios anteriores, se realizará una tercera comparación, ya que estudiaremos un escenario con uno, dos, y cuatro controladores, para comprobar cómo cambia en función de cada caso.
+	Serán los escenarios ~\ref{figura:e4_1}, el mismo escenario con 2 controladores ~\ref{figura:e4_2} y con 4 controladores ~\ref{figura:e4_3} para ver como reacciona OpenFlow en este caso.
+	
+	En este escenario, el numero de saltos no va a disminuir, ya que se va a mantener la misma distancia máxima entre los controladores y los switches mas alejados, pero se esperan tiempos mas bajos debido a que el reparto de trabajo se va a dividir por 2 y 4 respectivamente.
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollermesh}
-		\caption{Número de switches por controlador.}
-		\label{figura:switchesporcontrollermesh}
+		\includegraphics[width=16cm, keepaspectratio]{img/e4_1}
+		\caption{Cuarto escenario con 1 controlador}
+		\label{figura:e4_1}
 	\end{figure}
 	
-	\section{Resultados escenario 3} 
-	\label{sec:resultEsc3}
-	
-	
-	Para el tercer caso, se trabaja con un escenario mas grande y complejo, el visto en ~\ref{figura:b4_1} y ~\ref{figura:b4_2}. Hemos obtenido los siguientes resultados:
-	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativaescenario3}
-		\caption{Comparativa de tiempos en el tercer escenario}
-		\label{figura:comparativab4}
-	\end{figure}
-	
-	Con estos resultados, podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1.
-	
-	Además comparando tiempos, se empieza a ver una tendencia, que cuantos mas saltos entre switches se reduzcan, mas efectivo es el circuito.
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediaescenario3}
-		\caption{Comparativa de media de tiempos en el tercer escenario}
-		\label{figura:mediab4}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario3}
-		\caption{Comparativa de medianas en el tercer escenario}
-		\label{figura:medianab4}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario3}
-		\caption{Comparativa de varianza de tiempos en el tercer escenario}
-		\label{figura:varianzab4}
+		\includegraphics[width=13cm, keepaspectratio]{img/e4_2}
+		\caption{Cuarto escenario con 2 controladores}
+		\label{figura:e4_2}
 	\end{figure}
 	
 	
-	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
-	
-	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
-		\caption{Número de switches por controlador.}
-		\label{figura:switchesporcontrollerb4}
+		\includegraphics[width=13cm, keepaspectratio]{img/e4_3}
+		\caption{Cuarto escenario con 4 controladores}
+		\label{figura:e4_3}
 	\end{figure}
 	
-	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
-	
-	\section{Resultados escenario 4} 
-	\label{sec:resultEsc4}
-	
-	
-	Para el último caso, se van a comparar 3 casos diferentes, el ~\ref{figura:e4_1}, el ~\ref{figura:e4_2} y ~\ref{figura:e4_3}. 
-	
-	
-	Hemos obtenido los siguientes resultados:
+En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario4}), vemos la comparación del escenario con 1 y 2 controladores en tiempos y mediaqs podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1. Teniendo en cuenta que la carga de trabajo se ha repartido entre 2, podemos observar que para escenarios complejos, cuantos mas controladores haya, mucho más rápida será la configuración de los switches.
+		
+		
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativaescenario4}
+		\includegraphics[width=13cm, keepaspectratio]{img/comparativaescenario4}
 		\caption{Comparativa de tiempos en el cuarto escenario}
 		\label{figura:comparativaescenario4}
 	\end{figure}
 	
-	Con estos resultados, podemos confirmar lo visto en los anterior escenarios, ya que además en este escenario, al ser mas grande y complejo, la disminución es mas notoria, ya que el tiempo máximo de conexión en los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1.
-	
-	Además comparando tiempos, se empieza a ver una tendencia, que cuantos mas saltos entre switches se reduzcan, mas efectivo es el circuito.
-	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/comparativamediaescenario4}
+		\includegraphics[width=13cm, keepaspectratio]{img/comparativamediaescenario4}
 		\caption{Comparativa de media de tiempos en el cuarto escenario}
 		\label{figura:mediaescenario4}
 	\end{figure}
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario4}
-		\caption{Comparativa de medianas en el cuarto escenario}
-		\label{figura:medianae4}
-	\end{figure}
+
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario4}
-		\caption{Comparativa de varianza de tiempos en el cuarto escenario}
-		\label{figura:varianzae4}
-	\end{figure}
+%	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+
+	
+%%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=12cm, keepaspectratio]{img/comparativamedianaescenario4}
+%		\caption{Comparativa de medianas en el cuarto escenario}
+%		\label{figura:medianae4}
+%	\end{figure}
+%	
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=12cm, keepaspectratio]{img/comparativavarianzaescenario4}
+%		\caption{Comparativa de varianza de tiempos en el cuarto escenario}
+%		\label{figura:varianzae4}
+%	\end{figure}
 	
 	
-	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
+	NO NO NO NO
+	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
+
 	
 	
 	\begin{figure}[H]
@@ -835,8 +783,7 @@
 		\label{figura:switchesporcontrollerescenario4}
 	\end{figure}
 	
-	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
-	
+
 	
 	Ahora veremos las comparativa también con el escenario con 4 controladores.
 	
@@ -848,6 +795,7 @@
 	\end{figure}
 	
 	En este gráfico, esta vez vemos que no ha habido mejora, sino que ha habido un empeoramiento muy  significativo. Puede ser debido a problemas con la máquina donde se realizaban los experimentos, o debido al propio experimento. Lo que en ambos casos puede significar que una sobrecarga de controladores, puede perjudicar el funcionamiento de este escenario.
+	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
