@@ -134,7 +134,7 @@
 	
 	\vspace{1cm}
 	\begin{flushright}
-		Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2023
+		Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2024
 	\end{flushright}
 	
 	
@@ -264,7 +264,7 @@
 	\section{Estudio y análisis de SDN con Mininet} % título de sección (se muestra)
 	\label{sec:objetivo-mininet} % identificador de sección (no se muestra, es para poder referenciarla)
 	
-	Contar los experimentos iniciales de ejercicios de uso manual en línea de comandos con OpenFlow, linux network namespaces, añadir reglas OpenFlow a Open vSwitch
+	Este Trabajo de Fin de Grado tiene como objetivo el análisis de un nuevo plano de control In-band, para ello es necesario tener conocimiento de todo el background necesario, además de las alternativas al nuevo plano de control, para entender sus defectos y sus cosas a mejorar, por ello es importante destacar el adquirir conocimientos en línea de comandos con OpenFlow, linux network namespaces, SDN, reglas OpenFlow y Open vSwitch.
 	
 	
 	\section{Estudio del plano de control en banda Periplus}
@@ -277,9 +277,6 @@
 	Analizar los experimentos realizados en un plano de control en banda para redes SDN Periplus, viendo como cambia el comportamiento de los diferentes escenarios, y comparando con el resultado esperado según lo aprendido durante el estudio de dichos planos de control.
 	\label{sec:objetivos-analisis-periplus}
 	
-
-	
-	\cleardoublepage
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
@@ -426,8 +423,85 @@
 	\cleardoublepage % empezamos en página impar
 	\chapter{Estudio y análisis de experimentos con Mininet} % título del capítulo (se muestra)
 	\label{chap:mininet} % identificador del capítulo (no se muestra, es para poder referenciarlo)
-	Mostrar ejemplos, y todo lo inicial de la práctica.
 	
+	Al comienzo de este Trabajo de Fin de Grado, se repasó lo aprendido en diferentes asignaturas relacionadas con las redes de Ordenadores, enfocado principalmente en Ethernet, ARP, IP, switches y TCP, además de dar una introducción a lo que es SDN/OpenFlow, y como trabajar con Mininet.
+
+	
+	\section{Introducción a Network Namespaces en Linux}
+	
+	Inicialmente se trabajó con los Network namespaces en Linux, para entender convenientemente como se realizan las conexiones entre diferentes namespaces, y sus correspondientes dispositivos. Para ello se realizan capturas de tráfico antes de lanzar diferentes pings entre distintos dispositivos de la red.
+	
+	\section{Introducción a Mininet}
+	
+	En este apartado se trabajó de forma progresiva, viendo todo lo que nos interesaba de mininet desde la parte mas básica.
+	Para ello, inicialmente se define en un archivo python la topología que utilizamos en el apartado anterior, para iniciar un network namespace utilizando esta herramienta en vez de con comandos de Linux.
+	Posteriormente se realizan varias pruebas modificando el comportamiento de los switches, para conocer las diferencias en el funcionamiento entre un comportamiento "normal" de los switches, y un comportamiento específico con VLAN de los switches.
+	Dichos comportamientos solo nos interesaban de forma anecdótica, ya que en este TFG nos vamos a centrar en SDN.
+	
+	\section{Introducción a Faucet}
+	Para realizar los primeros pasos con SDN, utilizamos un programa controlador llamado faucet que nos ayudará a dar comportamiento a los switches SDN. Para ello es necesario modificar un fichero .yaml para definir los switches a controlar y para darles el comportamiento que queramos asignarles.
+	Una vez tenido el fichero correctamente configurado, se realizan capturas entre el controlador faucet y los diferentes switches.
+	En dichas capturas, lo mas interesante fue empezar a ver los mensajes OpenFlow, para enteder como funciona este protocolo de comunicación.
+	
+	\section{Flujo OpenFlow}
+	Vamos a describir el flujo normal de OpenFlow cuando se arranca un escenario desde cero. Este proceso implica la conexión inicial entre el controlador y el switch, así como la configuración de reglas de flujo. Aquí están los pasos típicos:
+	
+\begin{itemize}
+	\item Inicio del Controlador y Switches:
+	\begin{itemize}
+		\item El controlador SDN y los switches OpenFlow se inician.
+		\item Los switches establecen conexiones TCP con el controlador.
+	\end{itemize}
+	
+	\item Handshake Inicial:
+	\begin{itemize}
+		\item Los switches envían mensajes OFPT\_HELLO para iniciar el handshake con el controlador.
+		\item El controlador responde con mensajes OFPT\_HELLO.
+	\end{itemize}
+	
+	\item Negociación de Características (Feature Negotiation):
+	\begin{itemize}
+		\item Después del handshake, el controlador puede enviar mensajes OFPT\_FEATURES\_REQUEST
+		a cada switch para obtener información sobre sus características y capacidades.
+		\item Cada switch responde con mensajes OFPT\_FEATURES\_REPLY, proporcionando detalles como
+		el número de puertos y las capacidades compatibles.
+	\end{itemize}
+	
+	\item Configuración de Flujo Inicial:
+	\begin{itemize}
+		\item El controlador envía mensajes OFPT\_FLOW\_MOD a los switches para configurar reglas
+		de flujo iniciales.
+		\item Estas reglas especifican cómo se deben manejar ciertos tipos de tráfico en la red.
+	\end{itemize}
+	
+	\item Establecimiento de Conexiones entre Switches:
+	\begin{itemize}
+		\item Si hay múltiples switches en la red, el controlador puede enviar mensajes
+		OFPT\_FLOW\_MOD para configurar reglas de flujo que definen cómo los switches deben
+		comunicarse entre sí.
+	\end{itemize}
+	
+	\item Manejo de Paquetes:
+	\begin{itemize}
+		\item Cuando un switch recibe un paquete, verifica las reglas de flujo en su tabla de
+		flujo para determinar cómo manejarlo.
+		\item Si no hay reglas coincidentes, el switch puede enviar el paquete al controlador
+		mediante un mensaje OFPT\_PACKET\_IN.
+	\end{itemize}
+	
+	 \item Pruebas de Conexión con ECHO:
+	\begin{itemize}
+		\item El controlador puede enviar mensajes OFPT\_ECHO\_REQUEST para realizar pruebas de conexión. Esto indica si ha habido alguna desconexión o problema de conexión en alguno de los switches si no hay respuesta en un tiempo relativamente corto.
+		\item Cada switch responde a los mensajes OFPT\_ECHO\_REQUEST con mensajes OFPT\_ECHO\_REPLY.
+	\end{itemize}
+	
+	\item Actualizaciones Dinámicas de Reglas:
+	\begin{itemize}
+		\item A medida que cambian las condiciones de la red o se producen eventos específicos,
+		el controlador puede enviar mensajes OFPT\_FLOW\_MOD adicionales para actualizar
+		dinámicamente las reglas de flujo en los switches.
+	\end{itemize}
+\end{itemize}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -436,7 +510,31 @@
 	\cleardoublepage % empezamos en página impar
 	\chapter{Estudio y análisis del plano de control en banda Periplus} % título del capítulo (se muestra)
 	\label{chap:periplus} % identificador del capítulo (no se muestra, es para poder referenciarlo)
-	Explicar encaminamiento basado en grafos, bootstrap, conmutacion con cabeceras nsh, multicontroladores, de forma teórica, para que en el siguiente punto, se pueda entender.
+	
+	Este Trabajo de Fin de Grado se centra principalmente en el plano de control in-band para SDN Periplus, un prototipo que utiliza switches OpenFlow y Open vSwitch software.
+	El diseño de Periplus implica el reenvío de paquetes basado en un grafo encapsulado entre las cabeceras de L2 y L3, llamado Network Service Header(NSH). El grafo incluye un camino primario codificado como una lista de puertos de los switches en el camino, además de caminos alternativos utilizando la misma codificación.
+	
+	Un ejemplo de dichos caminos sería algo como:
+	
+	\begin{verbatim}
+	Context Header: bfa
+	Context Header: 34f3
+	\end{verbatim}
+	
+	El dispositivo que recibe dicho mensaje, sabrá que:
+	\begin{itemize}
+		\item El camino mas corto, y por defecto el habitual, será el puerto 3, ya que b significa 3+8(se suma 8 por tener un camino alternativo)que es 11, que en hexadecimal indica que es el 3, y posteriormente el puerto 2, que vendría de a = 10. la f indica que es siguiente puerto es el último.
+	
+		\item La primera alternativa disponible es ir por el puerto 3, luego el 4, y finalmente el 3 para llegar a su destino.
+		
+		\item Como hemos visto previamente, si en algún momento este dispositivo viera que el enlace del puerto 3 no le está enviando mensajes de control(OFPT\_ECHO\_REQUEST), dará por hecho que no está disponible, y enviará el mensaje directamente por la alternativa, sin tener que esperar a que el controlador le diga que hacer.
+	\end{itemize}
+
+	
+	Con esto, Periplus busca aumentar la robustez del plano de control permitiendo que los switches reaccionen rápidamente a fallos en enlaces y switches sin necesidad de comunicación con el controlador, ya que los propios switches tienen información de las posibles rutas alternativas cuando falle un enlace.
+	Además. se minimiza la cantidad de flujos almacenados en los switches que admiten el plano de control, ya que la información de enrutamiento no se almacena en los switches, sino en los grafos encapsulados en los paquetes intercambiados en el plano de control.
+	
+	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -448,6 +546,19 @@
 	\label{chap:experimentos}
 	
  	A lo largo de este capítulo se va a realizar una tanda de 10 pruebas por cada uno de los escenarios que se muestran a continuación. Posteriormente se compararán los resultados en cuanto al tiempo de conexión de los switches con el o los controladores, analizando así cómo afecta a un escenario el añadir nuevos controladores.%
+	 
+	\section{Explicación del experimento}
+	En este experimento, se realizarán diversos cálculos y recogida de datos respecto a los tiempos de conexión de un conjunto de switches y controladores: 
+	
+	
+	\begin{itemize}
+		\item Se recogerá el tiempo que tardan en conectarse todos los switches. Con esta información podemos saber el tiempo que tarda el escenario en estar operativo. Muy útil principalmente para comparar tiempos entre escenarios con uno y varios controladores, una de las principales cosas en las que nos vamos a fijar en este Trabajo de Fin de Grado.
+		
+		\item Se recogerá la información de que switches tiene cada controlador. Muy descriptivo para ver como se produce el funcionamiento en escenarios con multicontrolador. Esto nos indicará como de bien funciona el reparto de switches, observando además que, como era de esperar, a mayor cercanía del controlador, mas posibilidades de estar conectado a dicho controlador.
+		
+		\item Los caminos que ha seguido cada controlador para conectarse a cada uno de los switches que tiene asignado. Con esto podemos ver en que orden se han ido conectando los switches.
+		
+	\end{itemize}
  	
  	\clearpage
  	\section{Escenario 1}
@@ -769,13 +880,7 @@ En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario
 %		\caption{Comparativa de varianza de tiempos en el cuarto escenario}
 %		\label{figura:varianzae4}
 %	\end{figure}
-	
-	
-	NO NO NO NO
-	Como hemos deducido en el apartado anterior, entendemos que sigue habiendo predominancia en el primer controlador, principalmente porque tiene más controladores a menos saltos de distancia que el segundo controlador. 
-
-	
-	
+		
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
@@ -871,7 +976,21 @@ En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario
 		
 	[3]  Guía de LaTex.  https://github.com/gregoriorobles/plantilla-memoria/blob/master/memoria.tex
 	
+	[4]  Foundations of Modern Networking: SDN, NFV, QoE, IoT, and Cloud By William Stallings 2015
 	
+	[5]  Introducción a namespaces https://man7.org/linux/man-pages/man8/ip-netns.8.html
+	
+	[6]  Introducción a openvswitch http://openvswitch.org
+	
+	[7]  Introducción a Mininet http://mininet.org
+	
+	[8]  Continuación Mininet https://www.youtube.com/live/90fBCO1MMTA?si=uVvZdvl4D7t8ntFw
+	
+	[9]  Documentación de Networking http://docs.openstack.org
+	
+	[10] Documentación Linux Networking https://www.opencloudblog.com/
+	
+	[11] Documentación Faucet https://docs.faucet.nz/en/latest/tutorials/
  	
 	 % memoria.bib es el nombre del fichero que contiene
 	% las referencias bibliográficas. Abre ese fichero y mira el formato que tiene,
