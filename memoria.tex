@@ -160,7 +160,7 @@
 	%\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 	\markboth{RESUMEN}{RESUMEN} % encabezado
 	
-	Este Trabajo de Fin de Grado se centra en el diseño, configuración y pruebas de un plano de control in-band basado en SDN/Openflow para una maqueta con switches Ethernet. La creciente demanda de redes más flexibles, escalables y programables ha impulsado el desarrollo de nuevas tecnologías como la Red Definida por Software (SDN) y el protocolo Openflow. En este contexto, se busca implementar un plano de control in-band utilizando estos conceptos para habilitar la gestión y control centralizado de la red.
+	Este Trabajo de Fin de Grado se centra en el diseño, configuración y pruebas de un plano de control in-band basado en SDN/Openflow para una maqueta con switches Ethernet, llamado Periplus. La creciente demanda de redes más flexibles, escalables y programables ha impulsado el desarrollo de nuevas tecnologías como la Red Definida por Software (SDN) y el protocolo Openflow. En este contexto, se busca implementar un plano de control in-band utilizando estos conceptos para habilitar la gestión y control centralizado de la red.
 	
 	El objetivo principal de este estudio es establecer una infraestructura de red SDN/Openflow utilizando switches Ethernet y evaluar su rendimiento y funcionalidad a través de pruebas exhaustivas. Se llevará a cabo la configuración de los switches y su conexión con el controlador SDN para lograr la comunicación entre ambos. Se implementarán políticas de enrutamiento y se realizarán pruebas de rendimiento y escalabilidad para evaluar la eficiencia de la solución propuesta. Los resultados obtenidos permitirán analizar el impacto de la configuración y los ajustes en la calidad del servicio y en la capacidad de gestión de la red, proporcionando una base sólida para futuras implementaciones de redes SDN/Openflow en entornos de telecomunicaciones.
 	
@@ -175,12 +175,13 @@
 	%\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 	\markboth{SUMMARY}{SUMMARY} % encabezado
 	
-	This Final Degree Project focuses on the design, configuration and testing of an SDN/Openflow based in-band control plane for an Ethernet switch layout. The growing demand for more flexible, scalable and programmable networks has driven the development of new technologies such as Software Defined Networking (SDN) and the Openflow protocol. In this context, we seek to implement an in-band control plane using these concepts to enable centralized network management and control.
-	
+	This Final Degree Project focuses on the design, configuration and testing of an SDN/Openflow based in-band control plane for an Ethernet switch model, called Periplus. The growing demand for more flexible, scalable and programmable networks has driven the development of new technologies such as Software Defined Networking (SDN) and the Openflow protocol. In this context, we seek to implement an in-band control plane using these concepts to enable centralized network management and control.
+
 	The main objective of this study is to establish an SDN/Openflow network infrastructure using Ethernet switches and evaluate its performance and functionality through extensive testing. The configuration of the switches and their connection to the SDN controller will be carried out to achieve communication between the two. Routing policies will be implemented and performance and scalability tests will be performed to evaluate the efficiency of the proposed solution. The results obtained will allow analyzing the impact of the configuration and adjustments on the quality of service and network manageability, providing a solid basis for future implementations of SDN/Openflow networks in telecommunication environments.
+
+	In addition, the issue of security in the SDN/Openflow environment will be addressed, as centralized management introduces new challenges in terms of protecting the network against cyber threats. A thorough analysis of potential vulnerabilities will be performed and security measures will be proposed to mitigate the associated risks. This will include the implementation of access and authentication policies, constant network monitoring, and the application of intrusion detection and response mechanisms.
 	
-	In addition, the issue of security in the SDN/Openflow environment will be addressed, as centralized management introduces new challenges in terms of protecting the network against cyber threats. A comprehensive analysis will be conducted
-	
+	In summary, this dissertation focuses on the configuration and testing of an in-band SDN/Openflow control plane in a mockup with Ethernet switches. It is intended to demonstrate the viability of this solution for centralized network management, evaluating its performance, scalability and security. The results and conclusions obtained will be of great value for future projects in the telecommunications field, contributing to the advancement and development of software-defined networks and the SDN/Openflow paradigm.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -259,18 +260,18 @@
 	
 	En el presente apartado se va a dedicar al establecimiento del objetivo principal para la realización de la investigación. 
 	
-	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando In-band/SDN-Openflow para observar su comportamiento. Se buscará, principalmente, conocer cuánto tiempo necesita cada switch en estar manejado por un controlador, comparando cuán  rentable es que se añadan más controladores en lo que respecta al tiempo de trabajo.
+	Como he mencionado anteriormente, el presente Trabajo de Fin de Grado consiste en configurar, analizar y representar varios escenarios utilizando Periplus para observar su comportamiento. Se buscará, principalmente, conocer cuánto tiempo necesita cada switch en estar manejado por un controlador, comparando cuán  rentable es que se añadan más controladores en lo que respecta al tiempo de trabajo.
 	
 	\section{Estudio y análisis de SDN con Mininet} % título de sección (se muestra)
 	\label{sec:objetivo-mininet} % identificador de sección (no se muestra, es para poder referenciarla)
 	
-	Este Trabajo de Fin de Grado tiene como objetivo el análisis de un nuevo plano de control In-band, para ello es necesario tener conocimiento de todo el background necesario, además de las alternativas al nuevo plano de control, para entender sus defectos y sus cosas a mejorar, por ello es importante destacar el adquirir conocimientos en línea de comandos con OpenFlow, linux network namespaces, SDN, reglas OpenFlow y Open vSwitch.
+	Este Trabajo de Fin de Grado tiene como objetivo el análisis de un nuevo plano de control In-band, llamado Periplus. Para ello es necesario tener conocimiento de todo el background necesario, además de las alternativas al nuevo plano de control, para entender sus defectos y sus cosas a mejorar, por ello es importante destacar el adquirir conocimientos en línea de comandos con OpenFlow, linux network namespaces, SDN, reglas OpenFlow y Open vSwitch.
 	
 	
 	\section{Estudio del plano de control en banda Periplus}
 	\label{sec:objetivos-periplus}
 	
-	Aprender como funciona el plano de control en banda Periplus, para poder realizar experimentos con diferentes escenarios y posteriormente analizar dichos experimentos.
+	Aprender como funciona el plano de control en banda Periplus, para poder realizar experimentos con diferentes escenarios y posteriormente analizar los resultados obtenidos en dichos experimentos.
 	
 	\section{Análisis del plano de control en banda para redes SDN Periplus}
 	
@@ -1052,18 +1053,18 @@ En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario
 	\chapter{Conclusiones}
 	\label{chap:conclusiones}
 	
-	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir un controlador a un escenario, va a ayudar a la hora de minimizar tiempos de conexión. Además, dicho tiempo mejorará cuanto mas lejos estén los nuevos controladores de los actuales del sistema, ya que los controladores tendrán que dar menos saltos, y por tanto, se reducirá el tiempo final. 
+	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir un controlador a un escenario va a ayudar, en la gran mayoría de los casos, a minimizar tiempos de conexión. Además, dicho tiempo mejorará cuanto mas lejos estén los nuevos controladores de los actuales del sistema, ya que los controladores tendrán que dar menos saltos para llegar a los switches que eran mas lejanos, y por tanto, se reducirá el tiempo final.  
 	
 	\section{Consecución de objetivos}
 	\label{sec:consecucion-objetivos}
 	
-	Como pudimos ver en el apartado ~\ref{chap:objetivos}, se pretendía conocer mejor el funcionamiento de OpenFlow con respecto al número de controladores, y en cada escenario hemos podido ver nuevas casuísticas que nos han ido aportando nueva información sobre el ya mencionado protocolo de comunicación. Con el primer escenario, que era el más pequeño y el que se puede estudiar más en profundidad, ya se pudo vislumbrar como iban a funcionar el resto de escenarios, que en efecto, han confirmado las hipótesis que planteamos con dichos resultados del escenario 1.
+	Como pudimos ver en el apartado ~\ref{chap:objetivos}, se pretendía conocer mejor el funcionamiento de Periplus con respecto al número de controladores, y en cada escenario hemos podido ver nuevas casuísticas que nos han ido aportando nueva información sobre el ya mencionado protocolo de comunicación. Con el primer escenario, que era el más pequeño y el que se puede estudiar más en profundidad, ya se pudo vislumbrar cómo iban a funcionar el resto de escenarios, que en efecto, han confirmado las hipótesis que planteamos con dichos resultados del escenario 1. Y es que, añadir nuevos controladores, en los puntos mas alejados del o los controladores que tuviésemos, va a reducir considerablemente el tiempo de inicialización, ademas de un reparto mas equitativo de switches por controlador.
 	
-	Asimismo, con el ultimo experimento, hemos comprobado que no es siempre productivo añadir controladores, ya que una sobrecarga de éstos puede empeorar significativamente nuestros resultados.
+	Asimismo, con el ultimo experimento, hemos comprobado que no es siempre productivo añadir controladores, ya que una sobrecarga de éstos puede empeorar significativamente nuestros resultados debido a que pese a acortar los caminos, también aporta más complejidad y mas componentes, que es algo que en algunos escenarios puede perjudicar mas que beneficiar.
 	
 	\section{Aplicación de lo aprendido}
 	\label{sec:aplicacion}
-	
+	A lo largo del presente Trabajo de Fin de Grado he podido aplicar conocimientos adquiridos en las siguientes asignaturas: 
 	\begin{enumerate}
 		\item Arquitectura de Redes de Ordenadores. Primer contacto con las redes de ordenadores, protocolos de comunicación, etc.
 		\item Sistemas Telemáticos. Continuación de Arquitectura de Redes de Ordenadores, donde se profundizaba mas en materia.
@@ -1073,7 +1074,7 @@ En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario
 	\section{Lecciones aprendidas}
 	\label{sec:lecciones_aprendidas}
 	
-	A raíz de empezar a investigar para poder realizar el presente TFG hemos podido adquirir conocimientos en lo que respecta a:
+	A raíz de empezar a investigar para poder realizar el presente Trabajo de Fin de Grado hemos podido adquirir conocimientos en lo que respecta a:
 	
 	\begin{enumerate}
 		\item OpenFlow. Al ser el elemento principal de esta investigación, la mayor parte de conocimiento que he adquirido ha sido sobre el protocolo de comunicación OpenFlow. El protocolo OpenFlow establece una comunicación entre el controlador y los dispositivos de red mediante mensajes definidos. El controlador puede enviar instrucciones a los dispositivos de red, como reglas de enrutamiento o de flujo, y recibir información sobre el estado de la red, como estadísticas de tráfico. Esto permite una gestión centralizada y programable de la red, lo que facilita la implementación de políticas de red, la optimización del tráfico y la resolución de problemas.
@@ -1087,7 +1088,8 @@ En estas tablas(~\ref{figura:comparativaescenario4}, ~\ref{figura:mediaescenario
 	\section{Trabajos futuros}
 	\label{sec:trabajos_futuros}
 	
-	Tras realizar el presente TFG y visto lo aprendido y analizado el contenido del mismo, considero que sería una buena opción a tener en cuenta el optimizar los escenarios del sistema, creando lógica en los controladores, con el objetivo de evitar saturar determinados switches. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria.
+	Tras realizar el presente TFG y visto lo aprendido y analizado el contenido del mismo, considero que sería una buena opción a tener en cuenta el optimizar los escenarios del sistema, creando lógica en los controladores, con el objetivo de evitar saturar determinados switches. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria. 
+	Además, debido a lo ocurrido en el último experimento, creo que sería muy interesante estudiar escenarios complejos con diferente número de controladores, y ver como afectan estos controladores extras a la estabilidad del escenario y los tiempos de resolución de incidencias, ya que quizás se pueda sacar algún tipo de relación o ecuación para calcular el número óptimo de controladores por switches o por distancia.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
