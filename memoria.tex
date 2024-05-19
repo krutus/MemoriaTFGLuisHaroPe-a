@@ -431,12 +431,59 @@
 	
 	Inicialmente se trabajó con los Network namespaces en Linux, para entender convenientemente como se realizan las conexiones entre diferentes namespaces, y sus correspondientes dispositivos. Para ello se realizan capturas de tráfico antes de lanzar diferentes pings entre distintos dispositivos de la red.
 	
+	Durante este apartado, se aprenden diferentes comandos de Linux Namespaces:
+	
+	\begin{itemize}
+		\item ip link: Nos mostrará una lista de todas las interfaces de red disponibles en el sistena, incluyendo tanto las disponibles como las no disponibles.
+		
+		\item ip address: Nos mostrará una lista de todas las direcciones IP asociadas con las interfaces de red de un sistema.
+		
+		\item ip route: Nos mostrará la tabla de enrutamiento del kernel, que determina cómo se dirigen los paquetes de red a través de la red.
+		
+		\item ip netns add red: Crea un nuevo namespace "red", donde posteriormente se podrán añadir interfaces de red, tablas de enrutamiento, etc. 
+		
+		\item ip netns: Nos muestra el listado de namespaces, para comprobar que se han creado correctamente.
+		
+		\item ip netns exec red ip link: Ejecuta el comando ip link dentro del espacio de nombres de red llamado "red". 
+			
+		\item ovs-vsctl add-br OVS1: Crea un nuevo puente de Open vSwitch (OVS) en un sistema. Un puente en Open vSwitch es similar a un switch en una red física, y se utiliza para conectar múltiples interfaces de red virtuales (como puertos de máquinas virtuales) y permitir la comunicación entre ellas. 
+				
+		\item ip link add eth0-r type veth peer name veth-r:  Crea un par de dispositivos de red virtual tipo veth (Virtual Ethernet). Este par de dispositivos están conectados entre sí, donde eth0-r es un extremo del par y veth-r es el otro extremo. 
+		
+		\item ip link set eth0-r netns red: Mueve una interfaz de red virtual (eth0-r) a un namespace específico (red). Esto permite que la interfaz de red virtual esté asociada con ese namespace, lo que significa que estará disponible y operará dentro del contexto de ese namespace.
+		
+		\item ovs-vsctl add-port OVS1 veth-r: Agrega un puerto al puente Open vSwitch (OVS) llamado "OVS1". En este caso, el puerto que se está agregando se llama "veth-r", que es uno de los extremos del par de dispositivos veth que se ha creado previamente.
+		
+		\item ip link set veth0-r up: Activa una interfaz de red virtual. En este caso, estás activando la interfaz de red virtual llamada "veth0-r". Con esto la interfaz estaría lista para transmitir y recibir datos. 
+		
+		\item ip netns exec red ip link set dev eth0-r up: Activa la interfaz de red eth0-r dentro del namespace red.
+		
+		\item ip netns exec red ip address add 10.0.0.1/24 dev eth0-r: Agrega una dirección IP a la interfaz de red eth0-r dentro del namespace red.
+		
+		
+		
+		
+		
+		
+	
+	\end{itemize}
+	
+	Utilizando estos comandos se crea un escenario simple con dos namespaces, red y green, con el que se podría empezar a trabajar para visualizar como se comunican estos dos namespaces utilizando un ping por ejemplo.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=14cm, keepaspectratio]{img/Linux namespaces}
+		\caption{Resultado de crear un escenario con Linux Namespaces}
+		\label{figura:linux_namespaces}
+	\end{figure}
+	
+	
 	\section{Introducción a Mininet}
 	
 	En este apartado se trabajó de forma progresiva, viendo todo lo que nos interesaba de mininet desde la parte mas básica.
 	Para ello, inicialmente se define en un archivo python la topología que utilizamos en el apartado anterior, para iniciar un network namespace utilizando esta herramienta en vez de con comandos de Linux.
 	Posteriormente se realizan varias pruebas modificando el comportamiento de los switches, para conocer las diferencias en el funcionamiento entre un comportamiento "normal" de los switches, y un comportamiento específico con VLAN de los switches.
-	Dichos comportamientos solo nos interesaban de forma anecdótica, ya que en este TFG nos vamos a centrar en SDN.
+	Dichos comportamientos solo nos interesaban de forma anecdótica, ya que en este TFG nos vamos a centrar en SDN Periplus.
 	
 	\section{Introducción a Faucet}
 	Para realizar los primeros pasos con SDN, utilizamos un programa controlador llamado faucet que nos ayudará a dar comportamiento a los switches SDN. Para ello es necesario modificar un fichero .yaml para definir los switches a controlar y para darles el comportamiento que queramos asignarles.
@@ -511,30 +558,124 @@
 	\chapter{Estudio y análisis del plano de control en banda Periplus} % título del capítulo (se muestra)
 	\label{chap:periplus} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 	
-	Este Trabajo de Fin de Grado se centra principalmente en el plano de control in-band para SDN Periplus, un prototipo que utiliza switches OpenFlow y Open vSwitch software.
+	Este Trabajo de Fin de Grado se centra principalmente en el plano de control in-band para SDN Periplus, un prototipo que utiliza switches OpenFlow y Open vSwitch software. Este plano de control esta desarrollado en Python por el Grupo de Investigación de Alto Rendimiento en Tecnologías de la Información y Comunicaciones para el Desarrollo Humano de la Universidad Rey Juan Carlos. Con este controlador, se puede utilizar la misma infraestructura tanto para el plano de datos como para el plano de control.
+	Periplus aborda el principal problema de las redes SDN: la configuración manual de nuevos switches.
+	Para ello, Periplus utiliza Proxy ARP, Anycast y mensajería de OpenFlow para una mejor integración de nuevos switches en la red.
+	
+	Periplus busca aumentar la robustez del plano de control permitiendo que los switches reaccionen rápidamente a fallos en enlaces y switches sin necesidad de comunicación con el controlador, ya que los propios switches tienen información de las posibles rutas alternativas cuando falle un enlace.
+	Además. se minimiza la cantidad de flujos almacenados en los switches que admiten el plano de control, ya que la información de enrutamiento no se almacena en los switches, sino en los grafos encapsulados en los paquetes intercambiados en el plano de control.
+	
+	
+	\section{Inicialización y Configuración de la Comunicación Controlador-Switch}
+	
+	El proceso de inicialización y configuración de la comunicación entre un controlador SDN y los switches es esencial para garantizar el funcionamiento coordinado de la red. Este proceso incluye varias etapas clave, cada una de las cuales es crucial para establecer una red operativa y gestionable. A continuación, se presenta una descripción detallada de este proceso:
+	
+	\subsection{Descubrimiento del Controlador}
+	\begin{itemize}
+		\item \textbf{Detección Inicial}: Los switches, al encenderse, deben descubrir la ubicación del controlador SDN. Para esto, envían mensajes de descubrimiento a través de sus puertos, intentando identificar el nodo donde se está ejecutando el controlador.
+		\item \textbf{Solicitud ARP}: Para enviar mensajes al controlador, el switch primero necesita conocer su dirección MAC. El primer mensaje que un switch enviará será una solicitud ARP para obtener la dirección Ethernet del nodo donde está el controlador.
+	\end{itemize}
+	
+	\subsection{Establecimiento de la Sesión OpenFlow}
+	\begin{itemize}
+		\item \textbf{Negociación de Conexión}: Una vez que el switch obtiene la dirección MAC del controlador mediante ARP, intenta establecer una conexión TCP, encapsulando un segmento TCP en un paquete IP, y a su vez en una trama Ethernet, dirigida al controlador.
+		\item \textbf{Configuración Inicial de Flujos}: El controlador y los switches establecen una sesión OpenFlow para intercambiar mensajes de configuración y sincronización. Esto incluye la configuración inicial de los flujos que definen el comportamiento básico de los switches.
+	\end{itemize}
+	
+	\subsection{Intercambio de Capacidades}
+	\begin{itemize}
+		\item \textbf{Reporte de Capacidades}: Los switches informan al controlador sobre sus capacidades, como el número de puertos y características específicas del hardware.
+		\item \textbf{Evaluación por el Controlador}: El controlador utiliza esta información para optimizar las decisiones de enrutamiento y gestión de flujos.
+	\end{itemize}
+	
+	\subsection{Instalación de Flujos Iniciales}
+	\begin{itemize}
+		\item \textbf{Definición de Flujos Básicos}: El controlador envía flujos iniciales a los switches, incluyendo reglas para reenviar ciertos tipos de tráfico al controlador y manejar el tráfico de descubrimiento.
+		\item \textbf{Implementación en los Switches}: Los switches aplican estas reglas en sus tablas de flujo, permitiendo una participación activa en la red de control.
+	\end{itemize}
+	
+	\subsection{Establecimiento del Plano de Control}
+	\begin{itemize}
+		\item \textbf{Activación del Plano de Control}: Con los flujos iniciales instalados, los switches pueden reenviar mensajes específicos al controlador, facilitando una comunicación continua y eficiente.
+		\item \textbf{Monitoreo y Ajustes}: El controlador monitorea la red y ajusta las configuraciones según sea necesario para optimizar el rendimiento y la seguridad.
+	\end{itemize}
+	
+	\subsection{Encaminamiento Basado en Origen}
+	\begin{itemize}
+		\item \textbf{Configuración de Rutas}: Periplus, el controlador en cuestión, utiliza un modelo de encaminamiento basado en origen. Los nodos que se comunican insertan en los mensajes el camino que deben seguir para llegar al destino, y los nodos intermedios extraen esta información para reenviar los mensajes.
+		\item \textbf{Árbol Virtual}: El controlador construye un árbol virtual con la raíz en el nodo donde está ejecutándose. Este árbol permite calcular los caminos más cortos para la comunicación entre el controlador y los switches.
+	\end{itemize}
+	
+	\subsection{Gestión de Switches Nuevos}
+	\begin{itemize}
+		\item \textbf{Conexión a Switch Ancla}: Los switches recién añadidos deben comunicarse con un switch “ancla”, que ya está gestionado por el controlador. Este switch ancla encapsula los mensajes de descubrimiento en mensajes OpenFlow y los envía al controlador.
+		\item \textbf{Establecimiento de la Sesión TCP}: Una vez que un switch nuevo se conecta con éxito al switch ancla, establece una conexión TCP con el controlador. Esta conexión se utiliza para gestionar y configurar el switch.
+	\end{itemize}
+	
+	\subsection{Proceso Detallado para un Switch Nuevo}
+	\begin{itemize}
+		\item \textbf{Envío de Solicitud ARP}: El switch nuevo envía solicitudes ARP por todos sus puertos. Si un switch vecino ya está gestionado, reenvía esta solicitud al controlador encapsulada en un mensaje OpenFlow.
+		\item \textbf{Respuesta de ARP}: El controlador responde a la solicitud ARP a través del switch ancla, que la envía de vuelta al switch nuevo.
+		\item \textbf{Establecimiento de la Conexión TCP}: Con la dirección MAC del controlador conocida, el switch nuevo establece una conexión TCP, permitiendo la sesión OpenFlow.
+		\item \textbf{Configuración de Flujos}: El controlador instala los flujos necesarios en el switch nuevo para integrarlo completamente en la red gestionada.
+	\end{itemize}
+	
+	En resumen, la ``Inicialización y Configuración de la Comunicación Controlador-Switch'' es un proceso multifacético que incluye la detección y autenticación de switches, el establecimiento de una sesión OpenFlow, el intercambio de capacidades, la instalación inicial de flujos, y la configuración de una topología virtual basada en encaminamiento por origen. Este proceso asegura una red coherente y eficiente, gestionada centralizadamente por el controlador.
+	
+	\section{Comunicación entre nodos ya configurados}
+	
+	La comunicación entre los nodos ya gestionados y el controlador se lleva a cabo mediante un proceso sofisticado de encaminamiento en origen, diseñado para establecer una comunicación eficiente y dinámica en una red definida por software (SDN). En este proceso, el controlador desempeña un papel central al calcular y distribuir los caminos óptimos entre sí mismo y cada uno de los switches de la topología.
+	
+	Para comenzar, el controlador genera un "Grafo" para cada camino entre el controlador y los switches. Este Grafo representa la ruta completa que un paquete debe seguir para llegar desde un switch hasta el controlador, o viceversa, y se inserta en cada mensaje que un switch envía al controlador. Así, cada paquete transporta consigo la información necesaria para su ruta a lo largo de la red.
+	
+	El controlador configura los flujos OpenFlow en cada switch gestionado para que incluyan estos grafos en las cabeceras intermedias de los paquetes. Esto implica definir reglas específicas en los switches para interpretar y procesar adecuadamente la información del Grafo contenida en las cabeceras de los paquetes. De esta manera, los switches intermedios pueden tomar decisiones de enrutamiento informadas sobre cómo reenviar los paquetes hacia su destino final.
+	
+	Para transmitir esta información de encaminamiento, se utiliza la cabecera NSH (Network Service Headers). Aunque el protocolo NSH se utiliza típicamente para la comunicación entre controladores SDN, en este contexto se reutiliza de manera innovadora como un contenedor de información de encaminamiento. Esta adaptación permite transportar eficientemente los grafos de encaminamiento a lo largo de la red, facilitando el proceso de toma de decisiones en los switches intermedios.
+	
 	El diseño de Periplus implica el reenvío de paquetes basado en un grafo encapsulado entre las cabeceras de L2 y L3, llamado Network Service Header(NSH). El grafo incluye un camino primario codificado como una lista de puertos de los switches en el camino, además de caminos alternativos utilizando la misma codificación.
 	
 	Un ejemplo de dichos caminos sería algo como:
 	
-	\begin{verbatim}
-	Context Header: bfa
-	Context Header: 34f3
-	\end{verbatim}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/Ejemplo Periplus 1}
+		\caption{Escenario de Ejemplo}
+		\label{figura:PeriplusEj1}
+	\end{figure}
 	
-	El dispositivo que recibe dicho mensaje, sabrá que:
-	\begin{itemize}
-		\item El camino mas corto, y por defecto el habitual, será el puerto 3, ya que b significa 3+8(se suma 8 por tener un camino alternativo)que es 11, que en hexadecimal indica que es el 3, y posteriormente el puerto 2, que vendría de a = 10. la f indica que es siguiente puerto es el último.
+	Supongamos que tenemos un escenario simple con 5 switches y un controlador como el mostrado en la Figura 5.1 y queremos realizar una conexión entre el Switch 1 y el Switch 5. Como vemos en la imagen, a priori hay 2 caminos posibles, uno mas corto partiendo a través del puerto 2, y otro con un nodo más partiendo del nodo 3. 
 	
-		\item La primera alternativa disponible es ir por el puerto 3, luego el 4, y finalmente el 3 para llegar a su destino.
-		
-		\item Como hemos visto previamente, si en algún momento este dispositivo viera que el enlace del puerto 3 no le está enviando mensajes de control(OFPT\_ECHO\_REQUEST), dará por hecho que no está disponible, y enviará el mensaje directamente por la alternativa, sin tener que esperar a que el controlador le diga que hacer.
-	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/Ejemplo Periplus 2}
+		\caption{Escenario de Ejemplo 2}
+		\label{figura:PeriplusEj2}
+	\end{figure}
+	
+	Como hemos supuesto analizando la Figura 5.1, el camino mas corto es por el puerto 2 del switch 1, y así lo podemos ver en esta Figura 5.2. marcado en color morado. Indicar además, que las cabeceras NSH varían una vez han avanzado de nodo, eliminando el puerto por el cual ha sido enviado.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/Ejemplo Periplus 3}
+		\caption{Escenario de Ejemplo 3}
+		\label{figura:PeriplusEj3}
+	\end{figure}
+	
+	En el caso de que el Switch 2 o su enlace con el estuviera caido o no diera señales de estar activo, el switch 1 elegiría el camino alternativo, como se muestra en la Figura 5-3 marcado en color naranja.
 
+	\section{Gestión de los switches: Tablas OpenFlow}
 	
-	Con esto, Periplus busca aumentar la robustez del plano de control permitiendo que los switches reaccionen rápidamente a fallos en enlaces y switches sin necesidad de comunicación con el controlador, ya que los propios switches tienen información de las posibles rutas alternativas cuando falle un enlace.
-	Además. se minimiza la cantidad de flujos almacenados en los switches que admiten el plano de control, ya que la información de enrutamiento no se almacena en los switches, sino en los grafos encapsulados en los paquetes intercambiados en el plano de control.
+	En el proceso de gestión de los switches por parte del controlador en una red definida por software (SDN), se establecen y modifican las tablas OpenFlow en cada switch para garantizar un enrutamiento eficiente del tráfico de red. Estas tablas, divididas en varios niveles, determinan el flujo de los paquetes a través de la red y se adaptan dinámicamente a las condiciones cambiantes de la topología.
 	
+	La primera tabla, denominada Tabla 0, es la primera en ser consultada por los paquetes entrantes. Su función principal es verificar si hay más saltos en el camino principal del paquete y, en caso afirmativo, almacenar la información del próximo salto en un registro específico. Luego, el paquete se reenvía a las Tablas 1 y 2 para un procesamiento adicional.
 	
+	La Tabla 1 se utilizaba en una implementación alternativa del controlador para la detección de puertos inactivos, pero en la implementación actual está vacía. Por otro lado, la Tabla 2 asigna el paquete a una "tabla de grupo" basándose en la información almacenada previamente en el registro. Esta tabla de grupo se encarga de detectar la actividad de los puertos mediante mensajes BFD y, en función de ello, enviar el paquete a la Tabla 11 si el camino está activo, o continuar con el procesamiento en la Tabla 3.
+	
+	La Tabla 11, utilizada desde la tabla de grupo, almacena el puerto de salida activo en un registro y envía el paquete a la Tabla 3. Aquí, se desencapsulan las cabeceras de los paquetes y se elimina el puerto actual de salida del grafo. Si el puerto está activo, el paquete se envía por ese puerto; de lo contrario, se consulta si existe un camino alternativo.
+	
+	En las Tablas 4 y 5, se elimina el grafo del camino principal de la cabecera NSH para sustituirlo por el camino alternativo almacenado en la siguiente cabecera NSH. Luego, el paquete se reenvía a la Tabla 0 para su procesamiento posterior.
+	
+	En resumen, las tablas OpenFlow en los switches son configuradas y adaptadas por el controlador para facilitar un enrutamiento eficiente y flexible del tráfico de red, garantizando una comunicación fluida y adaptativa en entornos SDN.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
