@@ -36,7 +36,6 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{amsmath}
-\usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{subfig}
 
@@ -251,7 +250,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\pagenumbering{arabic} % para empezar la numeración de página con números
 	
 	
-	En el ámbito de las telecomunicaciones, la evolución constante de las redes y la creciente demanda de mayor flexibilidad y eficiencia han impulsado el surgimiento de nuevas tecnologías y enfoques de gestión de redes. Entre ellos, destaca la Red Definida por Software (SDN[4]) y el protocolo OpenFlow[2], los cuales han revolucionado la forma en que se configuran y controlan las redes. En este contexto, el presente Trabajo de Fin de Grado se enfoca en la Configuración y medidas de un plano de control in-band SDN/OpenFlow[1], específicamente en un entorno de emulación de redes: Mininet.
+	En el ámbito de las telecomunicaciones, la evolución constante de las redes y la creciente demanda de mayor flexibilidad y eficiencia han impulsado el surgimiento de nuevas tecnologías y enfoques de gestión de redes. Entre ellos, destaca la Red Definida por Software (SDN)[4] y el protocolo OpenFlow[2], los cuales han revolucionado la forma en que se configuran y controlan las redes. En este contexto, el presente trabajo de fin de grado se enfoca en la configuración y medidas de un plano de control in-band SDN/OpenFlow[1], específicamente en un entorno de emulación de redes: Mininet.
 	
 	El objetivo principal de este trabajo es explorar las capacidades y ventajas que ofrece la implementación de un plano de control in-band SDN/Openflow en una infraestructura de red basada en switches Ethernet. A través de la configuración y pruebas exhaustivas, se busca demostrar la viabilidad y el potencial de esta solución en términos de gestión centralizada, flexibilidad y escalabilidad. Además, se abordará el aspecto de la robustez, ya que la introducción de un plano de control centralizado también conlleva desafíos en cuanto a problemas en la red debido a que un enlace o un switch dejen de funcionar, provocando problemas de comunicación entre los dispositivos.
 	
@@ -293,7 +292,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\label{sec:openflow}
 	
 	
-	OpenFlow es un protocolo de comunicaciones que fue desarrollado por la Open Networking Foundation (ONF) y se ha convertido en un estándar abierto utilizado en redes definidas por software.
+	OpenFlow [13] es un protocolo de comunicaciones que fue desarrollado por la Open Networking Foundation (ONF) y se ha convertido en un estándar abierto utilizado en redes definidas por software.
 	Un controlador SDN toma decisiones sobre el funcionamiento de la red y configura los dispositivos de red para que los implementen. Para ello, el controlador debe enviar a los dispositivos de red mensajes que permitan configurar acciones para realizar la función de encaminamiento. Uno de los protocolos que se ha convertido en estándar pasa la comunicación entre el controlador y los dispositivos de red es OpenFlow. Los dispositivos de red compatibles con OpenFlow, reciben mensajes  OpenFlow del controlador y actúan como ejecutores de las intrucciones proporcionadas por dicho controlador.
 	
 	El protocolo OpenFlow establece una conexión TCP entre el controlador y los dispositivos de red  y define un conjunto de mensajes para la comunicación entre ellos. El controlador puede enviar instrucciones a los dispositivos de red, como reglas de flujo, y recibir información sobre el estado de la red de los dispositivos de red, como estadísticas de tráfico. Esto permite una gestión centralizada y programable de la red, lo que facilita que el controlador pueda llevar a cabo la implementación de políticas de red, la optimización del tráfico y la resolución de problemas.
@@ -301,11 +300,12 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	Algunas de las ventajas de OpenFlow y SDN incluyen la flexibilidad y la capacidad de adaptación de la red a las necesidades cambiantes, la simplificación de la administración y la configuración de la red, y la posibilidad de implementar nuevas funcionalidades y servicios de manera más rápida y eficiente.
 	
-	En la tabla \ref{tab:openflow} podemos observar los mensajes OpenFlow.
+	En el cuadro 1.1 podemos observar los mensajes OpenFlow y sus significados.
 	
 	\begin{table}[H] % Fija la tabla en esta posición
 		\centering
-		\label{tab:openflow}
+	
+	
 		\begin{tabular}{|c|l|}
 			\hline
 			\textbf{Mensaje} & \textbf{Significado} \\
@@ -335,12 +335,14 @@ Another feature that has been analyzed is the distribution of switch management 
 			\texttt{OFPT\_SET\_CONFIG} & Establece la configuración del switch \\
 			\hline
 		\end{tabular}
+		\label{tab:openflow}
+		\caption{Mensajes OpenFlow y sus significados}
 	\end{table}
 	
 	\section{Open vSwitch} 
 	\label{sec:vswitch}
 	
-	Open vSwitch [6](OVS) es un switch virtual de código abierto diseñado para su uso en entornos de virtualización y redes definidas por software. Se integra con hipervisores como KVM (Kernel-based Virtual Machine), Xen, y es compatible con plataformas de virtualización como VMware.
+	Open vSwitch (OVS) [6] es un switch virtual de código abierto diseñado para su uso en entornos de virtualización y redes definidas por software. Se integra con hipervisores como KVM (Kernel-based Virtual Machine), Xen, y es compatible con plataformas de virtualización como VMware.
 	
 	Algunas características clave de Open vSwitch incluyen:
 	
@@ -417,7 +419,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\subsection{Wireshark} 
 	\label{sec:wireshark}
 	
-	Wireshark es una herramienta de análisis de tráfico de código abierto y gratuita. Permite capturar y examinar el tráfico de red en tiempo real, así como analizar y visualizar datos de capturas almacenados en ficheros de capturas. Wireshark es ampliamente utilizado por administradores de redes, profesionales de seguridad y desarrolladores de protocolos para resolver problemas de red, realizar análisis de tráfico y depurar aplicaciones.
+	Wireshark [12] es una herramienta de análisis de tráfico de código abierto y gratuita. Permite capturar y examinar el tráfico de red en tiempo real, así como analizar y visualizar datos de capturas almacenados en ficheros de capturas. Wireshark  es ampliamente utilizado por administradores de redes, profesionales de seguridad y desarrolladores de protocolos para resolver problemas de red, realizar análisis de tráfico y depurar aplicaciones.
 	
 	Algunas características clave de Wireshark incluyen:
 	
@@ -442,7 +444,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\chapter{Objetivos} % título del capítulo (se muestra)
 	\label{chap:objetivos} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 	
-	En este Trabajo de Fin de Grado se va a estudiar el funcionamiento de las redes SDN
+	En este trabajo de fin de grado se va a estudiar el funcionamiento de las redes SDN
 	utilizando para ello el controlador Periplus dentro
 	del entorno de emulación Mininet. El objetivo
 	general es conocer las redes SDN, el protocolo
@@ -613,7 +615,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\chapter{Estudio y análisis del plano de control Periplus} % título del capítulo (se muestra)
 	\label{chap:periplus} % identificador del capítulo (no se muestra, es para poder referenciarlo)
 	
-	Este Trabajo de Fin de Grado se centra principalmente en el plano de control in-band que genera el controlador Periplus. Este plano de control está desarrollado en Python por el Grupo de Investigación de Alto Rendimiento en Tecnologías de la Información y Comunicaciones para el Desarrollo Humano de la Universidad Rey Juan Carlos. Periplus es un controlador in-band, es decir, que utiliza la misma infraestructura tanto para el plano de datos como para el plano de control. Partiendo de una configuración inicial mínima, los switches OpenFlow deben descubrir donde
+	Este trabajo de fin de grado se centra principalmente en el plano de control in-band que genera el controlador Periplus. Este plano de control está desarrollado en Python por el Grupo de Investigación de Alto Rendimiento en Tecnologías de la Información y Comunicaciones para el Desarrollo Humano de la Universidad Rey Juan Carlos. Periplus es un controlador in-band, es decir, que utiliza la misma infraestructura tanto para el plano de datos como para el plano de control. Partiendo de una configuración inicial mínima, los switches OpenFlow deben descubrir donde
 	se encuentra el controlador para establecer una conexión TCP que permita definir la sesión
 	OpenFlow. Una vez establecida esa sesión Periplus podrá instalar en los switches la configuración
 	necesaria para el plano de control.	Para ello, Periplus utiliza mecanismos como Proxy ARP y Anycast que facilitan el descubrimiento de la máquina en la que se encuentra el controlador.
@@ -896,7 +898,7 @@ Another feature that has been analyzed is the distribution of switch management 
  	 	\begin{minipage}[b]{0.45\textwidth}
  	 		\centering
  	 		\includegraphics[width=\textwidth]{img/comparativavarianzabucle.png}
- 	 		\caption{Comparativa de varianza en conseguir que todos los switches estén gestionados por un controlador.}
+ 	 		\caption{Comparativa de varianza en conseguir que todos los switches del escenario 1 estén gestionados por un controlador.}
  	 		\label{fig:varianza}
  	 	\end{minipage}
  	 \end{figure}
@@ -909,7 +911,7 @@ Another feature that has been analyzed is the distribution of switch management 
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=12cm, keepaspectratio]{img/rutasEscenario1-1c}
+ 		\includegraphics[width=14cm, keepaspectratio]{img/rutasEscenario1-1c}
  		\caption{Orden de conexión de los switches. El color rojo indica que todos los switches salvo s8 se han conectado de la misma forma en las 10 ejecuciones}
  		\label{figura:escenario1_1c_1}
  	\end{figure}
@@ -1006,7 +1008,7 @@ Another feature that has been analyzed is the distribution of switch management 
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=14cm, keepaspectratio]{img/escenario2-1}
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario2-1}
  		\caption{Segundo escenario con 1 controlador y 16 switches}
  		\label{figura:escenario2-1c}
  	\end{figure}
@@ -1137,12 +1139,12 @@ Another feature that has been analyzed is the distribution of switch management 
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
+ 		\includegraphics[width=14cm, keepaspectratio]{img/switchesporcontrollerescenario3}
  		\caption{Número de switches por controlador en el tercer escenario.}
  		\label{figura:switchesporcontrollerb4}
  	\end{figure}
  	
- 	En este caso no se incluyen las figuras que muestran los switches conectados a cada controlador porque si los resultados muestran que en cada ejecución se ha obtenido un árbol de conexión diferente debido a la existencia de varios caminos alternativos e igual distancia al controlador.
+ 	En este caso no se incluyen las figuras que muestran los switches conectados a cada controlador porque los resultados muestran que en cada ejecución se ha obtenido un árbol de conexión diferente debido a la existencia de varios caminos alternativos e igual distancia al controlador.
 	
 	\clearpage
 	\section{Escenario 4}
@@ -1181,20 +1183,20 @@ En las figuras \ref{figura:comparativaescenario4} y \ref{figura:mediaescenario4}
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=13cm, keepaspectratio]{img/comparativaescenario4}
+		\includegraphics[width=12cm, keepaspectratio]{img/comparativaescenario4}
 		\caption{Tiempo que tardan todos los switches del escenario 4 en estar gestionados por un controlador.}
 		\label{figura:comparativaescenario4}
 	\end{figure}
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=13cm, keepaspectratio]{img/comparativamediaescenario4}
+		\includegraphics[width=10cm, keepaspectratio]{img/comparativamediaescenario4}
 		\caption{Comparativa de media de tiempos en conseguir que todos los switches del escenario 4 estén gestionados por un controlador.}
 		\label{figura:mediaescenario4}
 	\end{figure}
 	
 
-	Como se puede observar en las figuras \ref{medianascenario4} y \ref{varianzaescenario4} también hay bastante diferencia en la mediana y la varianza. Al haber 2 controladores y tantos caminos alternativos, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y sobre todo la varianza.
+	Como se puede observar en las figuras \ref{fig:medianascenario4} y \ref{fig:varianzaescenario4} también hay bastante diferencia en la mediana y la varianza. Al haber 2 controladores y tantos caminos alternativos, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y sobre todo la varianza.
 	
 %	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
 	\begin{figure}[H]
@@ -1218,7 +1220,7 @@ En las figuras \ref{figura:comparativaescenario4} y \ref{figura:mediaescenario4}
 		
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/switchesporcontrollerescenario3}
+		\includegraphics[width=14cm, keepaspectratio]{img/switchesporcontrollerescenario3}
 		\caption{Número de switches por controlador en el escenario 4.}
 		\label{figura:switchesporcontrollerescenario4}
 	\end{figure}
@@ -1234,7 +1236,7 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 		\label{figura:comparativaFail}
 	\end{figure}
 	
-	En la figura \ref{comparativaFail} se observa que no ha habido mejora, sino que ha habido un empeoramiento muy  significativo. Puede ser debido a la sobrecarga de arrancar dentro de un escenario donde existen muchos caminos alternativos 4 controladores. En el arranque de un switch en este escenario podría ocurrir que el switch intentase la conexión simultánea con varios controladores provocando un retraso hasta que solo una de las conexiones con uno de los controladores se mantenga activa y se descarta el resto de intentos de conexión.
+	En la figura \ref{figura:comparativaFail} se observa que no ha habido mejora, sino que ha habido un empeoramiento muy  significativo. Puede ser debido a la sobrecarga de arrancar dentro de un escenario donde existen muchos caminos alternativos 4 controladores. En el arranque de un switch en este escenario podría ocurrir que el switch intentase la conexión simultánea con varios controladores provocando un retraso hasta que solo una de las conexiones con uno de los controladores se mantenga activa y se descarta el resto de intentos de conexión.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1251,7 +1253,7 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 	\section{Consecución de objetivos}
 	\label{sec:consecucion-objetivos}
 	
-	Tal y como se explicó en el capítulo ~\ref{chap:objetivos}, se pretendía conocer mejor el funcionamiento de Periplus con respecto al número de controladores en diferentes escenarios. Se han realizado pruebas en las que hemos podido ver nuevas casuísticas que nos han ido aportando nueva información sobre el funcionamiento de Periplus. Con el primer escenario, que era el más pequeño y el que se puede estudiar más en profundidad, se han confirmado las hipótesis que planteamos. Al añadir nuevos controladores, en los switches más alejados con respecto al escenario de un único controlador, se redujo considerablemente el tiempo de conexión de todos los switches, además se obtuvo un reparto más equitativo de switches por controlador.
+	Tal y como se explicó en el capítulo \ref{chap:objetivos}, se pretendía conocer mejor el funcionamiento de Periplus con respecto al número de controladores en diferentes escenarios. Se han realizado pruebas en las que hemos podido ver nuevas casuísticas que nos han ido aportando nueva información sobre el funcionamiento de Periplus. Con el primer escenario, que era el más pequeño y el que se puede estudiar más en profundidad, se han confirmado las hipótesis que planteamos. Al añadir nuevos controladores, en los switches más alejados con respecto al escenario de un único controlador, se redujo considerablemente el tiempo de conexión de todos los switches, además se obtuvo un reparto más equitativo de switches por controlador.
 	
 	Asimismo, con el último experimento, hemos comprobado que no siempre se obtiene ventajas al añadir controladores, ya que una sobrecarga de éstos puede empeorar significativamente nuestros resultados pese a acortar los caminos. También aporta más complejidad y puede provocar retardos inesperados debido a que los switches pueden estar simultáneamente conectándose a varios controladores.
 	
@@ -1281,7 +1283,7 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 	\section{Trabajos futuros}
 	\label{sec:trabajos_futuros}
 	
-	Tras realizar el presente TFG considero que sería una buena opción a tener en cuenta el optimizar los escenarios, creando lógica en los controladores, para que de forma coordinada puedan repartirse los switches si tras el arranque el reparto hubiera quedado desequilibrado. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria. 
+	Tras realizar el presente trabajo de fin de grado considero que sería una buena opción a tener en cuenta el optimizar los escenarios, creando lógica en los controladores, para que de forma coordinada puedan repartirse los switches si tras el arranque el reparto hubiera quedado desequilibrado. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria. 
 	Además, debido a lo ocurrido en el último experimento, creo que sería muy interesante formalizar los escenarios con diferente número de controladores, y ver cómo afectan estos controladores extras a la estabilidad del escenario y los tiempos de resolución de incidencias, con el objetivo de extraer una relación o ecuación para calcular el número óptimo de controladores por switches o por distancia, o por número de caminos alternativos a la misma distancia de un controlador o varios controladores.
 	
 	
@@ -1327,6 +1329,10 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 	[10] Documentación Linux Networking https://www.opencloudblog.com/
 	
 	[11] Documentación Ryu https://ryu-sdn.org/
+	
+	[12] Documentación Wireshark https://www.wireshark.org/
+	
+	[13] Página oficial de OpenFlow https://opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.0.0.pdf
 	
  	
 	 % memoria.bib es el nombre del fichero que contiene
