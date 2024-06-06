@@ -140,12 +140,13 @@
 		\vspace{1cm}
 		\large
 		\textbf{Autor :} Luis Haro Peña \\
-		\textbf{Tutor :} Pedro de las Heras Quirós
+		\textbf{Tutor :} Pedro de las Heras Quirós \\
+		\textbf{Contutora :} Eva María Castro Barbero
 		
 	\end{center}
 	
 	\vspace{1cm}
-	La defensa del presente Trabajo fin de grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2023, siendo calificada por el siguiente tribunal:
+	La defensa del presente Trabajo fin de grado se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2024, siendo calificada por el siguiente tribunal:
 	
 	
 	\vspace{0.5cm}
@@ -178,7 +179,7 @@
 	%\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 	\markboth{RESUMEN}{RESUMEN} % encabezado
 	Este trabajo de fin de grado se centra en la configuración y realización de medidas de parámetros 
-	de un plano de control inband basado en SDN/Openflow denominado Periplus. La
+	de un plano de control in-band basado en SDN/OpenFlow denominado Periplus. La
 	creciente demanda de redes más flexibles, escalables y programables ha impulsado el desarrollo de 
 	nuevas tecnologías como las Redes Definidas por Software (Software Defined Networks, SDN). 
 	El protocolo estándar que se utiliza en este tipo de redes en la denominada interfaz sur es
@@ -252,7 +253,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	En el ámbito de las telecomunicaciones, la evolución constante de las redes y la creciente demanda de mayor flexibilidad y eficiencia han impulsado el surgimiento de nuevas tecnologías y enfoques de gestión de redes. Entre ellos, destaca la Red Definida por Software (SDN)[4] y el protocolo OpenFlow[2], los cuales han revolucionado la forma en que se configuran y controlan las redes. En este contexto, el presente trabajo de fin de grado se enfoca en la configuración y medidas de un plano de control in-band SDN/OpenFlow[1], específicamente en un entorno de emulación de redes: Mininet.
 	
-	El objetivo principal de este trabajo es explorar las capacidades y ventajas que ofrece la implementación de un plano de control in-band SDN/Openflow en una infraestructura de red basada en switches Ethernet. A través de la configuración y pruebas exhaustivas, se busca demostrar la viabilidad y el potencial de esta solución en términos de gestión centralizada, flexibilidad y escalabilidad. Además, se abordará el aspecto de la robustez, ya que la introducción de un plano de control centralizado también conlleva desafíos en cuanto a problemas en la red debido a que un enlace o un switch dejen de funcionar, provocando problemas de comunicación entre los dispositivos.
+	El objetivo principal de este trabajo es explorar las capacidades y ventajas que ofrece la implementación de un plano de control in-band SDN/OpenFlow en una infraestructura de red basada en switches Ethernet. A través de la configuración y pruebas exhaustivas, se busca demostrar la viabilidad y el potencial de esta solución en términos de gestión centralizada, flexibilidad y escalabilidad. Además, se abordará el aspecto de la robustez, ya que la introducción de un plano de control centralizado también conlleva desafíos en cuanto a problemas en la red debido a que un enlace o un switch dejen de funcionar, provocando problemas de comunicación entre los dispositivos.
 	
 	
 	En este capítulo se va a realizar una introducción a la temática de este trabajo de fin de grado. Por una
@@ -274,7 +275,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\section{Redes Definidas por Software} 
 	\label{sec:sdn}
 	
-	Redes Definidas por Software (Software defined Networking, SDN), es una arquitectura de red que busca mejorar la flexibilidad y el control de las redes mediante la separación del plano de control y el plano de datos. En las redes tradicionales, estos dos planos están integrados en los dispositivos de red, como switches y routers.
+	Redes Definidas por Software (Software defined Networking, SDN), es una arquitectura de red que busca mejorar la flexibilidad y el control de las redes mediante la separación del plano de control y el plano de datos, véase la figura \ref{figura:SDN}. En las redes tradicionales, estos dos planos están integrados en los dispositivos de red, como switches y routers.
 	
 	En un entorno SDN, el plano de control se centraliza en una aplicación denominada controlador SDN, que es un software que tiene una visión global de la red y toma decisiones sobre cómo debe ser dirigido el tráfico. El plano de datos, que se ocupa de la transmisión real de los datos, permanece distribuido en los dispositivos de red. La comunicación entre el controlador y los dispositivos se realiza a través de protocolos estandarizados, como OpenFlow. El controlador configura los dispositivos de la red para que implementen el reenvío de datos en el plano de datos.
 	
@@ -293,14 +294,14 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	
 	OpenFlow [13] es un protocolo de comunicaciones que fue desarrollado por la Open Networking Foundation (ONF) y se ha convertido en un estándar abierto utilizado en redes definidas por software.
-	Un controlador SDN toma decisiones sobre el funcionamiento de la red y configura los dispositivos de red para que los implementen. Para ello, el controlador debe enviar a los dispositivos de red mensajes que permitan configurar acciones para realizar la función de encaminamiento. Uno de los protocolos que se ha convertido en estándar pasa la comunicación entre el controlador y los dispositivos de red es OpenFlow. Los dispositivos de red compatibles con OpenFlow, reciben mensajes  OpenFlow del controlador y actúan como ejecutores de las intrucciones proporcionadas por dicho controlador.
+	Un controlador SDN toma decisiones sobre el funcionamiento de la red y configura los dispositivos de red para que los implementen. Para ello, el controlador debe enviar a los dispositivos de red mensajes que permitan configurar acciones para realizar la función de encaminamiento. Uno de los protocolos que se ha convertido en estándar para la comunicación entre el controlador y los dispositivos de red es OpenFlow. Los dispositivos de red compatibles con OpenFlow, reciben mensajes  OpenFlow del controlador y actúan como ejecutores de las intrucciones proporcionadas por dicho controlador.
 	
 	El protocolo OpenFlow establece una conexión TCP entre el controlador y los dispositivos de red  y define un conjunto de mensajes para la comunicación entre ellos. El controlador puede enviar instrucciones a los dispositivos de red, como reglas de flujo, y recibir información sobre el estado de la red de los dispositivos de red, como estadísticas de tráfico. Esto permite una gestión centralizada y programable de la red, lo que facilita que el controlador pueda llevar a cabo la implementación de políticas de red, la optimización del tráfico y la resolución de problemas.
 
 	
 	Algunas de las ventajas de OpenFlow y SDN incluyen la flexibilidad y la capacidad de adaptación de la red a las necesidades cambiantes, la simplificación de la administración y la configuración de la red, y la posibilidad de implementar nuevas funcionalidades y servicios de manera más rápida y eficiente.
 	
-	En el cuadro 1.1 podemos observar los mensajes OpenFlow y sus significados.
+	En el cuadro 1.1 podemos observar algunos de los mensajes más importantes de  OpenFlow y sus funciones.
 	
 	\begin{table}[H] % Fija la tabla en esta posición
 		\centering
@@ -308,7 +309,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 		\begin{tabular}{|c|l|}
 			\hline
-			\textbf{Mensaje} & \textbf{Significado} \\
+			\textbf{Mensaje} & \textbf{Función} \\
 			\hline
 			\texttt{OFPT\_HELLO} & Mensaje de saludo para iniciar la conexión \\
 			\hline
@@ -322,7 +323,7 @@ Another feature that has been analyzed is the distribution of switch management 
 			\hline
 			\texttt{OFPT\_PACKET\_OUT} & Envía un paquete fuera del switch \\
 			\hline
-			\texttt{OFPT\_FLOW\_REMOVED} & Indica que un flujo ha sido removido del switch \\
+			\texttt{OFPT\_FLOW\_REMOVED} & Indica que un flujo ha sido borrado del switch \\
 			\hline
 			\texttt{OFPT\_ERROR} & Indica un error en la comunicación \\
 			\hline
@@ -336,7 +337,7 @@ Another feature that has been analyzed is the distribution of switch management 
 			\hline
 		\end{tabular}
 		\label{tab:openflow}
-		\caption{Mensajes OpenFlow y sus significados}
+		\caption{Mensajes OpenFlow y sus funciones}
 	\end{table}
 	
 	\section{Open vSwitch} 
@@ -348,7 +349,6 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	\begin{enumerate}
 		\item Conmutación Virtual: Open vSwitch permite la conmutación de paquetes a nivel de hipervisor, facilitando la comunicación entre máquinas virtuales (VM) y con la red física.
-		
 		
 		\item Soporte SDN: Se puede utilizar en entornos SDN, ya que es compatible con el protocolo OpenFlow. Esto permite una gestión centralizada y programable de la red.
 		
@@ -364,12 +364,12 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/DiagramaOpenFlow}
+		\includegraphics[width=14cm, keepaspectratio]{img/DiagramaOpenFlow}
 		\caption{Diagrama de flujo de las tablas OpenFlow}
 		\label{figura:DiagramaOpenFlow}
 	\end{figure}
 	
-	Cuando un mensaje llega a un switch Open vSwitch, primero se consulta la tabla de flujo para determinar las acciones a tomar según las características del paquete. Si se encuentra una coincidencia exacta, se aplican las acciones especificadas en la regla correspondiente. En caso contrario, el mensaje puede ser dirigido a tablas adicionales, como la tabla de grupos o la tabla de controlador, dependiendo de la configuración del switch. Si aún no se encuentra una coincidencia, el paquete puede ser enviado al controlador de la red para su procesamiento adicional. Este proceso permite que el switch tome decisiones de enrutamiento y reenvío de manera flexible y programable.
+	Como se observa en la figura \ref{figura:DiagramaOpenFlow}, cuando un mensaje llega a un switch Open vSwitch, primero se consulta la tabla de flujo para determinar las acciones a tomar según las características del paquete. Si se encuentra una coincidencia exacta, se aplican las acciones especificadas en la regla correspondiente. En caso contrario, el mensaje puede ser dirigido a tablas adicionales, como la tabla de grupos, dependiendo de la configuración del switch. Si aún no se encuentra una coincidencia, el paquete puede ser enviado al controlador de la red para su procesamiento adicional a través del mensaje OpenFlow OFPT\_PACKET\_IN. Este proceso permite que el switch tome decisiones de enrutamiento y reenvío de manera flexible y programable.
 	
 	\section{Entorno de configuración y herramientas de red}
 	\subsection{Mininet} 
@@ -380,15 +380,15 @@ Another feature that has been analyzed is the distribution of switch management 
 	Algunas características importantes de Mininet incluyen:
 	
 	\begin{enumerate}
-		\item 	Emulación de red: Mininet permite crear una topología de red virtual con switches Open vSwitch (OVS) y hosts emulados. La topología de red y las características de los dispositivos de red se definen utilizando scripts en Python.
-		\item 	Entorno aislado: Cada instancia de Mininet se ejecuta en su propio espacio de nombres (namespace) y utiliza recursos de red virtuales, lo que proporciona un entorno aislado y seguro para realizar experimentos.
+		\item 	Emulación de red: Mininet permite crear una topología de red virtual con switches Open vSwitch y hosts emulados. La topología de red y las características de los dispositivos de red se definen utilizando scripts en Python.
+		\item 	Entorno aislado: Cada instancia de Mininet se ejecuta en su propio espacio de nombres de red en Linux y utiliza recursos de red virtuales, lo que proporciona un entorno aislado y seguro para realizar experimentos.
 		\item 	Integración con controladores SDN: Mininet se integra fácilmente con controladores SDN como OpenDaylight, ONOS o controladores basados en Ryu. Esto permite desarrollar y probar aplicaciones y protocolos de red definidos por software utilizando un entorno emulado.
 		\item 	Generación de tráfico: Mininet permite generar tráfico de red en la topología emulada. Esto es útil para evaluar el comportamiento de la red,  de los protocolos y probar la tolerancia a fallos.
 		\item   Extensibilidad: Mininet es altamente extensible y se puede personalizar según las necesidades del usuario. Es posible agregar nuevos tipos de nodos de red, desarrollar controladores personalizados y utilizar módulos de extensión para ampliar su funcionalidad.
 	\end{enumerate}
 	
 	
-	Por tanto, Mininet es una herramienta muy útil para la experimentación y desarrollo de redes. Proporciona un entorno de red virtualizado y aislado, lo que permite probar y evaluar diversas configuraciones de red y escenarios de manera eficiente y segura.
+	Por tanto, Mininet es una herramienta muy útil para la experimentación de nuevos protocolos y arquitecturas de red, que se utiliza en el campo de la investigación en redes de ordenadores.
 		
 	
 	
@@ -414,7 +414,7 @@ Another feature that has been analyzed is the distribution of switch management 
 		
 	\end{enumerate}
 	
-	Ryu es una herramienta poderosa para aquellos que buscan construir y personalizar controladores SDN utilizando Python y aprovechando las capacidades del protocolo OpenFlow. Su flexibilidad y comunidad activa lo hacen una opción atractiva en el ámbito de las redes definidas por software.
+	Ryu es una herramienta utilizada para construir y personalizar controladores SDN utilizando Python y aprovechando las capacidades del protocolo OpenFlow. 
 	
 	\subsection{Wireshark} 
 	\label{sec:wireshark}
@@ -432,8 +432,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\end{enumerate}
 	
 	
-	Wireshark es una herramienta para el análisis de redes y resolución de problemas. Su interfaz intuitiva y sus capacidades de filtrado y análisis detallado lo convierten en una opción popular tanto para usuarios principiantes como para expertos en redes.
-		
+	Wireshark es una herramienta para el análisis de redes y resolución de problemas. Su interfaz intuitiva y sus capacidades de filtrado y análisis facilitan la labor de administradores de red y programadores de aplicaciones en red.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -469,14 +468,14 @@ Another feature that has been analyzed is the distribution of switch management 
 	\subsection{Realización de pruebas del plano de control Periplus y obtención de resultados}
 	\label{sec:objetivos-analisis-periplus}
 	
-	Realizar un conjunto de pruebas para la obtención de medias que permitan extraer conclusiones
+	Realizar un conjunto de pruebas para la obtención de medidas que permitan extraer conclusiones
 	sobre el comportamiento de Periplus	en determinadas	situaciones como el tiempo de conexión de los switches OpenFlow al controlador o controladores en diferentes escenarios de red.
 	
 	
 	\section{Planificación temporal}
 	\label{sec:planificacion-temporal}
 	
-	El TFG se ha realizado durante mas de dos años, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este trabajo era entender perfectamente el comportamiento de Periplus.
+	Este trabajo se ha realizado durante más de dos años, de forma intermitente, principalmente en fines de semana y festivos. Durante todo este tiempo, hemos estado intercambiando correos, y teniendo varias reuniones de seguimiento, principalmente porque un requisito importante de este trabajo era entender perfectamente el comportamiento de Periplus.
 	Además ha habido varios inconvenientes con las herramientas utilizadas que han ralentizado mucho el trabajo, con periodos de inactividad de varios meses intentando solventar los problemas.
 	
 	
@@ -541,9 +540,9 @@ Another feature that has been analyzed is the distribution of switch management 
 		
 		\item \verb*|ovs-vsctl add-port OVS1 veth-r|: agrega el extremo del cable ''veth-r'' a OVS1. Como previamente se había conectado el extremo ''eth0-r'' al espacio de nombres de red ''red'', al ejecutar este comando dicho espacio de nombres quedará conectado a OVS1.
 		
-		\item \verb*|ip link set veth0-r up|: activa una interfaz de red virtual. En este caso, se activa la interfaz de red virtual llamada ''veth0-r''. Permitiendo que pueda transmitir y recibir datos. 
+		\item \verb*|ip link set veth0-r up|: activa una interfaz de red virtual. En este caso, se activa la interfaz de red virtual llamada ''veth0-r'', permitiendo que pueda transmitir y recibir datos. 
 		
-		\item \verb*|ip netns exec red ip link set dev eth0-r up|: activa la interfaz de red ''eth0-r'' dentro del namespace ''red''.
+		\item \verb*|ip netns exec red ip link set dev eth0-r up|: activa la interfaz de red ''eth0-r'' dentro del espacio de nombres de red ''red''.
 		
 		\item \verb*|ip netns exec red ip address add 10.0.0.1/24 dev eth0-r|: agrega una dirección IP a la interfaz de red ''eth0-r'' dentro del espacio de nombres de red llamado ''red''.
 		
@@ -555,7 +554,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	\end{itemize}
 	
-	Utilizando estos comandos se crea un escenario simple con dos namespaces, ''red'' y ''green'', conectados a través de un switch virtual tal y como se muestra en la figura 3.1 Cada espacio de nombres tiene su tabla de encaminamiento independiente y diferente de la tabla de encaminamiento del espacio de nombres de red raíz que se corresponde con los recursos de la red de la máquina real.
+	Utilizando estos comandos se crea un escenario simple con dos espacios de nombres de red, ''red'' y ''green'', conectados a través de un switch virtual tal y como se muestra en la figura 3.1 Cada espacio de nombres tiene su tabla de encaminamiento independiente y diferente de la tabla de encaminamiento del espacio de nombres de red raíz, que se corresponde con los recursos de la red de la máquina real.
 	
 
 	
@@ -563,7 +562,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\section{Introducción a Mininet}
 	
 	Mininet permite la creación de espacios de nombres de red de forma más sencilla y su conexión a través
-	de dispositivos Open vSwitch a través de un programa en Python. Mininet ofrece una interfaz sencilla
+	de dispositivos Open vSwitch usando un programa en Python. Mininet ofrece una interfaz sencilla
 	de programación para la creación de máquinas (que se crean con espacios de nombres de red) y su
 	configuración IP, así como la creación de enlaces entre las mismas.
 	Una configuración similar a la representada en la figura 3.1 se obtiene en Mininet con el siguiente
@@ -630,8 +629,8 @@ Another feature that has been analyzed is the distribution of switch management 
 	
 	\subsection{Descubrimiento del Controlador}
 	
-		Los switches, al encenderse, deben establecer una conexión TCP con el controlador SDN. Esta conexión se utilizará para establecer la sesión OpenFlow entre cada switch y el controlador.
-		Para enviar mensajes al controlador, el switch primero necesita conocer su dirección MAC. El primer mensaje que un switch enviará será una solicitud ARP para obtener la dirección Ethernet del nodo donde está el controlador.
+	Al iniciar los switches, estos deben establecer una conexión TCP con el controlador SDN. Esta conexión se utilizará para establecer la sesión OpenFlow entre cada switch y el controlador.
+		Para enviar mensajes al controlador, el switch primero necesita conocer su dirección Ethernet. El primer mensaje que un switch enviará será una solicitud ARP para obtener la dirección Ethernet del nodo donde está el controlador.
 
 	Si el switch que está arrancando está directamente conectado al controlador o a otro
 	switch que ya está gestionado por el controlador, el nuevo switch recibirá la respuesta
@@ -645,13 +644,13 @@ Another feature that has been analyzed is the distribution of switch management 
 
 	
 	\subsection{Intercambio inicial de características}
-	El controlador y los switches intercambian un conjunsto de mensajes OpenFlow:
+	El controlador y los switches intercambian un conjunto de mensajes OpenFlow:
 	\begin{itemize}
 		\item \textbf{Reporte de características}: Los switches informan al controlador sobre sus características, como el número de puertos y características específicas del hardware.
 		\item \textbf{Evaluación por el Controlador}: El controlador utiliza esta información para optimizar las decisiones de enrutamiento y gestión de flujos.
 	\end{itemize}
 	
-	El controlador va obteniendo la información de la topología completa de la red y podrá calcular los caminos mas cortos entre cada switch y el controlador y viceversa, aplicando Dijkstra.
+	El controlador va obteniendo la información de la topología completa de la red y podrá calcular los caminos más cortos entre cada switch y el controlador y viceversa, aplicando Dijkstra.
 	
 	\subsection{Instalación de Flujos para encaminamiento}
 	A partir de la información de encaminamiento calculada por el controlador se realizarán las siguientes funciones:
@@ -661,8 +660,8 @@ Another feature that has been analyzed is the distribution of switch management 
 	\end{itemize}
 	
 	\subsection{Monitorización de la red}
-		El controlador monitorea la red y ajusta los flujos instalados en los switches si se producen cambios en la red.
-		Ante la aparición de nuevos switches o problemas en los enlaces el controlador aplicará nuevamente Dijkstra sobre la topología modificada y recalculará los caminos que permitan la comunicación entre dispositivos.
+		El controlador vigila el funcionamiento la red y ajusta los flujos instalados en los switches si se producen cambios en la red.
+		Ante la aparición de nuevos switches o problemas en los enlaces, el controlador aplicará nuevamente Dijkstra sobre la topología modificada y recalculará los caminos que permitan la comunicación entre dispositivos.
 	
 	\section{Sesión OpenFlow}
 	Vamos a describir el intercambio de mensajes OpenFlow cuando se arranca un escenario desde cero. Este proceso implica la conexión inicial entre el controlador y el switch, así como la configuración de reglas de flujo. 
@@ -674,9 +673,9 @@ Another feature that has been analyzed is the distribution of switch management 
 			\item Los switches establecen conexiones TCP con el controlador.
 		\end{itemize}
 		
-		\item Handshake Inicial:
+		\item Comunicación Inicial:
 		\begin{itemize}
-			\item Los switches envían mensajes OFPT\_HELLO para iniciar el handshake con el controlador.
+			\item Los switches envían mensajes OFPT\_HELLO para iniciar la comunicación con el controlador.
 			\item El controlador responde con mensajes OFPT\_HELLO.
 		\end{itemize}
 		
@@ -704,15 +703,15 @@ Another feature that has been analyzed is the distribution of switch management 
 			mediante un mensaje OFPT\_PACKET\_IN. Estos paquetes permiten que el controlador configure nuevas reglas que instruyan al switch para gestionar este tipo de paquetes.
 		\end{itemize}
 		
-		\item Sonde de Conexión:
+		\item Sondeo de Conexión:
 		\sloppy
 		\begin{itemize}
-			\item El controlador puede enviar mensajes OFPT\_ECHO\_REQUEST para realizar pruebas de sondeo de la conexión. Estas pruebas muestran si ha habido algún problema de conexión en alguno de los switches si no se obtiene respuesta en un tiempo relativamente corto.
+			\item El controlador puede enviar mensajes OFPT\_ECHO\_REQUEST para realizar pruebas de sondeo de la conexión. Estas pruebas muestran si ha habido algún problema de conexión en alguno de los switches, si no se obtiene respuesta en un tiempo relativamente corto.
 		\item Cada switch responde a los mensajes OFPT\_ECHO\_REQUEST con mensajes OFPT\_ECHO\_REPLY.
 		\end{itemize}
 		\fussy
 		
-		\item Actualizaciones de Reglas:
+		\item Actualizaciones de Flujos:
 		\begin{itemize}
 			\item A medida que cambian las condiciones de la red o se producen eventos específicos,
 			el controlador puede enviar nuevos mensajes OFPT\_FLOW\_MOD adicionales para actualizar
@@ -729,7 +728,7 @@ Another feature that has been analyzed is the distribution of switch management 
 		
 	La comunicación entre los nodos ya gestionados y el controlador se lleva a cabo mediante un proceso de encaminamiento en origen, diseñado para establecer una comunicación tolerante a fallos en una red definida por software. 
 	
-	El controlador genera un ''grafo'' que representa la ruta completa que un paquete debe seguir para llegar desde un switch hasta el controlador, o viceversa, y el grafo se inserta en cada mensaje que se intercambian los switches y el controlador. Así, cada paquete transporta consigo la información necesaria para su encaminamiento a lo largo de la red.
+	El controlador genera un ''grafo'' que representa la ruta completa que un paquete debe seguir para llegar desde un switch hasta el controlador, o viceversa, y el grafo se inserta en cada mensaje que se intercambian los switches y el controlador. Así, cada paquete transporta consigo la información necesaria para su encaminamiento a lo largo de la red utilizando los protocolos existentes.
 	
 	El controlador configura los flujos OpenFlow en cada switch gestionado para que incluyan estos grafos en una cabecera adicional de los paquetes. Esto implica definir reglas específicas en los switches para interpretar y procesar adecuadamente la información del grafo contenida en las cabeceras adicionales de los paquetes. De esta manera, los switches intermedios interpretan la información de enrutamiento que se incluye en los mensajes.
 	
@@ -742,11 +741,11 @@ Another feature that has been analyzed is the distribution of switch management 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=16cm, keepaspectratio]{img/Ejemplo Periplus 1}
-		\caption{Escenario formado por 5 switches y un nodo controlador}
+		\caption{Escenario formado por 5 switches y un nodo controlador.}
 		\label{figura:PeriplusEj1}
 	\end{figure}
 	
-	Supongamos que tenemos un escenario simple con 5 switches y un controlador como el mostrado en la Figura \ref{figura:PeriplusEj1}. La comunicación entre el controlador y el switch 5 se puede realizar a través de 2 caminos posibles, uno más corto siguiendo la ruta controlador $\rightarrow$ s1 $\rightarrow$ s2 $\rightarrow$ s5 y otro mas largo a través de controlador $\rightarrow$ s1 $\rightarrow$ s3 $\rightarrow$ s4 $\rightarrow$ s5. 
+	Supongamos que tenemos un escenario simple con 5 switches y un controlador como el mostrado en la Figura \ref{figura:PeriplusEj1}. La comunicación entre el controlador y el switch 5 se puede realizar a través de 2 caminos posibles, uno más corto siguiendo la ruta controlador $\rightarrow$ s1 $\rightarrow$ s2 $\rightarrow$ s5 y otro más largo a través de controlador $\rightarrow$ s1 $\rightarrow$ s3 $\rightarrow$ s4 $\rightarrow$ s5. 
 	
 	El mensaje que sale de un nodo llevará en la cabecera NSH los números de puerto de salida de cada
 	switch que indican el camino que debe llevar el mensaje desde el origen al destino.
@@ -764,11 +763,11 @@ Another feature that has been analyzed is the distribution of switch management 
 	los puertos de salida en cada switch para llegar al switch 5. En este caso,
 	el grafo debe ser 22. Cuando el mensaje llegue al switch 1, éste debe eliminar del
 	grafo el puerto por donde lo envía (puerto 2) y
-	enviarlo a través de dicho puerto (puerto 2). Cuando le mensaje alcance el
+	enviarlo a través de dicho puerto (puerto 2). Cuando el mensaje alcance el
 	switch 2, éste debe eliminar del grafo el puerto por donde lo envía (puerto 2) y enviarlo
 	a través de dicho puerto (puerto 2). De esta forma el mensaje llegará a
 	su destino.
-	Adicionalmente, el mensaje que envíe el controlador contendrá también un camino alternativo
+	Adicionalmente, el mensaje que envíe el controlador contendrá también un camino alternativo,
 	por si se produce algún fallo en el camino principal. El camino alternativo en este caso queda
 	definido por el grafo 322. Es decir, desde el switch 1 se envía a través del puerto 3, al llegar al
 	switch 3 se envía a través del puerto 2 y al llegar al switch 4 se envía a través del puerto 2.
@@ -833,38 +832,38 @@ Another feature that has been analyzed is the distribution of switch management 
  	%Figura Escenario 1 con 1 controlador
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=12cm, keepaspectratio]{img/escenario1-1}
- 		\caption{Escenario 1: un controlador y 8 switches}
+ 		\includegraphics[width=16cm, keepaspectratio]{img/escenario1-1}
+ 		\caption{Escenario 1: un controlador y 8 switches.}
  		\label{figura:escenario1-1c}
  	\end{figure}
  	
- 	En la figura \ref{figura:escenario1-explicado} podemos ver en rojo, el numero de saltos de distancia desde cada switch al controlador, siendo el más lejano el switch s8, con una distancia o diámetro de 4.
+ 	En la figura \ref{figura:escenario1-explicado} podemos ver en rojo, el número de saltos de distancia desde cada switch al controlador, siendo el más lejano el switch s8, con una distancia o diámetro de la red igual a 4.
  	%Figura Escenario 1 con 1 controlador explicado
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/escenario1-explicado}
- 		\caption{Escenario 1: diámetro de la red}
+ 		\caption{Escenario 1: diámetro de la red.}
  		\label{figura:escenario1-explicado}
  		\vspace{-18pt}
  	\end{figure}
  	
- 	En la figura \ref{figura:escenario1-2c} se muestra la misma topología de la figura \ref{figura:escenario1-1c} pero con 2 controladores: c0 y c1. Ambos controladores tienen configurada la misma dirección IP para provocar que los switches se conecten al controlador más cercano. Los switches no saben a cuál de los controladores se están conectando porque establecen una conexión TCP con la dirección IP 10.0.0.1 que es la misma para ambos controladores.
+ 	En la figura \ref{figura:escenario1-2c} se muestra la misma topología de la figura \ref{figura:escenario1-1c} pero con 2 controladores: c0 y c1. Ambos controladores tienen configurada la misma dirección IP para provocar que los switches se conecten al controlador más cercano. Los switches no saben a cuál de los controladores se están conectando porque establecen una conexión TCP con la dirección IP 10.0.0.1, que es la misma para ambos controladores.
  	
  	%Figura Escenario 1 con 2 controladores
  	\begin{figure}[H]
  		\centering
  		\includegraphics[width=12cm, keepaspectratio]{img/escenario1-2}
- 		\caption{Escenario 1: 2 controladores y 8 switches}
+ 		\caption{Escenario 1: 2 controladores y 8 switches.}
  		\label{figura:escenario1-2c}
  		\vspace{-18pt}
  	\end{figure}
  	
- 	 Al añadir un segundo controlador en el otro extremo del escenario, los switches deberían conectarse al controlador más cercano en número de saltos. Por tanto, los switches	 s1, s2, s3 y s5 deberían conectarse al controlador c0 y los switches s7, s4 y s8 al controlador c1. El switch
- 	 s6 está a igual distancia de ambos controladores, por lo que podría conectarse tanto a c0 como a c1.
+ 	 Al añadir un segundo controlador en el otro extremo del escenario, los switches deberían conectarse al controlador más cercano en número de saltos. Por tanto, los switches	 s1, s2, s3 y s5 deberían conectarse al controlador c0 y los switches s7, s4 y s6 al controlador c1. El switch
+ 	 s8 está a igual distancia de ambos controladores, por lo que podría conectarse tanto a c0 como a c1.
  	 
  	 A continuación se han realizado 10 medidas diferentes para ver el tiempo que tardan todos los switches en estar gestionados por un controlador en el escenario 1, tanto con con 1 controlador, como en el de 2 controladores.
  	
- En la figura \ref{figura:comparativabucle4} se muestran los resultados obtenidos para los 10 intentos realizados en el arranque del escenario 1. La agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de la mejora en el tiempo de conexión de todos los switches en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador extra al escenario. 
+ En la figura \ref{figura:comparativabucle4} se muestran los resultados obtenidos para los 10 intentos realizados en el arranque del escenario 1. La agregación de nuevos controladores a un escenario reducirá los tiempos máximos de conexión. La media de la mejora en el tiempo de conexión de todos los switches en este escenario es de 0.0546 segundos, siendo esto una mejora del 14.59 \% al añadir un controlador adicional al escenario. 
  	Estos resultados coinciden con lo que se esperaba previamente, ya que hay una mejoría, pero no es demasiado grande con respecto al mismo escenario con un solo controlador.
  	
  	%Figura comparativa de tiempos en el primer escenario
@@ -883,7 +882,7 @@ Another feature that has been analyzed is the distribution of switch management 
  		\label{figura:mediabucle4}
  	\end{figure}
  	
- 	Y como vemos en la figura \ref{fig:mediana} y la figura \ref{fig:varianza} , también hay bastante diferencia en la mediana y la varianza. Ya que al haber 2 controladores, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y la varianza.
+ 	Como vemos en la figura \ref{fig:mediana} y la figura \ref{fig:varianza} , también hay bastante diferencia en la mediana y la varianza. Al haber 2 controladores, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y la varianza.
 
  	 
  	 \begin{figure}[H]
@@ -905,23 +904,23 @@ Another feature that has been analyzed is the distribution of switch management 
  	 	
  
  	
- 	Con el objetivo de ilustrar como cambia el escenario al añadir un controlador extra, se van a comparar los dos experimentos, analizando como se han ido conectando los switches paso a paso en los 10 intentos realizados.
+ 	Con el objetivo de ilustrar cómo cambia el escenario al añadir un controlador adicional, se van a comparar los dos experimentos analizando como se han ido conectando los switches paso a paso en los 10 intentos realizados.
  	
  	Para el caso de 1 controlador, los switches se han ido conectando según el orden mostrado en la figura \ref{figura:escenario1_1c_1}:
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[width=14cm, keepaspectratio]{img/rutasEscenario1-1c}
- 		\caption{Orden de conexión de los switches. El color rojo indica que todos los switches salvo s8 se han conectado de la misma forma en las 10 ejecuciones}
+ 		\includegraphics[width=16cm, keepaspectratio]{img/rutasEscenario1-1c}
+ 		\caption{Orden de conexión de los switches. El color rojo indica que todos los switches salvo s8 se han conectado de la misma forma en las 10 ejecuciones siguiendo el árbol de conexión de las flechas rojas.}
  		\label{figura:escenario1_1c_1}
  	\end{figure}
  	
  	Las diferencias entre las ejecuciones se encuentran en el switch s8 que puede alcanzar
- 	el controlador con el mismo coste en número de saltos a través de 2 caminos diferentes.
+ 	el controlador con el mismo coste (en número de saltos) a través de 2 caminos diferentes.
  	En las pruebas realizadas, en 2 ejecuciones s8 se conectó a través de s3 (camino verde
  	en la figura \ref{figura:escenario1_1c_1})	y en 8 ejecuciones s8 se conectó a través de s4 (camino	azul).
  	
- 	Para el caso de 2 controladores, los resultados son muy variados, como se muestra en la figura \ref{fig:conjunto}:
+ 	Para el caso de 2 controladores, los resultados son muy variados, como se muestra en las figuras de \ref{figura:8} a \ref{figura:16}:
  	
  	\begin{figure}[H]
  		\centering
@@ -929,6 +928,7 @@ Another feature that has been analyzed is the distribution of switch management 
  			\centering
  			\includegraphics[width=\textwidth]{img/escenario1_2c_1}
  			\caption{Orden de conexión de los experimentos 1, 4}
+ 			\label{figura:8}
  		\end{minipage}
  		\hfill
  		\begin{minipage}[b]{0.35\textwidth}
@@ -977,17 +977,15 @@ Another feature that has been analyzed is the distribution of switch management 
  			\centering
  			\includegraphics[width=\textwidth]{img/escenario1_2c_8}
  			\caption{Orden de conexión del experimento 10}
+ 			\label{figura:16}
  		\end{minipage}
- 		
- 		\caption{Conjunto de 8 imágenes}
- 		\label{fig:conjunto}
  	\end{figure}
  	
-	En esta figura se muestra en color rojo el árbol de switches conectado al controlador c0 y en azul los switches conectados al controlador c1.
+	En estas figuras se muestra en color rojo el árbol de switches conectado al controlador c0 y en azul los switches conectados al controlador c1.
  	
- 	Como podemos comprobar, pese a haber 10 experimentos, hemos podido ver 8 formas diferentes de conectar los switches. Algo que muestra la flexibilidad que tiene Periplus a la hora de realizar conexiones que en escenarios más grandes dará lugar a repartos equilibrados entre los controladores.
+ 	Como podemos comprobar, pese a haber 10 experimentos, hemos podido ver 8 formas diferentes de conectar los switches. Estos resultados muestran la flexibilidad que tiene Periplus a la hora de realizar conexiones, que en escenarios más grandes dará lugar a repartos equilibrados entre los controladores.
  	
- 	El reparto de switches por controlador es homogéneo en la mayor parte de las 10 ejecuciones. En la última ejecución, como se puede ver en la figura \ref{figura:switchesporcontrollerescenario1} el reparto se ha realizado de forma muy diferente: 6 switches se han conectado al controlador c0 y 2 switches al controlador c1. Esto se debe a que el controlador c1 ha arrancado después con un pequeño retraso, dando el tiempo suficiente a que el controlador c0 haya ido avanzando con la gestión de switches. 
+ 	El reparto de switches por controlador es homogéneo en la mayor parte de las 10 ejecuciones. En la última ejecución, como se puede ver en la figura \ref{figura:switchesporcontrollerescenario1} el reparto se ha realizado de forma muy diferente: 6 switches se han conectado al controlador c0 y 2 switches al controlador c1. Esto se debe a que el controlador c1 ha arrancado después, con un pequeño retraso, dando el tiempo suficiente a que el controlador c0 haya ido avanzando con la gestión de switches. 
  	
  	\begin{figure}[H]
  		\centering
@@ -1004,7 +1002,7 @@ Another feature that has been analyzed is the distribution of switch management 
  	En la figura \ref{figura:escenario2-1c} se muestra un escenario más complejo formado por 16 switches y un único
  	controlador c0. La figura \ref{figura:escenario2-4c} muestra la misma topología con 4 controladores.
  		
- 	En este escenario se espera una mejora muy superior en el tiempo de conexión de todos los switches a un controlador, ya que en el ejemplo con 1 controlador hay hasta 6 saltos hasta el switch más lejano, y con 4 controladores se reduce a 3, por lo que a priori podríamos esperar una mejora bastante superior a la obtenida en el primer escenario.
+ 	En este escenario se espera una mejora muy superior en el tiempo de conexión de todos los switches al introducir varios controladores, ya que en el ejemplo con 1 controlador hay hasta 6 saltos hasta el switch más lejano, y con 4 controladores se reduce a 3, por lo que a priori podríamos esperar una mejora bastante superior a la obtenida en el primer escenario.
  	
  	\begin{figure}[H]
  		\centering
@@ -1020,7 +1018,7 @@ Another feature that has been analyzed is the distribution of switch management 
  		\label{figura:escenario2-4c}
  	\end{figure}
  	
- 	Los resultados de las pruebas del tiempo de conexión de todos los switches se muestran en las figuras \ref{figura:comparativamesh} y \ref{figura:mediamesh}). A la vista de estos resultados podemos confirmar lo visto en el escenario 1 y lo que esperábamos antes de ver los resultados, ya que además en este escenario, al ser más grande y complejo, la disminución es mas notoria. El tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
+ 	Los resultados de las pruebas del tiempo de conexión de todos los switches se muestran en las figuras \ref{figura:comparativamesh} y \ref{figura:mediamesh}. A la vista de estos resultados podemos confirmar lo visto en el escenario 1 y lo que esperábamos antes de ver los resultados, ya que además en este escenario, al ser más grande y complejo, la disminución es mas notoria. El tiempo máximo de conexión en los switches se ha reducido en 0.1464 segundos, siendo el sistema un 26.28 \% mas rápido con 4 controladores que con 1.
  	
  	%Figura comparativa de tiempos en el segundo escenario
  	\begin{figure}[H]
@@ -1077,7 +1075,7 @@ Another feature that has been analyzed is the distribution of switch management 
  	\section{Escenario 3}
  	 
  	A continuación, se llevará a cabo un análisis de un escenario con mayor número de caminos alternativos (figura \ref{figura:b4_1}) y el mismo escenario con 2 controladores en vez de 1 (figura \ref{figura:b4_2}), para ver cómo reacciona Periplus en este caso.
- 	En el escenario con un controlador, vemos que el switch mas lejano está a 4 saltos, mientras que el escenario con dos controladores el switch mas lejano está a 3 saltos. Lo curioso de este escenario es la gran cantidad de conexiones entre switches que hay, y que el segundo controlador se coloca en el extremo mas lejano, pero lejos de otra gran parte de los switches.
+ 	En el escenario con un controlador, vemos que el switch mas lejano está a 4 saltos, mientras que el escenario con dos controladores el switch mas lejano está a 3 saltos. Lo curioso de este escenario es la gran cantidad de conexiones entre switches que hay, y que el segundo controlador se coloca en el extremo más lejano, pero lejos de otra gran parte de los switches.
  	
  	%Figura comparativa de tiempos en el tercer escenario
  	\begin{figure}[H]
@@ -1150,7 +1148,7 @@ Another feature that has been analyzed is the distribution of switch management 
 	\section{Escenario 4}
 	
 	En este último experimento y a diferencia de los escenarios anteriores, se realizará una tercera comparación, ya que estudiaremos un escenario con uno, dos, y cuatro controladores, para comprobar cómo cambia en función de cada caso.
-	En la figura \ref{figura:e4_1} podemos observar el primer caso, un único controlador para 20 switches, en la figura \ref{figura:e4_2} tenemos el mismo escenario pero con 2 controladores para los 20 switches y la figura \ref{figura:e4_3} que  tiene 4 controladores para los 20 switches.
+	En la figura \ref{figura:e4_1} podemos observar el primer caso, un único controlador para 20 switches, en la figura \ref{figura:e4_2} tenemos el mismo escenario pero con 2 controladores para los 20 switches y la figura \ref{figura:e4_3} tiene 4 controladores para los 20 switches.
 	
 	En este escenario, el número de saltos no va a disminuir, ya que se va a mantener la misma distancia máxima entre los controladores y los switches más alejados, pero se esperan tiempos más bajos debido a que el reparto de switches se debería dividir por 2 y 4 respectivamente.
 	
@@ -1176,7 +1174,7 @@ Another feature that has been analyzed is the distribution of switch management 
 		\label{figura:e4_3}
 	\end{figure}
 	
-En las figuras \ref{figura:comparativaescenario4} y \ref{figura:mediaescenario4} podemos observar la comparación del escenario con 1 y 2 controladores en tiempos y medias. Con estos resultados vemos que no solo influye el número de saltos entre el controlador y switch, sino que también es importante la carga de trabajo que va a tener cada controlador. El tiempo máximo de conexión de todos los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% mas rápido con 2 controladores que con 1. Teniendo en cuenta que la carga de trabajo se ha repartido entre 2, podemos observar que para escenarios complejos, cuantos más controladores haya, mucho más rápida será la configuración de los switches, además del factor número de saltos al controlador desde el switch más lejano.
+En las figuras \ref{figura:comparativaescenario4} y \ref{figura:mediaescenario4} podemos observar la comparación del escenario con 1 y 2 controladores en tiempos y medias. Con estos resultados vemos que no solo influye el número de saltos entre el controlador y switch, sino que también es importante la carga de trabajo que va a tener cada controlador. El tiempo máximo de conexión de todos los switches se ha reducido en 0.168 segundos, siendo el sistema un 47.19 \% más rápido con 2 controladores que con 1. Teniendo en cuenta que la carga de trabajo se ha repartido entre 2, podemos observar que para escenarios complejos, cuantos más controladores haya, más rápida será la configuración de los switches, además del factor número de saltos al controlador desde el switch más lejano.
 		
 		
 	
@@ -1196,7 +1194,7 @@ En las figuras \ref{figura:comparativaescenario4} y \ref{figura:mediaescenario4}
 	\end{figure}
 	
 
-	Como se puede observar en las figuras \ref{fig:medianascenario4} y \ref{fig:varianzaescenario4} también hay bastante diferencia en la mediana y la varianza. Al haber 2 controladores y tantos caminos alternativos, es difícil que haya tiempos muy altos, de ahí que se reduzca la mediana y sobre todo la varianza.
+	Como se puede observar en las figuras \ref{fig:medianascenario4} y \ref{fig:varianzaescenario4} también hay bastante diferencia en la mediana y la varianza. 
 	
 %	Además, hemos comprobado que por lo general el reparto de switches entre los controladores se ha realizado de forma correcta.
 	\begin{figure}[H]
@@ -1248,7 +1246,7 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 	\chapter{Conclusiones}
 	\label{chap:conclusiones}
 	
-	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir más de un controlador a un escenario va a ayudar, en la gran mayoría de los casos, a minimizar tiempos de conexión de todos los switches. Además, dicho tiempo mejorará cuanto más lejos estén los nuevos controladores entre ellos, ya que los controladores tendrán que dar menos saltos para llegar a los switches que se encontraban más lejanos, y por tanto, se reducirá el tiempo final.  
+	Como conclusión de lo visto en los diferentes experimentos, podemos confirmar que añadir más de un controlador a un escenario va a ayudar, en la gran mayoría de los casos, a minimizar tiempos de conexión de todos los switches. Además, dicho tiempo mejorará cuanto más lejos estén los nuevos controladores entre ellos, ya que los controladores tendrán que dar menos saltos para llegar a los switches que se encontraban más lejanos, y por tanto, se reducirá el tiempo final.  Sería interesante poder hacer pruebas en una máquina con mayores recursos de CPU y memoria para poder mejorar los resultados del escenario 4.
 	
 	\section{Consecución de objetivos}
 	\label{sec:consecucion-objetivos}
@@ -1283,8 +1281,8 @@ En la figura \ref{figura:comparativaFail} podemos observar una comparativa del e
 	\section{Trabajos futuros}
 	\label{sec:trabajos_futuros}
 	
-	Tras realizar el presente trabajo de fin de grado considero que sería una buena opción a tener en cuenta el optimizar los escenarios, creando lógica en los controladores, para que de forma coordinada puedan repartirse los switches si tras el arranque el reparto hubiera quedado desequilibrado. Asimismo opino que podría ser interesante investigar sobre hasta que punto es factible añadir controladores extra a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria. 
-	Además, debido a lo ocurrido en el último experimento, creo que sería muy interesante formalizar los escenarios con diferente número de controladores, y ver cómo afectan estos controladores extras a la estabilidad del escenario y los tiempos de resolución de incidencias, con el objetivo de extraer una relación o ecuación para calcular el número óptimo de controladores por switches o por distancia, o por número de caminos alternativos a la misma distancia de un controlador o varios controladores.
+	Tras realizar el presente trabajo de fin de grado considero que sería una buena opción a tener en cuenta el optimizar los escenarios, creando lógica en los controladores, para que de forma coordinada puedan repartirse los switches, si tras el arranque el reparto hubiera quedado desequilibrado. Asimismo opino que podría ser interesante investigar sobre hasta qué punto es factible añadir controladores adicionales a un escenario, ya que posiblemente llegue un punto que la mejora no sea lo suficientemente satisfactoria. 
+	Además, debido a lo ocurrido en el último experimento, creo que sería muy interesante formalizar los escenarios con diferente número de controladores, y ver cómo afectan estos controladores adicionales a la estabilidad del escenario y los tiempos de resolución de incidencias, con el objetivo de extraer una relación o ecuación para calcular el número óptimo de controladores por switches o por distancia, o por número de caminos alternativos a la misma distancia de un controlador o varios controladores.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
